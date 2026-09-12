@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.0.0
 
 - Fix regeneration settings stopping during effect cleanup, which left both human and vampire healing rates at zero.
 - Fix a crash while loading the vampire segment-recovery effect by correcting its serialized modifier boundaries.

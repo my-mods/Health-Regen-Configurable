@@ -71,7 +71,7 @@
     "native/CMakeLists.txt": "88de123faadf28187b97cab24e227f10a77ca94338607bea0ceab2de2169ca56",
     "native/Framecore2b.def": "b99b6244bc0b0df64e3a1de7a561c937b83e0a65e1f1d0db3476782c24d36b65",
     "native/RegenerationMath.hpp": "e2335b13d4f3df5eb7edd219a004e69238468650a02cc61815bba8b41fc53054",
-    "native/main.cpp": "6c09f7e23a891b5474867e71164c2f8accc75285092d0fde70f0651b6ebaa967",
+    "native/main.cpp": "1d32f854bfeb864f355b7a75672fb47e17cd0b658f6b2664e7ecbe95879235de",
     "src/lua/Config.lua": "689ce019e0d4ee0d7f86da706c8fe0de5cfa4038502eb2bc174c68e8756ad1eb",
     "src/lua/Gameplay.lua": "73f02aa95ad8816c71075ee8e6e039b5bcb002b496cffd76a58a34f4e7039d15",
     "src/lua/NativeEffects.lua": "cc15453089fac7df2cdf7de3e3d3756929a57dddf92531e57f99f7e32e3b3332",
@@ -81,9 +81,9 @@
     "src/lua/UE4SSCommonSession.lua": "60ffc2ca565c31c98a763b084fe1de4417c9f2b922ec22a136fb4ad42e8d9a62",
     "src/lua/UE4SSDawnwalkerSaveLoad.lua": "71c112e47d0abe2646d8b03bf08e43b47a871ba5ebd5339f670fc5c95e82f2a1",
     "src/lua/main.lua": "896a88c523e552c05e495f9d2b9187c88b50ed8e00a86a3bca52fd276019cbd2",
-    "src/mod_settings.ini": "03f43c14cc26d8b4a9f888c3cb0629ec62e5cae9f1634be0d9c9ee4217ab37e7"
+    "src/mod_settings.ini": "5c4a3bf87e96cadd1d6dfdcaa0a739d753bd0d08c0f06d5eda656b37116b8035"
   },
-  "dllSha256": "878236e0ed0714eae7b3bb60bdc679dd5890f7f6ee6bd8c67efc8f19f041d1a2",
+  "dllSha256": "7181f11579493d56069dbec9b0a6cf88631b3ba011ce8b234a4d9554fd511c1b",
   "commonLibrary": {
     "repository": "https://github.com/my-mods/ue4ss-common",
     "commit": "e373d3702d2ef18acb484ec484fe41332248520b",
@@ -96,5 +96,16 @@
     ],
     "packaging": "Bundled immutable source copies; source, staged and archived bytes verified against the lock."
   },
-  "repository": "https://github.com/my-mods/Health-Regen-Configurable"
+  "repository": "https://github.com/my-mods/Health-Regen-Configurable",
+  "version": "1.0.0",
+  "releaseMaterials": {
+    "Nexus/banner.jpg": "f7010a53c078b1e5221ff4caafd78e3cac6042ed1817e3ff590c9d2197d41031",
+    "Nexus/thumbnail.jpg": "11b29f8892270794947efb77ead41b5d7c4f54d955c62bf8534d5a2b1506aa3f",
+    "Nexus/MEDIA-CREDITS.md": "20170c26a9b841ff2929285254c4bd195eea70cc3b6d3f777fc4d07e95b3b7ef",
+    "Nexus/summary.txt": "1bfa0c924e73a6229988812775173c489045089c784be05071c49da3aed6f21e",
+    "Nexus/description.bbcode": "2f2588eaaa65cfaf90a68b4253398ca7762e4ef8d65e5fa694c91f13513f3ed8",
+    "Nexus/file-description.txt": "85323d92452869ed3f52191d6a454228e5130c8cde0aa552eaad817a8f3b1b74",
+    "Nexus/changelog.txt": "0a652ba445b8c9882a9e1e6b1422a9cd65b75e4d8b423eda37352e2d1d2ef754",
+    "Nexus/metadata.json": "52c002032cdd3d14e8c2b04395cb06b6e6157cd9f7fb66d39fd1c4461d3b8c45"
+  }
 }

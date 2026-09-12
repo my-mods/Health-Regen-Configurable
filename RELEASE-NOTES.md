@@ -1,5 +1,5 @@
-# Health Regen - Configurable
+# Health Regen - Configurable 1.0.0
 
-Fixes regeneration settings stopping during effect cleanup and leaving both healing rates at zero. Also fixes a loading crash caused by malformed vampire segment-recovery modifiers.
+Configurable health regeneration for humans and vampires. Stops adding healing at full recoverable health or the current vampire segment limit, with optional combat and lost-segment recovery.
 
-Configurable human and vampire health regeneration in one package. Choose each rate from 0% to 5% per second in Mod Settings Menu, with 0.25% steps through 2% and 0.5% steps above 2%. Both forms default to 1.5% outside combat. Optional toggles allow combat regeneration and restoration of lost vampire segments; both default to Off. One-second healing ticks support Quiet Dawn's health reveal, and vampire regeneration respects the recoverable segment ceiling by default.
+Separate human and vampire rates range from 0% to 5% per second, using 0.25% steps through 2% and 0.5% above 2%. Both default to 1.5%. Combat regeneration and lost vampire segment recovery are optional and default to Off.

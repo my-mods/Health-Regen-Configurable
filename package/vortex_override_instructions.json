@@ -7,7 +7,7 @@
   {
     "type": "attribute",
     "key": "version",
-    "value": "0.0.0"
+    "value": "1.0.0"
   },
   {
     "type": "attribute",
@@ -29,7 +29,15 @@
       "Data/HealthRegeneration-LAYOUT.txt",
       "LICENSES/HealthRegeneration-fmt.txt",
       "LICENSES/HealthRegeneration-ue4ss-common.txt",
-      "LICENSES/HealthRegeneration-UE4SS.txt"
+      "LICENSES/HealthRegeneration-UE4SS.txt",
+      "Nexus/banner.jpg",
+      "Nexus/thumbnail.jpg",
+      "Nexus/MEDIA-CREDITS.md",
+      "Nexus/summary.txt",
+      "Nexus/description.bbcode",
+      "Nexus/file-description.txt",
+      "Nexus/changelog.txt",
+      "Nexus/metadata.json"
     ]
   },
   {
@@ -47,7 +55,15 @@
       "Data/HealthRegeneration-LAYOUT.txt",
       "LICENSES/HealthRegeneration-fmt.txt",
       "LICENSES/HealthRegeneration-ue4ss-common.txt",
-      "LICENSES/HealthRegeneration-UE4SS.txt"
+      "LICENSES/HealthRegeneration-UE4SS.txt",
+      "Nexus/banner.jpg",
+      "Nexus/thumbnail.jpg",
+      "Nexus/MEDIA-CREDITS.md",
+      "Nexus/summary.txt",
+      "Nexus/description.bbcode",
+      "Nexus/file-description.txt",
+      "Nexus/changelog.txt",
+      "Nexus/metadata.json"
     ]
   },
   {
@@ -65,7 +81,15 @@
       "Data/HealthRegeneration-LAYOUT.txt",
       "LICENSES/HealthRegeneration-fmt.txt",
       "LICENSES/HealthRegeneration-ue4ss-common.txt",
-      "LICENSES/HealthRegeneration-UE4SS.txt"
+      "LICENSES/HealthRegeneration-UE4SS.txt",
+      "Nexus/banner.jpg",
+      "Nexus/thumbnail.jpg",
+      "Nexus/MEDIA-CREDITS.md",
+      "Nexus/summary.txt",
+      "Nexus/description.bbcode",
+      "Nexus/file-description.txt",
+      "Nexus/changelog.txt",
+      "Nexus/metadata.json"
     ]
   },
   {
@@ -83,7 +107,15 @@
       "Data/HealthRegeneration-LAYOUT.txt",
       "LICENSES/HealthRegeneration-fmt.txt",
       "LICENSES/HealthRegeneration-ue4ss-common.txt",
-      "LICENSES/HealthRegeneration-UE4SS.txt"
+      "LICENSES/HealthRegeneration-UE4SS.txt",
+      "Nexus/banner.jpg",
+      "Nexus/thumbnail.jpg",
+      "Nexus/MEDIA-CREDITS.md",
+      "Nexus/summary.txt",
+      "Nexus/description.bbcode",
+      "Nexus/file-description.txt",
+      "Nexus/changelog.txt",
+      "Nexus/metadata.json"
     ]
   },
   {
@@ -101,7 +133,15 @@
       "Data/HealthRegeneration-LAYOUT.txt",
       "LICENSES/HealthRegeneration-fmt.txt",
       "LICENSES/HealthRegeneration-ue4ss-common.txt",
-      "LICENSES/HealthRegeneration-UE4SS.txt"
+      "LICENSES/HealthRegeneration-UE4SS.txt",
+      "Nexus/banner.jpg",
+      "Nexus/thumbnail.jpg",
+      "Nexus/MEDIA-CREDITS.md",
+      "Nexus/summary.txt",
+      "Nexus/description.bbcode",
+      "Nexus/file-description.txt",
+      "Nexus/changelog.txt",
+      "Nexus/metadata.json"
     ]
   },
   {
@@ -119,7 +159,15 @@
       "Data/HealthRegeneration-LAYOUT.txt",
       "LICENSES/HealthRegeneration-fmt.txt",
       "LICENSES/HealthRegeneration-ue4ss-common.txt",
-      "LICENSES/HealthRegeneration-UE4SS.txt"
+      "LICENSES/HealthRegeneration-UE4SS.txt",
+      "Nexus/banner.jpg",
+      "Nexus/thumbnail.jpg",
+      "Nexus/MEDIA-CREDITS.md",
+      "Nexus/summary.txt",
+      "Nexus/description.bbcode",
+      "Nexus/file-description.txt",
+      "Nexus/changelog.txt",
+      "Nexus/metadata.json"
     ]
   },
   {
@@ -137,7 +185,15 @@
       "Data/HealthRegeneration-LAYOUT.txt",
       "LICENSES/HealthRegeneration-fmt.txt",
       "LICENSES/HealthRegeneration-ue4ss-common.txt",
-      "LICENSES/HealthRegeneration-UE4SS.txt"
+      "LICENSES/HealthRegeneration-UE4SS.txt",
+      "Nexus/banner.jpg",
+      "Nexus/thumbnail.jpg",
+      "Nexus/MEDIA-CREDITS.md",
+      "Nexus/summary.txt",
+      "Nexus/description.bbcode",
+      "Nexus/file-description.txt",
+      "Nexus/changelog.txt",
+      "Nexus/metadata.json"
     ]
   },
   {
@@ -155,7 +211,15 @@
       "Data/HealthRegeneration-LAYOUT.txt",
       "LICENSES/HealthRegeneration-fmt.txt",
       "LICENSES/HealthRegeneration-ue4ss-common.txt",
-      "LICENSES/HealthRegeneration-UE4SS.txt"
+      "LICENSES/HealthRegeneration-UE4SS.txt",
+      "Nexus/banner.jpg",
+      "Nexus/thumbnail.jpg",
+      "Nexus/MEDIA-CREDITS.md",
+      "Nexus/summary.txt",
+      "Nexus/description.bbcode",
+      "Nexus/file-description.txt",
+      "Nexus/changelog.txt",
+      "Nexus/metadata.json"
     ]
   },
   {
@@ -173,7 +237,15 @@
       "Data/HealthRegeneration-LAYOUT.txt",
       "LICENSES/HealthRegeneration-fmt.txt",
       "LICENSES/HealthRegeneration-ue4ss-common.txt",
-      "LICENSES/HealthRegeneration-UE4SS.txt"
+      "LICENSES/HealthRegeneration-UE4SS.txt",
+      "Nexus/banner.jpg",
+      "Nexus/thumbnail.jpg",
+      "Nexus/MEDIA-CREDITS.md",
+      "Nexus/summary.txt",
+      "Nexus/description.bbcode",
+      "Nexus/file-description.txt",
+      "Nexus/changelog.txt",
+      "Nexus/metadata.json"
     ]
   },
   {
@@ -191,7 +263,15 @@
       "Data/HealthRegeneration-LAYOUT.txt",
       "LICENSES/HealthRegeneration-fmt.txt",
       "LICENSES/HealthRegeneration-ue4ss-common.txt",
-      "LICENSES/HealthRegeneration-UE4SS.txt"
+      "LICENSES/HealthRegeneration-UE4SS.txt",
+      "Nexus/banner.jpg",
+      "Nexus/thumbnail.jpg",
+      "Nexus/MEDIA-CREDITS.md",
+      "Nexus/summary.txt",
+      "Nexus/description.bbcode",
+      "Nexus/file-description.txt",
+      "Nexus/changelog.txt",
+      "Nexus/metadata.json"
     ]
   },
   {
@@ -209,7 +289,223 @@
       "Data/HealthRegeneration-LAYOUT.txt",
       "LICENSES/HealthRegeneration-fmt.txt",
       "LICENSES/HealthRegeneration-ue4ss-common.txt",
-      "LICENSES/HealthRegeneration-UE4SS.txt"
+      "LICENSES/HealthRegeneration-UE4SS.txt",
+      "Nexus/banner.jpg",
+      "Nexus/thumbnail.jpg",
+      "Nexus/MEDIA-CREDITS.md",
+      "Nexus/summary.txt",
+      "Nexus/description.bbcode",
+      "Nexus/file-description.txt",
+      "Nexus/changelog.txt",
+      "Nexus/metadata.json"
+    ]
+  },
+  {
+    "type": "attribute",
+    "source": "Nexus/banner.jpg",
+    "key": "healthRegenerationReleaseMaterials",
+    "value": [
+      "mod.manifest",
+      "README.txt",
+      "LICENSE",
+      "CHANGELOG.md",
+      "RELEASE-NOTES.md",
+      "SOURCE.json",
+      "ue4ss-common.lock.json",
+      "Data/HealthRegeneration-LAYOUT.txt",
+      "LICENSES/HealthRegeneration-fmt.txt",
+      "LICENSES/HealthRegeneration-ue4ss-common.txt",
+      "LICENSES/HealthRegeneration-UE4SS.txt",
+      "Nexus/banner.jpg",
+      "Nexus/thumbnail.jpg",
+      "Nexus/MEDIA-CREDITS.md",
+      "Nexus/summary.txt",
+      "Nexus/description.bbcode",
+      "Nexus/file-description.txt",
+      "Nexus/changelog.txt",
+      "Nexus/metadata.json"
+    ]
+  },
+  {
+    "type": "attribute",
+    "source": "Nexus/thumbnail.jpg",
+    "key": "healthRegenerationReleaseMaterials",
+    "value": [
+      "mod.manifest",
+      "README.txt",
+      "LICENSE",
+      "CHANGELOG.md",
+      "RELEASE-NOTES.md",
+      "SOURCE.json",
+      "ue4ss-common.lock.json",
+      "Data/HealthRegeneration-LAYOUT.txt",
+      "LICENSES/HealthRegeneration-fmt.txt",
+      "LICENSES/HealthRegeneration-ue4ss-common.txt",
+      "LICENSES/HealthRegeneration-UE4SS.txt",
+      "Nexus/banner.jpg",
+      "Nexus/thumbnail.jpg",
+      "Nexus/MEDIA-CREDITS.md",
+      "Nexus/summary.txt",
+      "Nexus/description.bbcode",
+      "Nexus/file-description.txt",
+      "Nexus/changelog.txt",
+      "Nexus/metadata.json"
+    ]
+  },
+  {
+    "type": "attribute",
+    "source": "Nexus/MEDIA-CREDITS.md",
+    "key": "healthRegenerationReleaseMaterials",
+    "value": [
+      "mod.manifest",
+      "README.txt",
+      "LICENSE",
+      "CHANGELOG.md",
+      "RELEASE-NOTES.md",
+      "SOURCE.json",
+      "ue4ss-common.lock.json",
+      "Data/HealthRegeneration-LAYOUT.txt",
+      "LICENSES/HealthRegeneration-fmt.txt",
+      "LICENSES/HealthRegeneration-ue4ss-common.txt",
+      "LICENSES/HealthRegeneration-UE4SS.txt",
+      "Nexus/banner.jpg",
+      "Nexus/thumbnail.jpg",
+      "Nexus/MEDIA-CREDITS.md",
+      "Nexus/summary.txt",
+      "Nexus/description.bbcode",
+      "Nexus/file-description.txt",
+      "Nexus/changelog.txt",
+      "Nexus/metadata.json"
+    ]
+  },
+  {
+    "type": "attribute",
+    "source": "Nexus/summary.txt",
+    "key": "healthRegenerationReleaseMaterials",
+    "value": [
+      "mod.manifest",
+      "README.txt",
+      "LICENSE",
+      "CHANGELOG.md",
+      "RELEASE-NOTES.md",
+      "SOURCE.json",
+      "ue4ss-common.lock.json",
+      "Data/HealthRegeneration-LAYOUT.txt",
+      "LICENSES/HealthRegeneration-fmt.txt",
+      "LICENSES/HealthRegeneration-ue4ss-common.txt",
+      "LICENSES/HealthRegeneration-UE4SS.txt",
+      "Nexus/banner.jpg",
+      "Nexus/thumbnail.jpg",
+      "Nexus/MEDIA-CREDITS.md",
+      "Nexus/summary.txt",
+      "Nexus/description.bbcode",
+      "Nexus/file-description.txt",
+      "Nexus/changelog.txt",
+      "Nexus/metadata.json"
+    ]
+  },
+  {
+    "type": "attribute",
+    "source": "Nexus/description.bbcode",
+    "key": "healthRegenerationReleaseMaterials",
+    "value": [
+      "mod.manifest",
+      "README.txt",
+      "LICENSE",
+      "CHANGELOG.md",
+      "RELEASE-NOTES.md",
+      "SOURCE.json",
+      "ue4ss-common.lock.json",
+      "Data/HealthRegeneration-LAYOUT.txt",
+      "LICENSES/HealthRegeneration-fmt.txt",
+      "LICENSES/HealthRegeneration-ue4ss-common.txt",
+      "LICENSES/HealthRegeneration-UE4SS.txt",
+      "Nexus/banner.jpg",
+      "Nexus/thumbnail.jpg",
+      "Nexus/MEDIA-CREDITS.md",
+      "Nexus/summary.txt",
+      "Nexus/description.bbcode",
+      "Nexus/file-description.txt",
+      "Nexus/changelog.txt",
+      "Nexus/metadata.json"
+    ]
+  },
+  {
+    "type": "attribute",
+    "source": "Nexus/file-description.txt",
+    "key": "healthRegenerationReleaseMaterials",
+    "value": [
+      "mod.manifest",
+      "README.txt",
+      "LICENSE",
+      "CHANGELOG.md",
+      "RELEASE-NOTES.md",
+      "SOURCE.json",
+      "ue4ss-common.lock.json",
+      "Data/HealthRegeneration-LAYOUT.txt",
+      "LICENSES/HealthRegeneration-fmt.txt",
+      "LICENSES/HealthRegeneration-ue4ss-common.txt",
+      "LICENSES/HealthRegeneration-UE4SS.txt",
+      "Nexus/banner.jpg",
+      "Nexus/thumbnail.jpg",
+      "Nexus/MEDIA-CREDITS.md",
+      "Nexus/summary.txt",
+      "Nexus/description.bbcode",
+      "Nexus/file-description.txt",
+      "Nexus/changelog.txt",
+      "Nexus/metadata.json"
+    ]
+  },
+  {
+    "type": "attribute",
+    "source": "Nexus/changelog.txt",
+    "key": "healthRegenerationReleaseMaterials",
+    "value": [
+      "mod.manifest",
+      "README.txt",
+      "LICENSE",
+      "CHANGELOG.md",
+      "RELEASE-NOTES.md",
+      "SOURCE.json",
+      "ue4ss-common.lock.json",
+      "Data/HealthRegeneration-LAYOUT.txt",
+      "LICENSES/HealthRegeneration-fmt.txt",
+      "LICENSES/HealthRegeneration-ue4ss-common.txt",
+      "LICENSES/HealthRegeneration-UE4SS.txt",
+      "Nexus/banner.jpg",
+      "Nexus/thumbnail.jpg",
+      "Nexus/MEDIA-CREDITS.md",
+      "Nexus/summary.txt",
+      "Nexus/description.bbcode",
+      "Nexus/file-description.txt",
+      "Nexus/changelog.txt",
+      "Nexus/metadata.json"
+    ]
+  },
+  {
+    "type": "attribute",
+    "source": "Nexus/metadata.json",
+    "key": "healthRegenerationReleaseMaterials",
+    "value": [
+      "mod.manifest",
+      "README.txt",
+      "LICENSE",
+      "CHANGELOG.md",
+      "RELEASE-NOTES.md",
+      "SOURCE.json",
+      "ue4ss-common.lock.json",
+      "Data/HealthRegeneration-LAYOUT.txt",
+      "LICENSES/HealthRegeneration-fmt.txt",
+      "LICENSES/HealthRegeneration-ue4ss-common.txt",
+      "LICENSES/HealthRegeneration-UE4SS.txt",
+      "Nexus/banner.jpg",
+      "Nexus/thumbnail.jpg",
+      "Nexus/MEDIA-CREDITS.md",
+      "Nexus/summary.txt",
+      "Nexus/description.bbcode",
+      "Nexus/file-description.txt",
+      "Nexus/changelog.txt",
+      "Nexus/metadata.json"
     ]
   },
   {
@@ -227,7 +523,15 @@
       "Data/HealthRegeneration-LAYOUT.txt",
       "LICENSES/HealthRegeneration-fmt.txt",
       "LICENSES/HealthRegeneration-ue4ss-common.txt",
-      "LICENSES/HealthRegeneration-UE4SS.txt"
+      "LICENSES/HealthRegeneration-UE4SS.txt",
+      "Nexus/banner.jpg",
+      "Nexus/thumbnail.jpg",
+      "Nexus/MEDIA-CREDITS.md",
+      "Nexus/summary.txt",
+      "Nexus/description.bbcode",
+      "Nexus/file-description.txt",
+      "Nexus/changelog.txt",
+      "Nexus/metadata.json"
     ]
   },
   {
@@ -245,7 +549,15 @@
       "Data/HealthRegeneration-LAYOUT.txt",
       "LICENSES/HealthRegeneration-fmt.txt",
       "LICENSES/HealthRegeneration-ue4ss-common.txt",
-      "LICENSES/HealthRegeneration-UE4SS.txt"
+      "LICENSES/HealthRegeneration-UE4SS.txt",
+      "Nexus/banner.jpg",
+      "Nexus/thumbnail.jpg",
+      "Nexus/MEDIA-CREDITS.md",
+      "Nexus/summary.txt",
+      "Nexus/description.bbcode",
+      "Nexus/file-description.txt",
+      "Nexus/changelog.txt",
+      "Nexus/metadata.json"
     ]
   },
   {
@@ -263,7 +575,15 @@
       "Data/HealthRegeneration-LAYOUT.txt",
       "LICENSES/HealthRegeneration-fmt.txt",
       "LICENSES/HealthRegeneration-ue4ss-common.txt",
-      "LICENSES/HealthRegeneration-UE4SS.txt"
+      "LICENSES/HealthRegeneration-UE4SS.txt",
+      "Nexus/banner.jpg",
+      "Nexus/thumbnail.jpg",
+      "Nexus/MEDIA-CREDITS.md",
+      "Nexus/summary.txt",
+      "Nexus/description.bbcode",
+      "Nexus/file-description.txt",
+      "Nexus/changelog.txt",
+      "Nexus/metadata.json"
     ]
   },
   {
@@ -281,7 +601,223 @@
       "Data/HealthRegeneration-LAYOUT.txt",
       "LICENSES/HealthRegeneration-fmt.txt",
       "LICENSES/HealthRegeneration-ue4ss-common.txt",
-      "LICENSES/HealthRegeneration-UE4SS.txt"
+      "LICENSES/HealthRegeneration-UE4SS.txt",
+      "Nexus/banner.jpg",
+      "Nexus/thumbnail.jpg",
+      "Nexus/MEDIA-CREDITS.md",
+      "Nexus/summary.txt",
+      "Nexus/description.bbcode",
+      "Nexus/file-description.txt",
+      "Nexus/changelog.txt",
+      "Nexus/metadata.json"
+    ]
+  },
+  {
+    "type": "attribute",
+    "source": "Nexus\\banner.jpg",
+    "key": "healthRegenerationReleaseMaterials",
+    "value": [
+      "mod.manifest",
+      "README.txt",
+      "LICENSE",
+      "CHANGELOG.md",
+      "RELEASE-NOTES.md",
+      "SOURCE.json",
+      "ue4ss-common.lock.json",
+      "Data/HealthRegeneration-LAYOUT.txt",
+      "LICENSES/HealthRegeneration-fmt.txt",
+      "LICENSES/HealthRegeneration-ue4ss-common.txt",
+      "LICENSES/HealthRegeneration-UE4SS.txt",
+      "Nexus/banner.jpg",
+      "Nexus/thumbnail.jpg",
+      "Nexus/MEDIA-CREDITS.md",
+      "Nexus/summary.txt",
+      "Nexus/description.bbcode",
+      "Nexus/file-description.txt",
+      "Nexus/changelog.txt",
+      "Nexus/metadata.json"
+    ]
+  },
+  {
+    "type": "attribute",
+    "source": "Nexus\\thumbnail.jpg",
+    "key": "healthRegenerationReleaseMaterials",
+    "value": [
+      "mod.manifest",
+      "README.txt",
+      "LICENSE",
+      "CHANGELOG.md",
+      "RELEASE-NOTES.md",
+      "SOURCE.json",
+      "ue4ss-common.lock.json",
+      "Data/HealthRegeneration-LAYOUT.txt",
+      "LICENSES/HealthRegeneration-fmt.txt",
+      "LICENSES/HealthRegeneration-ue4ss-common.txt",
+      "LICENSES/HealthRegeneration-UE4SS.txt",
+      "Nexus/banner.jpg",
+      "Nexus/thumbnail.jpg",
+      "Nexus/MEDIA-CREDITS.md",
+      "Nexus/summary.txt",
+      "Nexus/description.bbcode",
+      "Nexus/file-description.txt",
+      "Nexus/changelog.txt",
+      "Nexus/metadata.json"
+    ]
+  },
+  {
+    "type": "attribute",
+    "source": "Nexus\\MEDIA-CREDITS.md",
+    "key": "healthRegenerationReleaseMaterials",
+    "value": [
+      "mod.manifest",
+      "README.txt",
+      "LICENSE",
+      "CHANGELOG.md",
+      "RELEASE-NOTES.md",
+      "SOURCE.json",
+      "ue4ss-common.lock.json",
+      "Data/HealthRegeneration-LAYOUT.txt",
+      "LICENSES/HealthRegeneration-fmt.txt",
+      "LICENSES/HealthRegeneration-ue4ss-common.txt",
+      "LICENSES/HealthRegeneration-UE4SS.txt",
+      "Nexus/banner.jpg",
+      "Nexus/thumbnail.jpg",
+      "Nexus/MEDIA-CREDITS.md",
+      "Nexus/summary.txt",
+      "Nexus/description.bbcode",
+      "Nexus/file-description.txt",
+      "Nexus/changelog.txt",
+      "Nexus/metadata.json"
+    ]
+  },
+  {
+    "type": "attribute",
+    "source": "Nexus\\summary.txt",
+    "key": "healthRegenerationReleaseMaterials",
+    "value": [
+      "mod.manifest",
+      "README.txt",
+      "LICENSE",
+      "CHANGELOG.md",
+      "RELEASE-NOTES.md",
+      "SOURCE.json",
+      "ue4ss-common.lock.json",
+      "Data/HealthRegeneration-LAYOUT.txt",
+      "LICENSES/HealthRegeneration-fmt.txt",
+      "LICENSES/HealthRegeneration-ue4ss-common.txt",
+      "LICENSES/HealthRegeneration-UE4SS.txt",
+      "Nexus/banner.jpg",
+      "Nexus/thumbnail.jpg",
+      "Nexus/MEDIA-CREDITS.md",
+      "Nexus/summary.txt",
+      "Nexus/description.bbcode",
+      "Nexus/file-description.txt",
+      "Nexus/changelog.txt",
+      "Nexus/metadata.json"
+    ]
+  },
+  {
+    "type": "attribute",
+    "source": "Nexus\\description.bbcode",
+    "key": "healthRegenerationReleaseMaterials",
+    "value": [
+      "mod.manifest",
+      "README.txt",
+      "LICENSE",
+      "CHANGELOG.md",
+      "RELEASE-NOTES.md",
+      "SOURCE.json",
+      "ue4ss-common.lock.json",
+      "Data/HealthRegeneration-LAYOUT.txt",
+      "LICENSES/HealthRegeneration-fmt.txt",
+      "LICENSES/HealthRegeneration-ue4ss-common.txt",
+      "LICENSES/HealthRegeneration-UE4SS.txt",
+      "Nexus/banner.jpg",
+      "Nexus/thumbnail.jpg",
+      "Nexus/MEDIA-CREDITS.md",
+      "Nexus/summary.txt",
+      "Nexus/description.bbcode",
+      "Nexus/file-description.txt",
+      "Nexus/changelog.txt",
+      "Nexus/metadata.json"
+    ]
+  },
+  {
+    "type": "attribute",
+    "source": "Nexus\\file-description.txt",
+    "key": "healthRegenerationReleaseMaterials",
+    "value": [
+      "mod.manifest",
+      "README.txt",
+      "LICENSE",
+      "CHANGELOG.md",
+      "RELEASE-NOTES.md",
+      "SOURCE.json",
+      "ue4ss-common.lock.json",
+      "Data/HealthRegeneration-LAYOUT.txt",
+      "LICENSES/HealthRegeneration-fmt.txt",
+      "LICENSES/HealthRegeneration-ue4ss-common.txt",
+      "LICENSES/HealthRegeneration-UE4SS.txt",
+      "Nexus/banner.jpg",
+      "Nexus/thumbnail.jpg",
+      "Nexus/MEDIA-CREDITS.md",
+      "Nexus/summary.txt",
+      "Nexus/description.bbcode",
+      "Nexus/file-description.txt",
+      "Nexus/changelog.txt",
+      "Nexus/metadata.json"
+    ]
+  },
+  {
+    "type": "attribute",
+    "source": "Nexus\\changelog.txt",
+    "key": "healthRegenerationReleaseMaterials",
+    "value": [
+      "mod.manifest",
+      "README.txt",
+      "LICENSE",
+      "CHANGELOG.md",
+      "RELEASE-NOTES.md",
+      "SOURCE.json",
+      "ue4ss-common.lock.json",
+      "Data/HealthRegeneration-LAYOUT.txt",
+      "LICENSES/HealthRegeneration-fmt.txt",
+      "LICENSES/HealthRegeneration-ue4ss-common.txt",
+      "LICENSES/HealthRegeneration-UE4SS.txt",
+      "Nexus/banner.jpg",
+      "Nexus/thumbnail.jpg",
+      "Nexus/MEDIA-CREDITS.md",
+      "Nexus/summary.txt",
+      "Nexus/description.bbcode",
+      "Nexus/file-description.txt",
+      "Nexus/changelog.txt",
+      "Nexus/metadata.json"
+    ]
+  },
+  {
+    "type": "attribute",
+    "source": "Nexus\\metadata.json",
+    "key": "healthRegenerationReleaseMaterials",
+    "value": [
+      "mod.manifest",
+      "README.txt",
+      "LICENSE",
+      "CHANGELOG.md",
+      "RELEASE-NOTES.md",
+      "SOURCE.json",
+      "ue4ss-common.lock.json",
+      "Data/HealthRegeneration-LAYOUT.txt",
+      "LICENSES/HealthRegeneration-fmt.txt",
+      "LICENSES/HealthRegeneration-ue4ss-common.txt",
+      "LICENSES/HealthRegeneration-UE4SS.txt",
+      "Nexus/banner.jpg",
+      "Nexus/thumbnail.jpg",
+      "Nexus/MEDIA-CREDITS.md",
+      "Nexus/summary.txt",
+      "Nexus/description.bbcode",
+      "Nexus/file-description.txt",
+      "Nexus/changelog.txt",
+      "Nexus/metadata.json"
     ]
   }
 ]

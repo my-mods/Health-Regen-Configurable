@@ -1,0 +1,55 @@
+[b]Health Regen - Configurable[/b]
+
+Human and vampire health regeneration in one configurable mod. Choose separate rates for each form, keep regeneration outside combat, or allow it during combat. Both forms default to 1.5% per second.
+
+[b]Stops healing at the limit[/b]
+When your recoverable health bar or current vampire segment is full, the regeneration calculation returns zero instead of adding more healing. Recovery becomes available again when you lose health or normal gameplay restores a lost segment. Lost vampire segments stay lost unless you enable Restore vampire segments.
+
+The game's native one-second eligibility check remains. This mod adds no continuous Lua healing loop and does not poll settings in the background.
+
+[b]Configuration[/b]
+[list]
+[*]Human regeneration: 0% to 5% per second; default 1.5%.
+[*]Vampire regeneration: 0% to 5% per second; default 1.5%.
+[*]Rate steps: 0.25% from 0% through 2%, then 0.5% through 5%.
+[*]Combat regeneration: Off by default. Off means outside combat only; On also allows combat regeneration.
+[*]Restore vampire segments: Off by default. On allows regeneration to restore lost segments toward full health.
+[*]Logging: Off by default; writes setup and aggregate diagnostics to UE4SS.log when enabled.
+[/list]
+Zero disables this mod's added regeneration for the selected form. Existing game regeneration bonuses remain separate. Regeneration does not revive a dead player.
+
+Open Main Menu > Mod Settings > Health Regen - Configurable, select your options, press Apply, then load a save. On a first installation, load a save once to create preferences before configuring the mod.
+
+[b]Requirements[/b]
+[list]
+[*][url=https://www.nexusmods.com/thebloodofdawnwalker/mods/283]UE4SS for BoD by Framecore[/url] — the native helper targets Framecore 2b.
+[*][url=https://www.nexusmods.com/thebloodofdawnwalker/mods/271]Mod Setting Menu by mmarcussa[/url] — for in-game configuration; the mod also supports defaults or manual INI edits. Menu parser compatibility was checked with 1.0.5.1.
+[/list]
+Shared settings, save-load sessions and Lua diagnostics are bundled from ue4ss-common. No separate common-library mod is needed.
+
+[b]Installation and updates — Vortex[/b]
+[list=1]
+[*]Disable/remove HumanHealthRegen, VampireHealthRegen and the earlier Vampire Health Regen - Segment Guard, if present. Deploy to remove their old files.
+[*]Install Health-Regen-Configurable.zip through Vortex, enable it and deploy using the game-root installer.
+[*]Restart the game and load a save. Configure the mod in the main menu, press Apply, and load a save again.
+[/list]
+For updates, replace/reinstall the existing regeneration entry with this ZIP. Keep only this combined regeneration package enabled. Back up your generated settings.ini before replacing or uninstalling the mod. The archive does not contain a personal settings.ini.
+
+Preferences: Dawnwalker/Binaries/Win64/ue4ss/Mods/HealthRegeneration/settings.ini.
+To uninstall, disable/remove the mod in Vortex, deploy and restart the game.
+
+[b]Compatibility[/b]
+Built for The Blood of Dawnwalker Steam build 25232147 and UE 5.5.4. Recheck compatibility after game or loader updates. Restart the game when replacing the DLL or scripts.
+
+Other mods editing GE_BloodHealthRestorationDecrease, GE_BloodRegen or GE_PlayerHealthRegen conflict. Disable the older regen mods: different container filenames can still override the same cooked assets, so choosing a filename conflict winner alone is insufficient.
+
+Quiet Dawn is optional. A 1.5% healing tick can trigger its health reveal; smaller rates or a final partial tick may fall below the HUD threshold. Its independent low-health rule can still keep the HUD visible.
+
+[b]Credits and source[/b]
+Idea credit goes to [url=https://www.nexusmods.com/thebloodofdawnwalker/mods/387]Human Health Regen[/url] and [url=https://www.nexusmods.com/thebloodofdawnwalker/mods/391]Vampire Health Regen[/url] by KumasanGames. This implementation was completely rebuilt from stock game assets with its own configuration and runtime integration. Neither original mod's edited payloads are included.
+
+Thanks to Framecore, UE4SS contributors, mmarcussa and ue4ss-common. Dependency notices are included. The game and its stock assets belong to Rebel Wolves and their respective rights holders.
+
+Banner and thumbnail background: official Rebel Wolves gameplay screenshot from the [url=https://rebel-wolves.com/en/press-center]Dawnwalker media pack[/url], with a mod-title overlay. Illustrative promotional imagery.
+
+[url=https://github.com/my-mods/Health-Regen-Configurable]Source code and documentation[/url]. Authored code and documentation use the MIT license; game assets and promotional imagery retain their original rights.

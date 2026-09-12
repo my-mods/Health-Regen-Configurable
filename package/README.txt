@@ -7,8 +7,8 @@ Regeneration arrives in one-second ticks. A 1.5% gain can trigger Quiet Dawn's h
 ## Requirements
 
 - The Blood of Dawnwalker, Steam build **25232147**, UE **5.5.4**.
-- **UE4SS for BoD — Framecore 2b**. The bundled native helper targets that loader version.
-- **Mod Settings Menu**, tested against the 1.0.5.1 configuration parser, for in-game configuration. The mod also works with its defaults or manual INI edits without the menu.
+- [**UE4SS for BoD — Framecore 2b**](https://www.nexusmods.com/thebloodofdawnwalker/mods/283). The bundled native helper targets that loader version.
+- [**Mod Setting Menu**](https://www.nexusmods.com/thebloodofdawnwalker/mods/271), tested against the 1.0.5.1 configuration parser, for in-game configuration. The mod also works with its defaults or manual INI edits without the menu.
 - Quiet Dawn is optional.
 
 The Lua scripts, native helper, and cooked assets belong to this single mod. Settings storage, save-load sessions, and Lua diagnostics use bundled, pinned **ue4ss-common** modules. No separate common-library installation or human/vampire regeneration mod is required.
@@ -72,6 +72,6 @@ In the package, place the containers under `Dawnwalker/Content/Paks/~mods/`. Pla
 
 ## Credits
 
-The game and stock assets belong to Rebel Wolves and their respective rights holders. KumasanGames' Human Health Regen and Vampire Health Regen inspired the default behavior. This implementation is rebuilt from stock game assets and does not redistribute those mods' edited payloads.
+The game and stock assets belong to Rebel Wolves and their respective rights holders. The idea was inspired by KumasanGames' [Human Health Regen](https://www.nexusmods.com/thebloodofdawnwalker/mods/387) and [Vampire Health Regen](https://www.nexusmods.com/thebloodofdawnwalker/mods/391). This implementation was completely rebuilt from stock game assets with its own configuration and runtime integration; neither original mod's edited payloads are included.
 
 The native integration uses UE4SS, its engine adaptation headers, and Framecore's exported hooks. Shared settings and session support comes from ue4ss-common. The included notices cover these dependencies and fmt headers.

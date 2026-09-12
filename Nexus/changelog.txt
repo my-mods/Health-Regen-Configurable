@@ -1,0 +1,6 @@
+Initial release of Health Regen - Configurable.
+Combine human and vampire regeneration in one configurable mod.
+Add separate 0–5% regeneration rates, with 0.25% steps through 2% and 0.5% steps above 2%.
+Stop adding healing at full recoverable health or the current vampire segment ceiling.
+Add Combat regeneration and Restore vampire segments toggles, both Off by default.
+Apply settings through the shared save-load flow without background settings polling.
