@@ -6,6 +6,7 @@ Human and vampire health regeneration in one configurable mod. Choose separate r
 Regeneration stops when your health bar or current vampire segment is full. This avoids the original vampire mod's repeated healing attempts at the limit.
 
 [b]Configuration[/b]
+[url=https://www.nexusmods.com/thebloodofdawnwalker/mods/271]Mod Settings Menu[/url] is optional. Without it, the mod uses the defaults below unless you change settings.ini manually.
 [list]
 [*]Human regeneration: 0% to 5% per second; default 1.5%.
 [*]Vampire regeneration: 0% to 5% per second; default 1.5%.
@@ -15,6 +16,18 @@ Regeneration stops when your health bar or current vampire segment is full. This
 [*]Logging: Off by default; writes setup and aggregate diagnostics to UE4SS.log when enabled.
 [/list]
 Zero disables this mod's added regeneration for the selected form. Existing game regeneration bonuses remain separate. Regeneration does not revive a dead player.
+
+[b]Manual configuration (without the menu)[/b]
+Load a save once to create settings.ini, then close the game. Open this file inside your The Blood of Dawnwalker game folder:
+[code]Dawnwalker\Binaries\Win64\ue4ss\Mods\HealthRegeneration\settings.ini[/code]
+The default settings are:
+[code][Settings]
+vampireRegenPercent = 1.5
+humanRegenPercent = 1.5
+combatRegen = 0
+restoreVampireSegments = 0
+debugLogging = 0[/code]
+Change either regeneration rate using the steps above; 1.5 means 1.5% per second. For combatRegen, restoreVampireSegments and debugLogging, use 0 for Off or 1 for On. Save the file, restart the game and load a save to apply your changes.
 
 [b]Installation[/b]
 [list]
