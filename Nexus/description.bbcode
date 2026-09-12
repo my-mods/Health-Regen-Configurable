@@ -3,9 +3,7 @@
 Human and vampire health regeneration in one configurable mod. Choose separate rates for each form, keep regeneration outside combat, or allow it during combat. Both forms default to 1.5% per second.
 
 [b]Stops healing at the limit[/b]
-When your recoverable health bar or current vampire segment is full, the regeneration calculation returns zero instead of adding more healing. Recovery becomes available again when you lose health or normal gameplay restores a lost segment. Lost vampire segments stay lost unless you enable Restore vampire segments.
-
-The game's native one-second eligibility check remains. This mod adds no continuous Lua healing loop and does not poll settings in the background.
+Regeneration stops when your health bar or current vampire segment is full. This avoids the original vampire mod's repeated healing attempts at the limit.
 
 [b]Configuration[/b]
 [list]
@@ -27,7 +25,7 @@ Zero disables this mod's added regeneration for the selected form. Existing game
 [b]Credits and source[/b]
 Idea credit goes to [url=https://www.nexusmods.com/thebloodofdawnwalker/mods/387]Human Health Regen[/url] and [url=https://www.nexusmods.com/thebloodofdawnwalker/mods/391]Vampire Health Regen[/url] by KumasanGames. This implementation was completely rebuilt from stock game assets with its own configuration and runtime integration. Neither original mod's edited payloads are included.
 
-Thanks to Framecore, UE4SS contributors, mmarcussa and ue4ss-common. Dependency notices are included. The game and its stock assets belong to Rebel Wolves and their respective rights holders.
+Thanks to Framecore, UE4SS contributors and mmarcussa. Dependency notices are included. The game and its stock assets belong to Rebel Wolves and their respective rights holders.
 
 Banner and thumbnail background: official Rebel Wolves gameplay screenshot from the [url=https://rebel-wolves.com/en/press-center]Dawnwalker media pack[/url], with a mod-title overlay. Illustrative promotional imagery.
 
