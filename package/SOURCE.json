@@ -11,12 +11,18 @@
   "assets": {
     "GE_BloodHealthRestorationDecrease.json": "28469d9a2dca195835c4e3628df4cd785201800e63bbab6b24a4e12264a50bb5",
     "GE_BloodRegen.json": "48aba006b117d685a2dea04bebc58f868fe58b46083d3c618496af73f1fa1724",
+    "GE_HealthRegenerationHumanRate.json": "ee2b3b11110e67c3278f9fbf342f347d7cf7e3dbdb234bbe3194760a09b97592",
+    "GE_PlayerHealthRegen.json": "bd0b6ea392a18ceaa383ad734b78cb8eadac88824837f54c83c604ac1d32ce14",
     "GE_VampireSegmentGuardRate.json": "95c5172e1ec2afdad5c3ec2b6673681bc82aaa3efa9c11e865e0a94de48040ea"
   },
   "stockJsonInputs": {
     "stock-effect.json": "13a53d82f6a40b85656d685e915da25f883b0b875f8a0bb5696d34e8b273485a",
     "native-regen-effect.json": "0e7c544b677fa642053db9e5fc6cfdc6ac8e0e107aedbcb0a476f1e0358a636f",
     "blood-percent-effect.json": "08171c0d35e0c3b6270b27ab697a57b8aa2836ecf0a482ad44e5f05472ba61db",
-    "additional-effect-example.json": "aed4aaa4c159de7bda2579b87239382ec352ccee93d27a02d8cc4c0b7b56d822"
-  }
+    "additional-effect-example.json": "aed4aaa4c159de7bda2579b87239382ec352ccee93d27a02d8cc4c0b7b56d822",
+    "human-stock.json": "9e21216cbf09b298c0c0d8ac5822eb84b792ecdc5b976a084c99943ba410a6ee"
+  },
+  "name": "Health Regeneration",
+  "humanRate": "Additional HealthRegen = 0.015 * live MaxHealth. Native MMC_PlayerHealthRegen applies the actual effect period and HealthRegenMultiplier, clamped to MaxHealth minus PermanentDamage minus current Health.",
+  "humanEligibility": "Out of combat, human form, alive, and not invulnerable. Replaces the stock Character.BlockHealthRegen exclusion with Player.IsEffectivelyInCombat to retain HumanHealthRegen eligibility."
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mod>
   <info>
-    <name>Vampire Health Regen - Segment Guard</name>
-    <modid>VampireSegmentGuard</modid>
-    <description>1.5% vampire regeneration outside combat through the native recoverable-segment calculation.</description>
+    <name>Health Regeneration</name>
+    <modid>HealthRegeneration</modid>
+    <description>1.5% human and vampire health regeneration outside combat, respecting recoverable health.</description>
     <author>oOCamilleOo</author>
     <version>0.0.0</version>
     <created_on>2026-09-12</created_on>
