@@ -1,4 +1,4 @@
--- MIT. Read once at startup and once on completed save loading; never poll.
+-- MIT. Use the common store at the save-load configuration boundary; never poll.
 local M={}
 function M.load(directory)
     local Store=dofile(directory..'SettingsStore.lua')

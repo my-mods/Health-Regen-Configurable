@@ -1,10 +1,13 @@
 -- MIT. Main Menu > Mod Settings > Apply, then load a save.
 local directory=assert(debug.getinfo(1,'S').source:sub(2):match('^(.*[/\\])'))
-function HealthRegenerationReport(message) print('[Health Regeneration] '..message..'\n') end
+function HealthRegenerationOutput(message) print(message..'\n') end
+local Diagnostics=dofile(directory..'UE4SSCommonDiagnostics.lua')
+HealthRegenerationReport=Diagnostics.new({prefix='[Health Regeneration] ',output=HealthRegenerationOutput}).log
 SaveLoadDiagnostics={debugLogging=false}
 local report=HealthRegenerationReport
-local ok,settings=pcall(function() return dofile(directory..'Config.lua').load(directory) end)
-if ok then SaveLoadDiagnostics.debugLogging=settings.debugLogging==1 else report(tostring(settings)) end
+-- Match the common save-load contract: settings I/O belongs to Gameplay.lua.
+local settingsSnapshot
+function HealthRegenerationRememberSettings(values) settingsSnapshot=values end
 local manager=dofile(directory..'UE4SSCommonSession.lua').new(_G,directory,report)
 local latest,loading,restartPending,restartController,restartPawn,retry
 local engine,gameplay
@@ -18,6 +21,8 @@ function HealthRegenerationNeedsRetry() retry=true end
 function HealthRegenerationClose() retry=true;pause();manager.close() end
 local session={pause=pause}
 function session.open(file,context)
+    -- A pending accepted save takes precedence over an owner-only rebind.
+    if activationPending and activationContext and activationContext.settings==nil then context.settings=nil end
     activationContext=context
     if activationPending then return end
     if _HRNativePause then _HRNativePause() end
@@ -55,7 +60,7 @@ local function restart()
         if not valid(activeWorld) or activeWorld:GetAddress()~=world:GetAddress() then return end
         local activePlayer=gameplay:GetPlayerPawn(activeWorld,0)
         if not valid(activePlayer) or activePlayer:GetAddress()~=player:GetAddress() then return end
-        session.open(directory..'Gameplay.lua',{pawn=player,world=world})
+        session.open(directory..'Gameplay.lua',{pawn=player,world=world,settings=settingsSnapshot})
     end)
 end
 function api.RegisterHook(path,pre,post)

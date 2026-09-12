@@ -6,28 +6,40 @@
       "source": "src/SettingsStore.lua",
       "sha256": "db597ebcfbe67fd03aa16c3c2eb4129c346975961e4df0481bb70440aa7cfa26",
       "destinations": [
-        "src/lua/SettingsStore.lua"
+        "src/lua/SettingsStore.lua",
+        "package/Dawnwalker/Binaries/Win64/ue4ss/Mods/HealthRegeneration/Scripts/SettingsStore.lua"
       ]
     },
     {
       "source": "src/UE4SSCommonSession.lua",
       "sha256": "60ffc2ca565c31c98a763b084fe1de4417c9f2b922ec22a136fb4ad42e8d9a62",
       "destinations": [
-        "src/lua/UE4SSCommonSession.lua"
+        "src/lua/UE4SSCommonSession.lua",
+        "package/Dawnwalker/Binaries/Win64/ue4ss/Mods/HealthRegeneration/Scripts/UE4SSCommonSession.lua"
       ]
     },
     {
       "source": "src/games/UE4SSDawnwalkerSaveLoad.lua",
       "sha256": "71c112e47d0abe2646d8b03bf08e43b47a871ba5ebd5339f670fc5c95e82f2a1",
       "destinations": [
-        "src/lua/UE4SSDawnwalkerSaveLoad.lua"
+        "src/lua/UE4SSDawnwalkerSaveLoad.lua",
+        "package/Dawnwalker/Binaries/Win64/ue4ss/Mods/HealthRegeneration/Scripts/UE4SSDawnwalkerSaveLoad.lua"
+      ]
+    },
+    {
+      "source": "src/UE4SSCommonDiagnostics.lua",
+      "sha256": "c82aaf42a83c99c4b0f84954f3c04732a9b26bddcb9b20b3ee8892c87b345172",
+      "destinations": [
+        "src/lua/UE4SSCommonDiagnostics.lua",
+        "package/Dawnwalker/Binaries/Win64/ue4ss/Mods/HealthRegeneration/Scripts/UE4SSCommonDiagnostics.lua"
       ]
     },
     {
       "source": "LICENSE",
-      "sha256": "e6b58400a1221d1da965bb3d829deb2d863c3ed883f8bda6e0a95403ccf90b45",
+      "sha256": "a515d2ead541481076e42835ec62bd5e9cb488538eda2aec8b47ab82fcab019d",
       "destinations": [
-        "LICENSES/HealthRegeneration-ue4ss-common.txt"
+        "LICENSES/HealthRegeneration-ue4ss-common.txt",
+        "package/LICENSES/HealthRegeneration-ue4ss-common.txt"
       ]
     }
   ]

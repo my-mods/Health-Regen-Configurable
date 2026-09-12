@@ -11,17 +11,18 @@ Regeneration arrives in one-second ticks. A 1.5% gain can trigger Quiet Dawn's h
 - **Mod Settings Menu**, tested against the 1.0.5.1 configuration parser, for in-game configuration. The mod also works with its defaults or manual INI edits without the menu.
 - Quiet Dawn is optional.
 
-The Lua scripts, native helper, and cooked assets belong to this single mod. No separate human or vampire regeneration mod is required.
+The Lua scripts, native helper, and cooked assets belong to this single mod. Settings storage, save-load sessions, and Lua diagnostics use bundled, pinned **ue4ss-common** modules. No separate common-library installation or human/vampire regeneration mod is required.
 
 ## Installation and updates
 
 1. In Vortex, disable/remove **HumanHealthRegen**, **VampireHealthRegen**, and the earlier **Vampire Health Regen - Segment Guard** package, if present. Deploy so their old container files are removed.
 2. Install `Health-Regeneration.zip` through Vortex, enable it, and deploy. Use the game-root installer; the package has explicit game-relative paths.
-3. Fully restart the game. Open **Main Menu > Mod Settings > Health Regeneration**, choose settings, press **Apply**, then load a save.
+3. Fully restart the game and load a save once. This creates preferences on a first installation.
+4. Open **Main Menu > Mod Settings > Health Regeneration**, choose settings, press **Apply**, then load a save.
 
 For an update, replace/reinstall the same Health Regeneration entry with the rebuilt ZIP, deploy, and restart the game. Keep only this combined regeneration package enabled. The package adds its own UE4SS mod folder and does not contain Quiet Dawn files.
 
-Preferences are generated at `Dawnwalker/Binaries/Win64/ue4ss/Mods/HealthRegeneration/settings.ini`. Back up this file before uninstalling or replacing the mod. No personal `settings.ini` is shipped or replaced by the archive.
+Preferences are generated on the first ready save-load session at `Dawnwalker/Binaries/Win64/ue4ss/Mods/HealthRegeneration/settings.ini`. Back up this file before uninstalling or replacing the mod. No personal `settings.ini` is shipped or replaced by the archive.
 
 To uninstall, disable/remove the mod in Vortex, deploy, and restart the game.
 
@@ -47,7 +48,7 @@ With **Restore vampire segments Off**, the selected base rate scales with live s
 
 With **Restore vampire segments On**, the added regeneration restores the selected percentage of current total blood capacity per second, capped at full health. Each tick reduces only the permanent blood damage needed for that tick's recovery. It uses health attribute modifiers and does not invoke feeding, overdrinking, or mutation-charge replenishment effects. Existing game regeneration bonuses continue separately.
 
-The native game regeneration effects check once per second. The added normal rate effects have no timer; they do not repeatedly apply healing at the ceiling. Optional segment restoration uses one additional native one-second effect. All settings and setup work runs on save-load or player lifecycle events, with finite readiness retries and no idle Lua worker or settings polling.
+The native game regeneration effects check once per second. The added normal rate effects have no timer; they do not repeatedly apply healing at the ceiling. Optional segment restoration uses one additional native one-second effect. Settings load through the shared save-load flow. Ordinary player replacement rebinds effects using that session's settings snapshot. Setup has finite readiness retries and no idle Lua worker or settings polling.
 
 ## Compatibility
 

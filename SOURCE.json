@@ -58,7 +58,7 @@
     "combatRegen": 0,
     "restoreVampireSegments": 0,
     "debugLogging": 0,
-    "apply": "Startup preferences and completed save-load/player lifecycle setup; no settings polling."
+    "apply": "Read through the shared settings store only when a save-load session is ready; ordinary player replacement retains the current settings snapshot. No startup settings I/O or polling."
   },
   "loader": {
     "name": "UE4SS for BoD - Framecore 2b",
@@ -67,20 +67,33 @@
     "engineHeaders": "eb40a05f49509bdeb1ac39287032b60af585cca8"
   },
   "runtimeSourceHashes": {
-    "src/lua/Config.lua": "d1efec97fe9e5765d248df8c89d820c39f969f07769450427e1f70b501c5e1ff",
-    "src/lua/Gameplay.lua": "b7afb05cc02b7b22f51bf53a44f03403b8b4725591ac293f501bb2f7b1dd2c00",
-    "src/lua/main.lua": "dd69f335440fafc6b3015a385cd61e0ef5ee73f0ecd22e4457521831034f0e40",
-    "src/lua/NativeEffects.lua": "e89dc46d11c824e20897d11f47b7eab8a0e210382909a6eeea755dd46c7279a9",
-    "src/lua/SettingsSchema.lua": "36f58af60369d2d5ed8448947a360f40f4002beb0cd12e9eb294251bfabd7e65",
-    "src/lua/SettingsStore.lua": "db597ebcfbe67fd03aa16c3c2eb4129c346975961e4df0481bb70440aa7cfa26",
-    "src/lua/UE4SSCommonSession.lua": "60ffc2ca565c31c98a763b084fe1de4417c9f2b922ec22a136fb4ad42e8d9a62",
-    "src/lua/UE4SSDawnwalkerSaveLoad.lua": "71c112e47d0abe2646d8b03bf08e43b47a871ba5ebd5339f670fc5c95e82f2a1",
     "native/BUILD.md": "685b9cc8f6bb59e00a65baaa99160a2dff1e46bf487abcd8c2ff5080d915ae58",
     "native/CMakeLists.txt": "88de123faadf28187b97cab24e227f10a77ca94338607bea0ceab2de2169ca56",
     "native/Framecore2b.def": "b99b6244bc0b0df64e3a1de7a561c937b83e0a65e1f1d0db3476782c24d36b65",
-    "native/main.cpp": "21ce7294c8aa95c0e69fc2dc106c9fc979e7cc3fb156c83095c26ec81a3148d8",
     "native/RegenerationMath.hpp": "e2335b13d4f3df5eb7edd219a004e69238468650a02cc61815bba8b41fc53054",
-    "src/mod_settings.ini": "e49282b3d396fd73db46ed2141d619655a1926d2f2fdb6876c1ffd9759fad3bb"
+    "native/main.cpp": "21ce7294c8aa95c0e69fc2dc106c9fc979e7cc3fb156c83095c26ec81a3148d8",
+    "src/lua/Config.lua": "6fed00f8762a2347e85fe4b06c064bbf5f1fb1361bec90814da0fdb90c2dcc93",
+    "src/lua/Gameplay.lua": "9856516d63d268a7713099f6c9da679fa676d72501fcea2d6ed9c0916c432384",
+    "src/lua/NativeEffects.lua": "e89dc46d11c824e20897d11f47b7eab8a0e210382909a6eeea755dd46c7279a9",
+    "src/lua/SettingsSchema.lua": "36f58af60369d2d5ed8448947a360f40f4002beb0cd12e9eb294251bfabd7e65",
+    "src/lua/SettingsStore.lua": "db597ebcfbe67fd03aa16c3c2eb4129c346975961e4df0481bb70440aa7cfa26",
+    "src/lua/UE4SSCommonDiagnostics.lua": "c82aaf42a83c99c4b0f84954f3c04732a9b26bddcb9b20b3ee8892c87b345172",
+    "src/lua/UE4SSCommonSession.lua": "60ffc2ca565c31c98a763b084fe1de4417c9f2b922ec22a136fb4ad42e8d9a62",
+    "src/lua/UE4SSDawnwalkerSaveLoad.lua": "71c112e47d0abe2646d8b03bf08e43b47a871ba5ebd5339f670fc5c95e82f2a1",
+    "src/lua/main.lua": "6e86b619af392df407d703080474173496d996b620a33ee4408022633873bc36",
+    "src/mod_settings.ini": "a024846438d06f439ecd7a3716654309f136bf3e62b1b3842e7af6ddbb723b0f"
   },
-  "dllSha256": "d4b91d35ca774d3b2bbc7a752b044473679bc300515d1c9c840be205d0143f98"
+  "dllSha256": "d4b91d35ca774d3b2bbc7a752b044473679bc300515d1c9c840be205d0143f98",
+  "commonLibrary": {
+    "repository": "https://github.com/my-mods/ue4ss-common",
+    "commit": "e373d3702d2ef18acb484ec484fe41332248520b",
+    "lock": "ue4ss-common.lock.json",
+    "modules": [
+      "SettingsStore",
+      "UE4SSCommonSession",
+      "UE4SSDawnwalkerSaveLoad",
+      "UE4SSCommonDiagnostics"
+    ],
+    "packaging": "Bundled immutable source copies; source, staged and archived bytes verified against the lock."
+  }
 }

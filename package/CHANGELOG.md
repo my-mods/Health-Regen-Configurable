@@ -12,3 +12,4 @@
 - Add Combat regeneration and Restore vampire segments toggles, both Off by default.
 - Apply settings after save loading, with finite setup retries and no idle Lua worker or settings polling.
 - Restore lost vampire segments only when enabled, without invoking feeding or mutation-charge replenishment effects.
+- Use the shared save-load settings flow and diagnostics; preserve the settings snapshot during ordinary player replacement.

@@ -1,15 +1,18 @@
 -- MIT. Configure native effects once per player session, with no idle worker.
 local directory=assert(debug.getinfo(1,'S').source:sub(2):match('^(.*[/\\])'))
 local E=dofile(directory..'NativeEffects.lua')
-local settings=dofile(directory..'Config.lua').load(directory)
+local settings=SaveLoadContext.settings or dofile(directory..'Config.lua').load(directory)
+HealthRegenerationRememberSettings(settings)
 SaveLoadDiagnostics.debugLogging=settings.debugLogging==1
-local log=HealthRegenerationReport
+local diagnostics=dofile(directory..'UE4SSCommonDiagnostics.lua').new({
+    debugLogging=settings.debugLogging==1,prefix='[Health Regeneration] ',
+    output=HealthRegenerationOutput,clock=os.clock,
+})
 local pawn,world=SaveLoadContext.pawn,SaveLoadContext.world
 local pawnId,worldId=pawn:GetAddress(),world:GetAddress()
 local asc,blood,ascClass,gameplay
 local effects={}
 local cursor,attempts,pending,finished=1,0,false,false
-local steps,elapsed=0,0
 local segmentMode=settings.restoreVampireSegments==1 and settings.vampireRegenPercent>0
 local function current()
     if not E.valid(pawn) or not E.valid(world) then return false end
@@ -25,9 +28,7 @@ end
 Session.onClose(function()
     if _HRNativeStop then
         local calls,zeros,errors,ms=_HRNativeStop()
-        if settings.debugLogging==1 then
-            log(string.format('Segment calculations: %d calls, %d zero, %d errors, %.3f ms total',calls,zeros,errors,ms))
-        end
+        diagnostics.debug('Segment calculations: %d calls, %d zero, %d errors, %.3f ms total',calls,zeros,errors,ms)
     end
 end)
 local jobs={
@@ -127,27 +128,28 @@ local function schedule(delay)
     pending=true
     ExecuteInGameThreadWithDelay(delay,run)
 end
+local step=diagnostics.wrap('effectSetup',function()
+    if cursor>2 then assert(current(),'Player changed during effect setup') end
+    return jobs[cursor]()
+end)
 run=function()
     pending=false
-    local start=settings.debugLogging==1 and os.clock()
-    local ok,result=pcall(function()
-        if cursor>2 then assert(current(),'Player changed during effect setup') end
-        return jobs[cursor]()
-    end)
+    local ok,result=pcall(step)
     if not Session.active then return end -- A nested lifecycle event owns the next setup.
-    steps=steps+1
-    if start then elapsed=elapsed+(os.clock()-start)*1000 end
+    diagnostics.count('setupSlices')
     if not ok then
         finished=true
         if _HRNativePause then _HRNativePause() end
-        log('Settings application stopped: '..tostring(result))
+        diagnostics.error('Settings application stopped: %s',tostring(result))
+        diagnostics.flush(true)
         HealthRegenerationClose()
         return
     end
     if result=='wait' then
         attempts=attempts+1
         if attempts>=20 then
-            finished=true;log('Player effects unavailable; settings will retry after the next save load or player restart')
+            finished=true;diagnostics.error('Player effects unavailable; settings will retry after the next save load or player restart')
+            diagnostics.flush(true)
             HealthRegenerationNeedsRetry()
             return
         end
@@ -156,9 +158,10 @@ run=function()
     cursor=cursor+1
     if cursor<=#jobs then schedule(16);return end
     finished=true
-    if settings.debugLogging==1 then
-        log(string.format('Applied human %.2f%%, vampire %.2f%%, combat %s, segments %s; %d slices, %.3f ms setup total',
-            settings.humanRegenPercent,settings.vampireRegenPercent,tostring(settings.combatRegen==1),tostring(segmentMode),steps,elapsed))
+    if diagnostics.debugLogging then
+        diagnostics.debug('Applied human %.2f%%, vampire %.2f%%, combat %s, segments %s',
+            settings.humanRegenPercent,settings.vampireRegenPercent,tostring(settings.combatRegen==1),tostring(segmentMode))
     end
+    diagnostics.flush(true)
 end
 schedule(16)
