@@ -1,23 +1,26 @@
-[b]Health Regen - Configurable[/b]
+[size=5][b][color=#E8C88A]Health Regen - Configurable[/color][/b][/size]
 
 Human and vampire health regeneration in one configurable mod. Choose separate rates for each form, keep regeneration outside combat, or allow it during combat. Both forms default to 1.5% per second.
 
-[b]Stops healing at the limit[/b]
+[size=4][b][color=#E8C88A]Stops healing at the limit[/color][/b][/size]
+
 Regeneration stops when your health bar or current vampire segment is full. This avoids the original vampire mod's repeated healing attempts at the limit.
 
-[b]Configuration[/b]
+[size=4][b][color=#E8C88A]Configuration[/color][/b][/size]
+
 [url=https://www.nexusmods.com/thebloodofdawnwalker/mods/271]Mod Settings Menu[/url] is optional. Without it, the mod uses the defaults below unless you change settings.ini manually.
 [list]
-[*]Human regeneration: 0% to 5% per second; default 1.5%.
-[*]Vampire regeneration: 0% to 5% per second; default 1.5%.
-[*]Rate steps: 0.25% from 0% through 2%, then 0.5% through 5%.
-[*]Combat regeneration: Off by default. Off means outside combat only; On also allows combat regeneration.
-[*]Restore vampire segments: Off by default. On allows regeneration to restore lost segments toward full health.
-[*]Logging: Off by default; writes setup and aggregate diagnostics to UE4SS.log when enabled.
+[*][b][color=#A8D5C2]Human regeneration:[/color][/b] 0% to 5% per second; default 1.5%.
+[*][b][color=#A8D5C2]Vampire regeneration:[/color][/b] 0% to 5% per second; default 1.5%.
+[*][b][color=#A8D5C2]Rate steps:[/color][/b] 0.25% from 0% through 2%, then 0.5% through 5%.
+[*][b][color=#A8D5C2]Combat regeneration:[/color][/b] Off by default. Off means outside combat only; On also allows combat regeneration.
+[*][b][color=#A8D5C2]Restore vampire segments:[/color][/b] Off by default. On allows regeneration to restore lost segments toward full health.
+[*][b][color=#A8D5C2]Logging:[/color][/b] Off by default; writes setup and aggregate diagnostics to UE4SS.log when enabled.
 [/list]
-Zero disables this mod's added regeneration for the selected form. Existing game regeneration bonuses remain separate. Regeneration does not revive a dead player.
+[color=#E6B980]Zero disables this mod's added regeneration for the selected form.[/color] Existing game regeneration bonuses remain separate. Regeneration does not revive a dead player.
 
-[b]Manual configuration (without the menu)[/b]
+[size=3][b][color=#A8D5C2]Manual configuration (without the menu)[/color][/b][/size]
+
 Load a save once to create settings.ini, then close the game. Open this file inside your The Blood of Dawnwalker game folder:
 [code]Dawnwalker\Binaries\Win64\ue4ss\Mods\HealthRegeneration\settings.ini[/code]
 The default settings are:
@@ -29,13 +32,15 @@ restoreVampireSegments = 0
 debugLogging = 0[/code]
 Change either regeneration rate using the steps above; 1.5 means 1.5% per second. For combatRegen, restoreVampireSegments and debugLogging, use 0 for Off or 1 for On. Save the file, restart the game and load a save to apply your changes.
 
-[b]Installation[/b]
+[size=4][b][color=#E8C88A]Installation[/color][/b][/size]
+
 [list]
-[*]Vortex: Install Health-Regen-Configurable.zip through Vortex, enable it and deploy.
-[*]Manual: Copy the archive's Dawnwalker folder into ...\steamapps\common\The Blood of Dawnwalker\, preserving the folder structure.
+[*][b][color=#A8D5C2]Vortex:[/color][/b] Install Health-Regen-Configurable.zip through Vortex, enable it and deploy.
+[*][b][color=#A8D5C2]Manual:[/color][/b] Copy the archive's Dawnwalker folder into ...\steamapps\common\The Blood of Dawnwalker\, preserving the folder structure.
 [/list]
 
-[b]Credits and source[/b]
+[size=4][b][color=#E8C88A]Credits and source[/color][/b][/size]
+
 Idea credit goes to [url=https://www.nexusmods.com/thebloodofdawnwalker/mods/387]Human Health Regen[/url] and [url=https://www.nexusmods.com/thebloodofdawnwalker/mods/391]Vampire Health Regen[/url] by KumasanGames. This implementation was completely rebuilt from stock game assets with its own configuration and runtime integration. Neither original mod's edited payloads are included.
 
 Thanks to Framecore, UE4SS contributors and mmarcussa. Dependency notices are included. The game and its stock assets belong to Rebel Wolves and their respective rights holders.
