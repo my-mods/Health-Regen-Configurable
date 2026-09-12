@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mod>
+  <info>
+    <name>Vampire Health Regen - Segment Guard</name>
+    <modid>VampireSegmentGuard</modid>
+    <description>1.5% vampire regeneration outside combat through the native recoverable-segment calculation.</description>
+    <author>oOCamilleOo</author>
+    <version>0.0.0</version>
+    <created_on>2026-09-12</created_on>
+  </info>
+  <supports><game>The Blood of Dawnwalker</game><steam_build>25232147</steam_build><unreal_engine>5.5.4</unreal_engine></supports>
+</mod>

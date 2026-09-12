@@ -1,0 +1,129 @@
+[
+  {
+    "type": "attribute",
+    "key": "customFileName",
+    "value": "Vampire Health Regen - Segment Guard"
+  },
+  {
+    "type": "attribute",
+    "key": "version",
+    "value": "0.0.0"
+  },
+  {
+    "type": "attribute",
+    "key": "description",
+    "value": "1.5% vampire regeneration outside combat, respecting the recoverable ceiling."
+  },
+  {
+    "type": "attribute",
+    "source": "mod.manifest",
+    "key": "vampireSegmentGuardReleaseMaterials",
+    "value": [
+      "mod.manifest",
+      "README.txt",
+      "LICENSE",
+      "CHANGELOG.md",
+      "RELEASE-NOTES.md",
+      "SOURCE.json",
+      "Data/VampireSegmentGuard-LAYOUT.txt"
+    ]
+  },
+  {
+    "type": "attribute",
+    "source": "README.txt",
+    "key": "vampireSegmentGuardReleaseMaterials",
+    "value": [
+      "mod.manifest",
+      "README.txt",
+      "LICENSE",
+      "CHANGELOG.md",
+      "RELEASE-NOTES.md",
+      "SOURCE.json",
+      "Data/VampireSegmentGuard-LAYOUT.txt"
+    ]
+  },
+  {
+    "type": "attribute",
+    "source": "LICENSE",
+    "key": "vampireSegmentGuardReleaseMaterials",
+    "value": [
+      "mod.manifest",
+      "README.txt",
+      "LICENSE",
+      "CHANGELOG.md",
+      "RELEASE-NOTES.md",
+      "SOURCE.json",
+      "Data/VampireSegmentGuard-LAYOUT.txt"
+    ]
+  },
+  {
+    "type": "attribute",
+    "source": "CHANGELOG.md",
+    "key": "vampireSegmentGuardReleaseMaterials",
+    "value": [
+      "mod.manifest",
+      "README.txt",
+      "LICENSE",
+      "CHANGELOG.md",
+      "RELEASE-NOTES.md",
+      "SOURCE.json",
+      "Data/VampireSegmentGuard-LAYOUT.txt"
+    ]
+  },
+  {
+    "type": "attribute",
+    "source": "RELEASE-NOTES.md",
+    "key": "vampireSegmentGuardReleaseMaterials",
+    "value": [
+      "mod.manifest",
+      "README.txt",
+      "LICENSE",
+      "CHANGELOG.md",
+      "RELEASE-NOTES.md",
+      "SOURCE.json",
+      "Data/VampireSegmentGuard-LAYOUT.txt"
+    ]
+  },
+  {
+    "type": "attribute",
+    "source": "SOURCE.json",
+    "key": "vampireSegmentGuardReleaseMaterials",
+    "value": [
+      "mod.manifest",
+      "README.txt",
+      "LICENSE",
+      "CHANGELOG.md",
+      "RELEASE-NOTES.md",
+      "SOURCE.json",
+      "Data/VampireSegmentGuard-LAYOUT.txt"
+    ]
+  },
+  {
+    "type": "attribute",
+    "source": "Data/VampireSegmentGuard-LAYOUT.txt",
+    "key": "vampireSegmentGuardReleaseMaterials",
+    "value": [
+      "mod.manifest",
+      "README.txt",
+      "LICENSE",
+      "CHANGELOG.md",
+      "RELEASE-NOTES.md",
+      "SOURCE.json",
+      "Data/VampireSegmentGuard-LAYOUT.txt"
+    ]
+  },
+  {
+    "type": "attribute",
+    "source": "Data\\VampireSegmentGuard-LAYOUT.txt",
+    "key": "vampireSegmentGuardReleaseMaterials",
+    "value": [
+      "mod.manifest",
+      "README.txt",
+      "LICENSE",
+      "CHANGELOG.md",
+      "RELEASE-NOTES.md",
+      "SOURCE.json",
+      "Data/VampireSegmentGuard-LAYOUT.txt"
+    ]
+  }
+]

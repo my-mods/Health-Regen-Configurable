@@ -1,0 +1,3 @@
+Vampire Health Regen - Segment Guard
+Runtime containers are under Dawnwalker/Content/Paks/~mods.
+This Data directory contains package metadata only.
