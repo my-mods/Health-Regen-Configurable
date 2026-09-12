@@ -74,7 +74,7 @@
     "native/main.cpp": "21ce7294c8aa95c0e69fc2dc106c9fc979e7cc3fb156c83095c26ec81a3148d8",
     "src/lua/Config.lua": "6fed00f8762a2347e85fe4b06c064bbf5f1fb1361bec90814da0fdb90c2dcc93",
     "src/lua/Gameplay.lua": "9856516d63d268a7713099f6c9da679fa676d72501fcea2d6ed9c0916c432384",
-    "src/lua/NativeEffects.lua": "e89dc46d11c824e20897d11f47b7eab8a0e210382909a6eeea755dd46c7279a9",
+    "src/lua/NativeEffects.lua": "cc15453089fac7df2cdf7de3e3d3756929a57dddf92531e57f99f7e32e3b3332",
     "src/lua/SettingsSchema.lua": "36f58af60369d2d5ed8448947a360f40f4002beb0cd12e9eb294251bfabd7e65",
     "src/lua/SettingsStore.lua": "db597ebcfbe67fd03aa16c3c2eb4129c346975961e4df0481bb70440aa7cfa26",
     "src/lua/UE4SSCommonDiagnostics.lua": "c82aaf42a83c99c4b0f84954f3c04732a9b26bddcb9b20b3ee8892c87b345172",

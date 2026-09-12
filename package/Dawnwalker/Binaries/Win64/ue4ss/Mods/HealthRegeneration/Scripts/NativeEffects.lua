@@ -77,7 +77,7 @@ function M.class(stem)
     if not M.valid(class) then return nil end
     local cdo=class:GetCDO()
     assert(M.valid(cdo),'Required class default unavailable: '..stem)
-    return {class=class,cdo=cdo}
+    return {class=class,cdo=cdo,stem=stem}
 end
 function M.segmentParameters(owner)
     assert(#owner.Modifiers==2,'Unexpected segment modifier count')
@@ -97,16 +97,18 @@ function M.segmentParameters(owner)
 end
 function M.remove(asc,effect)
     if M.valid(asc) and effect and M.valid(effect.class) then
-        local count=asc:RemoveActiveGameplayEffectBySourceEffect(effect.class,nil,-1)
-        assert(type(count)=='number' and count>=0,'Could not remove owned effect')
+        -- Removal returns void. Count afterwards, including inhibited effects.
+        asc:RemoveActiveGameplayEffectBySourceEffect(effect.class,nil,-1)
+        local count=asc:GetGameplayEffectCount(effect.class,nil,false)
+        assert(count==0,'Owned effect removal verification failed: '..effect.stem..' (count='..tostring(count)..')')
     end
 end
 function M.apply(asc,effect)
     assert(M.valid(asc) and M.valid(effect.class),'Effect application context unavailable')
-    -- The borrowed context and result array never survive this callback.
+    -- The borrowed context never survives this callback.
     local context=asc:MakeEffectContext()
     asc:BP_ApplyGameplayEffectToSelf(effect.class,1,context)
-    local handles=asc:GetActiveEffects({EffectDefinition=effect.class})
-    assert(#handles==1,'Effect did not produce exactly one active instance')
+    local count=asc:GetGameplayEffectCount(effect.class,nil,false)
+    assert(count==1,'Owned effect application verification failed: '..effect.stem..' (count='..tostring(count)..')')
 end
 return M
