@@ -1,3 +1,4 @@
 Health Regeneration
 Runtime containers are under Dawnwalker/Content/Paks/~mods.
+Scripts and the native helper are under Dawnwalker/Binaries/Win64/ue4ss/Mods/HealthRegeneration.
 This Data directory contains package metadata only.

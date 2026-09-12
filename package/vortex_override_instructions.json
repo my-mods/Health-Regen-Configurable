@@ -12,7 +12,7 @@
   {
     "type": "attribute",
     "key": "description",
-    "value": "1.5% human and vampire health regeneration outside combat, respecting recoverable health."
+    "value": "Configurable human and vampire health regeneration, with optional combat and vampire segment recovery."
   },
   {
     "type": "attribute",
@@ -25,7 +25,11 @@
       "CHANGELOG.md",
       "RELEASE-NOTES.md",
       "SOURCE.json",
-      "Data/HealthRegeneration-LAYOUT.txt"
+      "ue4ss-common.lock.json",
+      "Data/HealthRegeneration-LAYOUT.txt",
+      "LICENSES/HealthRegeneration-fmt.txt",
+      "LICENSES/HealthRegeneration-ue4ss-common.txt",
+      "LICENSES/HealthRegeneration-UE4SS.txt"
     ]
   },
   {
@@ -39,7 +43,11 @@
       "CHANGELOG.md",
       "RELEASE-NOTES.md",
       "SOURCE.json",
-      "Data/HealthRegeneration-LAYOUT.txt"
+      "ue4ss-common.lock.json",
+      "Data/HealthRegeneration-LAYOUT.txt",
+      "LICENSES/HealthRegeneration-fmt.txt",
+      "LICENSES/HealthRegeneration-ue4ss-common.txt",
+      "LICENSES/HealthRegeneration-UE4SS.txt"
     ]
   },
   {
@@ -53,7 +61,11 @@
       "CHANGELOG.md",
       "RELEASE-NOTES.md",
       "SOURCE.json",
-      "Data/HealthRegeneration-LAYOUT.txt"
+      "ue4ss-common.lock.json",
+      "Data/HealthRegeneration-LAYOUT.txt",
+      "LICENSES/HealthRegeneration-fmt.txt",
+      "LICENSES/HealthRegeneration-ue4ss-common.txt",
+      "LICENSES/HealthRegeneration-UE4SS.txt"
     ]
   },
   {
@@ -67,7 +79,11 @@
       "CHANGELOG.md",
       "RELEASE-NOTES.md",
       "SOURCE.json",
-      "Data/HealthRegeneration-LAYOUT.txt"
+      "ue4ss-common.lock.json",
+      "Data/HealthRegeneration-LAYOUT.txt",
+      "LICENSES/HealthRegeneration-fmt.txt",
+      "LICENSES/HealthRegeneration-ue4ss-common.txt",
+      "LICENSES/HealthRegeneration-UE4SS.txt"
     ]
   },
   {
@@ -81,7 +97,11 @@
       "CHANGELOG.md",
       "RELEASE-NOTES.md",
       "SOURCE.json",
-      "Data/HealthRegeneration-LAYOUT.txt"
+      "ue4ss-common.lock.json",
+      "Data/HealthRegeneration-LAYOUT.txt",
+      "LICENSES/HealthRegeneration-fmt.txt",
+      "LICENSES/HealthRegeneration-ue4ss-common.txt",
+      "LICENSES/HealthRegeneration-UE4SS.txt"
     ]
   },
   {
@@ -95,7 +115,29 @@
       "CHANGELOG.md",
       "RELEASE-NOTES.md",
       "SOURCE.json",
-      "Data/HealthRegeneration-LAYOUT.txt"
+      "ue4ss-common.lock.json",
+      "Data/HealthRegeneration-LAYOUT.txt",
+      "LICENSES/HealthRegeneration-fmt.txt",
+      "LICENSES/HealthRegeneration-ue4ss-common.txt",
+      "LICENSES/HealthRegeneration-UE4SS.txt"
+    ]
+  },
+  {
+    "type": "attribute",
+    "source": "ue4ss-common.lock.json",
+    "key": "healthRegenerationReleaseMaterials",
+    "value": [
+      "mod.manifest",
+      "README.txt",
+      "LICENSE",
+      "CHANGELOG.md",
+      "RELEASE-NOTES.md",
+      "SOURCE.json",
+      "ue4ss-common.lock.json",
+      "Data/HealthRegeneration-LAYOUT.txt",
+      "LICENSES/HealthRegeneration-fmt.txt",
+      "LICENSES/HealthRegeneration-ue4ss-common.txt",
+      "LICENSES/HealthRegeneration-UE4SS.txt"
     ]
   },
   {
@@ -109,7 +151,65 @@
       "CHANGELOG.md",
       "RELEASE-NOTES.md",
       "SOURCE.json",
-      "Data/HealthRegeneration-LAYOUT.txt"
+      "ue4ss-common.lock.json",
+      "Data/HealthRegeneration-LAYOUT.txt",
+      "LICENSES/HealthRegeneration-fmt.txt",
+      "LICENSES/HealthRegeneration-ue4ss-common.txt",
+      "LICENSES/HealthRegeneration-UE4SS.txt"
+    ]
+  },
+  {
+    "type": "attribute",
+    "source": "LICENSES/HealthRegeneration-fmt.txt",
+    "key": "healthRegenerationReleaseMaterials",
+    "value": [
+      "mod.manifest",
+      "README.txt",
+      "LICENSE",
+      "CHANGELOG.md",
+      "RELEASE-NOTES.md",
+      "SOURCE.json",
+      "ue4ss-common.lock.json",
+      "Data/HealthRegeneration-LAYOUT.txt",
+      "LICENSES/HealthRegeneration-fmt.txt",
+      "LICENSES/HealthRegeneration-ue4ss-common.txt",
+      "LICENSES/HealthRegeneration-UE4SS.txt"
+    ]
+  },
+  {
+    "type": "attribute",
+    "source": "LICENSES/HealthRegeneration-ue4ss-common.txt",
+    "key": "healthRegenerationReleaseMaterials",
+    "value": [
+      "mod.manifest",
+      "README.txt",
+      "LICENSE",
+      "CHANGELOG.md",
+      "RELEASE-NOTES.md",
+      "SOURCE.json",
+      "ue4ss-common.lock.json",
+      "Data/HealthRegeneration-LAYOUT.txt",
+      "LICENSES/HealthRegeneration-fmt.txt",
+      "LICENSES/HealthRegeneration-ue4ss-common.txt",
+      "LICENSES/HealthRegeneration-UE4SS.txt"
+    ]
+  },
+  {
+    "type": "attribute",
+    "source": "LICENSES/HealthRegeneration-UE4SS.txt",
+    "key": "healthRegenerationReleaseMaterials",
+    "value": [
+      "mod.manifest",
+      "README.txt",
+      "LICENSE",
+      "CHANGELOG.md",
+      "RELEASE-NOTES.md",
+      "SOURCE.json",
+      "ue4ss-common.lock.json",
+      "Data/HealthRegeneration-LAYOUT.txt",
+      "LICENSES/HealthRegeneration-fmt.txt",
+      "LICENSES/HealthRegeneration-ue4ss-common.txt",
+      "LICENSES/HealthRegeneration-UE4SS.txt"
     ]
   },
   {
@@ -123,7 +223,65 @@
       "CHANGELOG.md",
       "RELEASE-NOTES.md",
       "SOURCE.json",
-      "Data/HealthRegeneration-LAYOUT.txt"
+      "ue4ss-common.lock.json",
+      "Data/HealthRegeneration-LAYOUT.txt",
+      "LICENSES/HealthRegeneration-fmt.txt",
+      "LICENSES/HealthRegeneration-ue4ss-common.txt",
+      "LICENSES/HealthRegeneration-UE4SS.txt"
+    ]
+  },
+  {
+    "type": "attribute",
+    "source": "LICENSES\\HealthRegeneration-fmt.txt",
+    "key": "healthRegenerationReleaseMaterials",
+    "value": [
+      "mod.manifest",
+      "README.txt",
+      "LICENSE",
+      "CHANGELOG.md",
+      "RELEASE-NOTES.md",
+      "SOURCE.json",
+      "ue4ss-common.lock.json",
+      "Data/HealthRegeneration-LAYOUT.txt",
+      "LICENSES/HealthRegeneration-fmt.txt",
+      "LICENSES/HealthRegeneration-ue4ss-common.txt",
+      "LICENSES/HealthRegeneration-UE4SS.txt"
+    ]
+  },
+  {
+    "type": "attribute",
+    "source": "LICENSES\\HealthRegeneration-ue4ss-common.txt",
+    "key": "healthRegenerationReleaseMaterials",
+    "value": [
+      "mod.manifest",
+      "README.txt",
+      "LICENSE",
+      "CHANGELOG.md",
+      "RELEASE-NOTES.md",
+      "SOURCE.json",
+      "ue4ss-common.lock.json",
+      "Data/HealthRegeneration-LAYOUT.txt",
+      "LICENSES/HealthRegeneration-fmt.txt",
+      "LICENSES/HealthRegeneration-ue4ss-common.txt",
+      "LICENSES/HealthRegeneration-UE4SS.txt"
+    ]
+  },
+  {
+    "type": "attribute",
+    "source": "LICENSES\\HealthRegeneration-UE4SS.txt",
+    "key": "healthRegenerationReleaseMaterials",
+    "value": [
+      "mod.manifest",
+      "README.txt",
+      "LICENSE",
+      "CHANGELOG.md",
+      "RELEASE-NOTES.md",
+      "SOURCE.json",
+      "ue4ss-common.lock.json",
+      "Data/HealthRegeneration-LAYOUT.txt",
+      "LICENSES/HealthRegeneration-fmt.txt",
+      "LICENSES/HealthRegeneration-ue4ss-common.txt",
+      "LICENSES/HealthRegeneration-UE4SS.txt"
     ]
   }
 ]

@@ -2,15 +2,17 @@
   "$type": "UAssetAPI.UAsset, UAssetAPI",
   "Info": "Serialized with UAssetAPI v2.0.0x (3228c1e)",
   "NameMap": [
-    "BloodHealthRestoration",
+    "Blood",
     "BlueprintType",
+    "Character.State.Dead",
+    "Effect.Invulnerability",
     "Engine",
     "None",
     "Player.IsVampire",
-    "GE_BloodHealthRestorationDecrease_C",
-    "Default__GE_BloodHealthRestorationDecrease_C",
+    "MMC_HealthRegenerationHeal_C",
+    "Default__MMC_HealthRegenerationHeal_C",
     "TargetTagRequirementsGameplayEffectComponent",
-    "/Game/_Dawnwalker/Combat/Effects/GE_BloodHealthRestorationDecrease",
+    "/Game/_Dawnwalker/Player/Effects/MMC_HealthRegenerationHeal",
     "/Script/CoreUObject",
     "Package",
     "/Script/Engine",
@@ -19,8 +21,8 @@
     "Class",
     "Object",
     "/Script/DogwoodStats",
-    "CharacterBaseAttributeSet",
-    "MMC_BloodHealthRestorationDecrease",
+    "MMC_BloodRegen",
+    "VampireAttributeSet",
     "/Script/GameplayAbilities",
     "GameplayEffect",
     "Default__GameplayEffect",
@@ -28,10 +30,7 @@
     "GameplayAttribute",
     "GameplayTag",
     "Default__TargetTagRequirementsGameplayEffectComponent",
-    "AdditionalEffectsGameplayEffectComponent",
-    "Default__AdditionalEffectsGameplayEffectComponent",
-    "/Game/_Dawnwalker/Player/Effects/GE_VampireSegmentGuardRate",
-    "GE_VampireSegmentGuardRate_C"
+    "Default__MMC_BloodRegen"
   ],
   "CustomSerializationFlags": "None",
   "UseSeparateBulkDataFiles": true,
@@ -159,15 +158,15 @@
   "Exports": [
     {
       "$type": "UAssetAPI.ExportTypes.RawExport, UAssetAPI",
-      "Data": "DAEAAAAA+v///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAiEAP7///8CAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAQAAAAIAAAABAAAAAQAAAAAAAAAOAAAAQlBUWVBFX05vcm1hbAA=",
-      "ObjectName": "GE_BloodHealthRestorationDecrease_C",
+      "Data": "DAEAAAAA+v///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAiEAP7///8EAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAQAAAAIAAAABAAAAAQAAAAAAAAAOAAAAQlBUWVBFX05vcm1hbAA=",
+      "ObjectName": "MMC_HealthRegenerationHeal_C",
       "OuterIndex": 0,
       "ClassIndex": -5,
       "SuperIndex": -6,
       "TemplateIndex": -1,
       "ObjectFlags": "RF_Public, RF_Transactional",
       "SerialSize": 104,
-      "SerialOffset": 2085,
+      "SerialOffset": 1999,
       "ScriptSerializationStartOffset": 0,
       "ScriptSerializationEndOffset": 0,
       "bForcedExport": false,
@@ -192,15 +191,15 @@
     },
     {
       "$type": "UAssetAPI.ExportTypes.RawExport, UAssetAPI",
-      "Data": "AAIBAgICEAIMAwEAA83MTD4BAAAAgA0CAAcXAAAAQmxvb2RIZWFsdGhSZXN0b3JhdGlvbgABAAAAAAAAAAAAAAD9/////f///wALAoAHAYAFA4ADAYATYAAABwAAgD+ABQOAAwGABwGABQOAAwGABwGABQOAAwGABwaABwQAAAAAAAAAAAAAAACABQMAAAAAAAAAAAAL/P///wAHAACAv4AFA4ADAYAHAYAFA4ADAYAHAYAFA4ADAYAFA4AFAYADAYADAQAHAAAAAAAAAACACwEAAAAAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAIALAQAAAAAAAAAAAAAAAAAAAAAAAwEAAAAEAAAAAAAAAAIAAAADAAAABAAAAAAAAAA=",
-      "ObjectName": "Default__GE_BloodHealthRestorationDecrease_C",
+      "Data": "AAEAAAAA",
+      "ObjectName": "Default__MMC_HealthRegenerationHeal_C",
       "OuterIndex": 0,
       "ClassIndex": 1,
       "SuperIndex": 0,
       "TemplateIndex": -8,
       "ObjectFlags": "RF_Public, RF_Transactional, RF_ClassDefaultObject, RF_ArchetypeObject",
-      "SerialSize": 284,
-      "SerialOffset": 2189,
+      "SerialSize": 6,
+      "SerialOffset": 2103,
       "ScriptSerializationStartOffset": 0,
       "ScriptSerializationEndOffset": 0,
       "bForcedExport": false,
@@ -213,87 +212,12 @@
       "bIsAsset": false,
       "GeneratePublicHash": false,
       "SerializationBeforeSerializationDependencies": [],
-      "CreateBeforeSerializationDependencies": [
-        3,
-        4
-      ],
+      "CreateBeforeSerializationDependencies": [],
       "SerializationBeforeCreateDependencies": [
         1,
         -8
       ],
       "CreateBeforeCreateDependencies": [],
-      "Extras": ""
-    },
-    {
-      "$type": "UAssetAPI.ExportTypes.RawExport, UAssetAPI",
-      "Data": "AQMAAwEAAAAEAAAAAAAAAAAAAAA=",
-      "ObjectName": "TargetTagRequirementsGameplayEffectComponent_0",
-      "OuterIndex": 2,
-      "ClassIndex": -7,
-      "SuperIndex": 0,
-      "TemplateIndex": -16,
-      "ObjectFlags": "RF_Public, RF_Transactional, RF_ArchetypeObject",
-      "SerialSize": 20,
-      "SerialOffset": 2469,
-      "ScriptSerializationStartOffset": 0,
-      "ScriptSerializationEndOffset": 0,
-      "bForcedExport": false,
-      "bNotForClient": false,
-      "bNotForServer": false,
-      "PackageGuid": "{00000000-0000-0000-0000-000000000000}",
-      "IsInheritedInstance": false,
-      "PackageFlags": "PKG_None",
-      "bNotAlwaysLoadedForEditorGame": false,
-      "bIsAsset": false,
-      "GeneratePublicHash": false,
-      "SerializationBeforeSerializationDependencies": [
-        2
-      ],
-      "CreateBeforeSerializationDependencies": [],
-      "SerializationBeforeCreateDependencies": [
-        -7,
-        -16
-      ],
-      "CreateBeforeCreateDependencies": [
-        2
-      ],
-      "Extras": ""
-    },
-    {
-      "$type": "UAssetAPI.ExportTypes.RawExport, UAssetAPI",
-      "Data": "AQMBAAAAAAXs////AAAAAAAAAAA=",
-      "ObjectName": "AdditionalEffectsGameplayEffectComponent_0",
-      "OuterIndex": 2,
-      "ClassIndex": -17,
-      "SuperIndex": 0,
-      "TemplateIndex": -18,
-      "ObjectFlags": "RF_Public, RF_Transactional, RF_ArchetypeObject",
-      "SerialSize": 20,
-      "SerialOffset": 2180,
-      "ScriptSerializationStartOffset": 0,
-      "ScriptSerializationEndOffset": 0,
-      "bForcedExport": false,
-      "bNotForClient": false,
-      "bNotForServer": false,
-      "PackageGuid": "{00000000-0000-0000-0000-000000000000}",
-      "IsInheritedInstance": false,
-      "PackageFlags": "PKG_None",
-      "bNotAlwaysLoadedForEditorGame": false,
-      "bIsAsset": false,
-      "GeneratePublicHash": false,
-      "SerializationBeforeSerializationDependencies": [
-        2
-      ],
-      "CreateBeforeSerializationDependencies": [
-        -20
-      ],
-      "SerializationBeforeCreateDependencies": [
-        -17,
-        -18
-      ],
-      "CreateBeforeCreateDependencies": [
-        2
-      ],
       "Extras": ""
     }
   ],
@@ -302,7 +226,7 @@
   "MetaData": null,
   "Thumbnails": null,
   "WorldTileInfo": null,
-  "AppendedNullBytes": 114,
+  "AppendedNullBytes": 91,
   "OtherAssetsFailedToAccess": [],
   "LegacyFileVersion": -8,
   "DataResourceVersion": "Invalid",
@@ -330,7 +254,7 @@
     },
     {
       "$type": "UAssetAPI.Import, UAssetAPI",
-      "ObjectName": "CharacterBaseAttributeSet",
+      "ObjectName": "MMC_BloodRegen",
       "OuterIndex": -10,
       "ClassPackage": "/Script/CoreUObject",
       "ClassName": "Class",
@@ -339,7 +263,7 @@
     },
     {
       "$type": "UAssetAPI.Import, UAssetAPI",
-      "ObjectName": "MMC_BloodHealthRestorationDecrease",
+      "ObjectName": "VampireAttributeSet",
       "OuterIndex": -10,
       "ClassPackage": "/Script/CoreUObject",
       "ClassName": "Class",
@@ -357,8 +281,8 @@
     },
     {
       "$type": "UAssetAPI.Import, UAssetAPI",
-      "ObjectName": "GameplayEffect",
-      "OuterIndex": -12,
+      "ObjectName": "MMC_BloodRegen",
+      "OuterIndex": -10,
       "ClassPackage": "/Script/CoreUObject",
       "ClassName": "Class",
       "PackageName": null,
@@ -375,10 +299,10 @@
     },
     {
       "$type": "UAssetAPI.Import, UAssetAPI",
-      "ObjectName": "Default__GameplayEffect",
-      "OuterIndex": -12,
-      "ClassPackage": "/Script/GameplayAbilities",
-      "ClassName": "GameplayEffect",
+      "ObjectName": "Default__MMC_BloodRegen",
+      "OuterIndex": -10,
+      "ClassPackage": "/Script/DogwoodStats",
+      "ClassName": "MMC_BloodRegen",
       "PackageName": null,
       "bImportOptional": false
     },
@@ -453,47 +377,9 @@
       "ClassName": "TargetTagRequirementsGameplayEffectComponent",
       "PackageName": null,
       "bImportOptional": false
-    },
-    {
-      "$type": "UAssetAPI.Import, UAssetAPI",
-      "ObjectName": "AdditionalEffectsGameplayEffectComponent",
-      "OuterIndex": -12,
-      "ClassPackage": "/Script/CoreUObject",
-      "ClassName": "Class",
-      "PackageName": null,
-      "bImportOptional": false
-    },
-    {
-      "$type": "UAssetAPI.Import, UAssetAPI",
-      "ObjectName": "Default__AdditionalEffectsGameplayEffectComponent",
-      "OuterIndex": -12,
-      "ClassPackage": "/Script/GameplayAbilities",
-      "ClassName": "AdditionalEffectsGameplayEffectComponent",
-      "PackageName": null,
-      "bImportOptional": false
-    },
-    {
-      "$type": "UAssetAPI.Import, UAssetAPI",
-      "ObjectName": "/Game/_Dawnwalker/Player/Effects/GE_VampireSegmentGuardRate",
-      "OuterIndex": 0,
-      "ClassPackage": "/Script/CoreUObject",
-      "ClassName": "Package",
-      "PackageName": null,
-      "bImportOptional": false
-    },
-    {
-      "$type": "UAssetAPI.Import, UAssetAPI",
-      "ObjectName": "GE_VampireSegmentGuardRate_C",
-      "OuterIndex": -19,
-      "ClassPackage": "/Script/Engine",
-      "ClassName": "BlueprintGeneratedClass",
-      "PackageName": null,
-      "bImportOptional": false
     }
   ],
   "DependsMap": [
-    [],
-    [],
     [],
     []
   ],
@@ -509,8 +395,8 @@
   "Generations": [
     {
       "$type": "UAssetAPI.FGenerationInfo, UAssetAPI",
-      "ExportCount": 4,
-      "NameCount": 30
+      "ExportCount": 2,
+      "NameCount": 29
     }
   ],
   "PackageGuid": "{00000000-0000-0000-0000-000000000000}",
@@ -533,10 +419,10 @@
   },
   "ChunkIDs": [],
   "PackageSource": 0,
-  "FolderName": "/Game/_Dawnwalker/Combat/Effects/GE_BloodHealthRestorationDecrease",
+  "FolderName": "/Game/_Dawnwalker/Player/Effects/MMC_HealthRegenerationHeal",
   "LocalizationId": null,
   "SoftObjectPathsCount": 0,
-  "SoftObjectPathsOffset": 1115,
+  "SoftObjectPathsOffset": 1052,
   "SearchableNamesOffset": 0,
   "ThumbnailTableOffset": 0,
   "ImportTypeHierarchiesCount": 0,
@@ -544,7 +430,7 @@
   "SavedHash": null,
   "CompressionFlags": 0,
   "AdditionalPackagesToCook": [],
-  "NamesReferencedFromExportDataCount": 30,
+  "NamesReferencedFromExportDataCount": 29,
   "PayloadTocOffset": -1,
   "DataResourceOffset": -1,
   "doWeHaveAssetRegistryData": true,

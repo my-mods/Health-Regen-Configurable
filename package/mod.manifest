@@ -3,7 +3,7 @@
   <info>
     <name>Health Regeneration</name>
     <modid>HealthRegeneration</modid>
-    <description>1.5% human and vampire health regeneration outside combat, respecting recoverable health.</description>
+    <description>Configurable human and vampire health regeneration, with optional combat and vampire segment recovery.</description>
     <author>oOCamilleOo</author>
     <version>0.0.0</version>
     <created_on>2026-09-12</created_on>

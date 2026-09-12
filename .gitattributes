@@ -1,0 +1,2 @@
+# Preserve the exact source and bundled dependency bytes recorded in SOURCE.json.
+* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

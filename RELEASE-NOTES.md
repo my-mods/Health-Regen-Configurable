@@ -1,3 +1,3 @@
 # Health Regeneration
 
-Human and vampire health regeneration in one package. Adds a 1.5% base rate outside combat through the game's native calculations, with one-second healing ticks. Vampire recovery respects the current recoverable ceiling and preserves permanently lost segments. Each form's persistent rate effect is limited to one stack per target.
+Configurable human and vampire health regeneration in one package. Choose each rate from 0% to 5% per second in Mod Settings Menu, with 0.25% steps through 2% and 0.5% steps above 2%. Both forms default to 1.5% outside combat. Optional toggles allow combat regeneration and restoration of lost vampire segments; both default to Off. One-second healing ticks support Quiet Dawn's health reveal, and vampire regeneration respects the recoverable segment ceiling by default.

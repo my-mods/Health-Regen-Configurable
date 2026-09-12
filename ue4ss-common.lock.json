@@ -1,0 +1,34 @@
+{
+  "repository": "https://github.com/my-mods/ue4ss-common",
+  "commit": "e373d3702d2ef18acb484ec484fe41332248520b",
+  "modules": [
+    {
+      "source": "src/SettingsStore.lua",
+      "sha256": "db597ebcfbe67fd03aa16c3c2eb4129c346975961e4df0481bb70440aa7cfa26",
+      "destinations": [
+        "src/lua/SettingsStore.lua"
+      ]
+    },
+    {
+      "source": "src/UE4SSCommonSession.lua",
+      "sha256": "60ffc2ca565c31c98a763b084fe1de4417c9f2b922ec22a136fb4ad42e8d9a62",
+      "destinations": [
+        "src/lua/UE4SSCommonSession.lua"
+      ]
+    },
+    {
+      "source": "src/games/UE4SSDawnwalkerSaveLoad.lua",
+      "sha256": "71c112e47d0abe2646d8b03bf08e43b47a871ba5ebd5339f670fc5c95e82f2a1",
+      "destinations": [
+        "src/lua/UE4SSDawnwalkerSaveLoad.lua"
+      ]
+    },
+    {
+      "source": "LICENSE",
+      "sha256": "e6b58400a1221d1da965bb3d829deb2d863c3ed883f8bda6e0a95403ccf90b45",
+      "destinations": [
+        "LICENSES/HealthRegeneration-ue4ss-common.txt"
+      ]
+    }
+  ]
+}

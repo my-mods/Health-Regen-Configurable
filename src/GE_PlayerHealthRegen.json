@@ -31,7 +31,9 @@
     "AdditionalEffectsGameplayEffectComponent",
     "Default__AdditionalEffectsGameplayEffectComponent",
     "/Game/_Dawnwalker/Player/Effects/GE_HealthRegenerationHumanRate",
-    "GE_HealthRegenerationHumanRate_C"
+    "GE_HealthRegenerationHumanRate_C",
+    "/Game/_Dawnwalker/Player/Effects/GE_HealthRegenerationSegments",
+    "GE_HealthRegenerationSegments_C"
   ],
   "CustomSerializationFlags": "None",
   "UseSeparateBulkDataFiles": true,
@@ -261,14 +263,14 @@
     },
     {
       "$type": "UAssetAPI.ExportTypes.RawExport, UAssetAPI",
-      "Data": "AQMBAAAAAAXs////AAAAAAAAAAA=",
+      "Data": "AQMCAAAAAAXs////AAAAAAAF6v///wAAAAAAAAAA",
       "ObjectName": "AdditionalEffectsGameplayEffectComponent_0",
       "OuterIndex": 2,
       "ClassIndex": -17,
       "SuperIndex": 0,
       "TemplateIndex": -18,
       "ObjectFlags": "RF_Public, RF_Transactional, RF_ArchetypeObject",
-      "SerialSize": 20,
+      "SerialSize": 30,
       "SerialOffset": 2180,
       "ScriptSerializationStartOffset": 0,
       "ScriptSerializationEndOffset": 0,
@@ -285,7 +287,8 @@
         2
       ],
       "CreateBeforeSerializationDependencies": [
-        -20
+        -20,
+        -22
       ],
       "SerializationBeforeCreateDependencies": [
         -17,
@@ -489,6 +492,24 @@
       "ClassName": "BlueprintGeneratedClass",
       "PackageName": null,
       "bImportOptional": false
+    },
+    {
+      "$type": "UAssetAPI.Import, UAssetAPI",
+      "ObjectName": "/Game/_Dawnwalker/Player/Effects/GE_HealthRegenerationSegments",
+      "OuterIndex": 0,
+      "ClassPackage": "/Script/CoreUObject",
+      "ClassName": "Package",
+      "PackageName": null,
+      "bImportOptional": false
+    },
+    {
+      "$type": "UAssetAPI.Import, UAssetAPI",
+      "ObjectName": "GE_HealthRegenerationSegments_C",
+      "OuterIndex": -21,
+      "ClassPackage": "/Script/Engine",
+      "ClassName": "BlueprintGeneratedClass",
+      "PackageName": null,
+      "bImportOptional": false
     }
   ],
   "DependsMap": [
@@ -510,7 +531,7 @@
     {
       "$type": "UAssetAPI.FGenerationInfo, UAssetAPI",
       "ExportCount": 4,
-      "NameCount": 30
+      "NameCount": 32
     }
   ],
   "PackageGuid": "{00000000-0000-0000-0000-000000000000}",
@@ -544,7 +565,7 @@
   "SavedHash": null,
   "CompressionFlags": 0,
   "AdditionalPackagesToCook": [],
-  "NamesReferencedFromExportDataCount": 30,
+  "NamesReferencedFromExportDataCount": 32,
   "PayloadTocOffset": -1,
   "DataResourceOffset": -1,
   "doWeHaveAssetRegistryData": true,
