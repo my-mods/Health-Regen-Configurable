@@ -5,7 +5,7 @@ local settings=SaveLoadContext.settings or dofile(directory..'Config.lua').load(
 HealthRegenerationRememberSettings(settings)
 SaveLoadDiagnostics.debugLogging=settings.debugLogging==1
 local diagnostics=dofile(directory..'UE4SSCommonDiagnostics.lua').new({
-    debugLogging=settings.debugLogging==1,prefix='[Health Regeneration] ',
+    debugLogging=settings.debugLogging==1,prefix='[Health Regen - Configurable] ',
     output=HealthRegenerationOutput,clock=os.clock,
 })
 local pawn,world=SaveLoadContext.pawn,SaveLoadContext.world

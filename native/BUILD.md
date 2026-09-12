@@ -12,7 +12,7 @@ cmake -S native -B .local/native-build -A x64 -DUE4SS_SDK=C:/path/to/RE-UE4SS
 cmake --build .local/native-build --config Release
 ```
 
-Run CMake from the Health Regeneration repository. It retrieves pinned public header dependencies. The output is `.local/native-build/Release/main.dll` with the Visual Studio generator, or `.local/native-build/main.dll` with Ninja. Copy the build into the source package at `Dawnwalker/Binaries/Win64/ue4ss/Mods/HealthRegeneration/dlls/main.dll`, assemble the ZIP, and install it through Vortex.
+Run CMake from the Health Regen - Configurable repository. It retrieves pinned public header dependencies. The output is `.local/native-build/Release/main.dll` with the Visual Studio generator, or `.local/native-build/main.dll` with Ninja. Copy the build into the source package at `Dawnwalker/Binaries/Win64/ue4ss/Mods/HealthRegeneration/dlls/main.dll`, assemble the ZIP, and install it through Vortex.
 
 ## Compatibility and design
 

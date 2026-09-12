@@ -25,7 +25,7 @@
     "additional-effect-example.json": "aed4aaa4c159de7bda2579b87239382ec352ccee93d27a02d8cc4c0b7b56d822",
     "human-stock.json": "9e21216cbf09b298c0c0d8ac5822eb84b792ecdc5b976a084c99943ba410a6ee"
   },
-  "name": "Health Regeneration",
+  "name": "Health Regen - Configurable",
   "humanRate": "HealthRegen += human percentage/100 * live MaxHealth, with the native period, regeneration multiplier and permanent-damage-adjusted clamp.",
   "humanEligibility": "Human form, alive and not invulnerable. Combat is excluded by default; combatRegen=1 permits combat. Parent legacy and component eligibility are refreshed after settings changes.",
   "segmentMode": {
@@ -67,23 +67,23 @@
     "engineHeaders": "eb40a05f49509bdeb1ac39287032b60af585cca8"
   },
   "runtimeSourceHashes": {
-    "native/BUILD.md": "685b9cc8f6bb59e00a65baaa99160a2dff1e46bf487abcd8c2ff5080d915ae58",
+    "native/BUILD.md": "7d80d3fe82c426774214e4c73473a48c5722d9d55f71f83ce72f667fba1a0e71",
     "native/CMakeLists.txt": "88de123faadf28187b97cab24e227f10a77ca94338607bea0ceab2de2169ca56",
     "native/Framecore2b.def": "b99b6244bc0b0df64e3a1de7a561c937b83e0a65e1f1d0db3476782c24d36b65",
     "native/RegenerationMath.hpp": "e2335b13d4f3df5eb7edd219a004e69238468650a02cc61815bba8b41fc53054",
-    "native/main.cpp": "21ce7294c8aa95c0e69fc2dc106c9fc979e7cc3fb156c83095c26ec81a3148d8",
-    "src/lua/Config.lua": "6fed00f8762a2347e85fe4b06c064bbf5f1fb1361bec90814da0fdb90c2dcc93",
-    "src/lua/Gameplay.lua": "9856516d63d268a7713099f6c9da679fa676d72501fcea2d6ed9c0916c432384",
+    "native/main.cpp": "6c09f7e23a891b5474867e71164c2f8accc75285092d0fde70f0651b6ebaa967",
+    "src/lua/Config.lua": "689ce019e0d4ee0d7f86da706c8fe0de5cfa4038502eb2bc174c68e8756ad1eb",
+    "src/lua/Gameplay.lua": "73f02aa95ad8816c71075ee8e6e039b5bcb002b496cffd76a58a34f4e7039d15",
     "src/lua/NativeEffects.lua": "cc15453089fac7df2cdf7de3e3d3756929a57dddf92531e57f99f7e32e3b3332",
     "src/lua/SettingsSchema.lua": "36f58af60369d2d5ed8448947a360f40f4002beb0cd12e9eb294251bfabd7e65",
     "src/lua/SettingsStore.lua": "db597ebcfbe67fd03aa16c3c2eb4129c346975961e4df0481bb70440aa7cfa26",
     "src/lua/UE4SSCommonDiagnostics.lua": "c82aaf42a83c99c4b0f84954f3c04732a9b26bddcb9b20b3ee8892c87b345172",
     "src/lua/UE4SSCommonSession.lua": "60ffc2ca565c31c98a763b084fe1de4417c9f2b922ec22a136fb4ad42e8d9a62",
     "src/lua/UE4SSDawnwalkerSaveLoad.lua": "71c112e47d0abe2646d8b03bf08e43b47a871ba5ebd5339f670fc5c95e82f2a1",
-    "src/lua/main.lua": "6e86b619af392df407d703080474173496d996b620a33ee4408022633873bc36",
-    "src/mod_settings.ini": "a024846438d06f439ecd7a3716654309f136bf3e62b1b3842e7af6ddbb723b0f"
+    "src/lua/main.lua": "896a88c523e552c05e495f9d2b9187c88b50ed8e00a86a3bca52fd276019cbd2",
+    "src/mod_settings.ini": "03f43c14cc26d8b4a9f888c3cb0629ec62e5cae9f1634be0d9c9ee4217ab37e7"
   },
-  "dllSha256": "d4b91d35ca774d3b2bbc7a752b044473679bc300515d1c9c840be205d0143f98",
+  "dllSha256": "878236e0ed0714eae7b3bb60bdc679dd5890f7f6ee6bd8c67efc8f19f041d1a2",
   "commonLibrary": {
     "repository": "https://github.com/my-mods/ue4ss-common",
     "commit": "e373d3702d2ef18acb484ec484fe41332248520b",
@@ -95,5 +95,6 @@
       "UE4SSCommonDiagnostics"
     ],
     "packaging": "Bundled immutable source copies; source, staged and archived bytes verified against the lock."
-  }
+  },
+  "repository": "https://github.com/my-mods/Health-Regen-Configurable"
 }

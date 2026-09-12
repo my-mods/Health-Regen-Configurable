@@ -1,4 +1,4 @@
-# Health Regeneration
+# Health Regen - Configurable
 
 Fixes regeneration settings stopping during effect cleanup and leaving both healing rates at zero. Also fixes a loading crash caused by malformed vampire segment-recovery modifiers.
 

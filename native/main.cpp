@@ -1,4 +1,4 @@
-// Health Regeneration. MIT. RE-UE4SS 97b7e501c / UEPseudo eb40a05f; Framecore 2b.
+// Health Regen - Configurable. MIT. RE-UE4SS 97b7e501c / UEPseudo eb40a05f; Framecore 2b.
 // Pure magnitude calculations only: the engine applies the two native modifiers.
 #include <Mod/CppUserModBase.hpp>
 #include <LuaMadeSimple/LuaMadeSimple.hpp>
@@ -112,7 +112,7 @@ struct State final: FUObjectDeleteListener {
         } catch(...) {active=false;if(debug)++errors;}
     }
     void bind(UObject* owner,UObject* unlockCDO,UObject* healCDO,float requested,bool logging) {
-        if(!IsInGameThread()) throw std::runtime_error("Health Regeneration setup requires the game thread");
+        if(!IsInGameThread()) throw std::runtime_error("Health Regen - Configurable setup requires the game thread");
         stop();
         blood=identify(owner);unlock=identify(unlockCDO);heal=identify(healCDO);
         if(!blood.address||!unlock.address||!heal.address||unlock.address==heal.address || requested<=0||requested>0.05f)
@@ -163,7 +163,7 @@ bool supportedRuntime() {
 class HealthRegenerationMod final:public CppUserModBase {
     std::shared_ptr<State> state=std::make_shared<State>();
 public:
-    HealthRegenerationMod(){ModName=STR("Health Regeneration");ModVersion=STR("0.0.0");ModAuthors=STR("oOCamilleOo");}
+    HealthRegenerationMod(){ModName=STR("Health Regen - Configurable");ModVersion=STR("0.0.0");ModAuthors=STR("oOCamilleOo");}
     void on_lua_start(StringViewType name,Lua& lua,Lua&,Lua&,Lua*)override {
         if(name!=STR("HealthRegeneration")||!supportedRuntime())return;
         current=state;
@@ -175,7 +175,7 @@ public:
             current->bind(blood,unlock,heal,rate,logging);l.set_bool(true);return 1;
         });
         lua.register_function("_HRNativeStop",[](const Lua& l){
-            if(!IsInGameThread())throw std::runtime_error("Health Regeneration stop requires the game thread");
+            if(!IsInGameThread())throw std::runtime_error("Health Regen - Configurable stop requires the game thread");
             auto s=current;s->stop();l.set_integer(s->calls);l.set_integer(s->zeros);l.set_integer(s->errors);l.set_number(s->nanos/1e6);return 4;
         });
         lua.register_function("_HRNativePause",[](const Lua&){current->active=false;return 0;});

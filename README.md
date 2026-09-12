@@ -1,4 +1,4 @@
-# Health Regeneration
+# Health Regen - Configurable
 
 Human and vampire health regeneration in one configurable package. Both forms default to **1.5% per second**, outside combat. Vampires stop at the current recoverable segment ceiling by default.
 
@@ -16,11 +16,11 @@ The Lua scripts, native helper, and cooked assets belong to this single mod. Set
 ## Installation and updates
 
 1. In Vortex, disable/remove **HumanHealthRegen**, **VampireHealthRegen**, and the earlier **Vampire Health Regen - Segment Guard** package, if present. Deploy so their old container files are removed.
-2. Install `Health-Regeneration.zip` through Vortex, enable it, and deploy. Use the game-root installer; the package has explicit game-relative paths.
+2. Install `Health-Regen-Configurable.zip` through Vortex, enable it, and deploy. Use the game-root installer; the package has explicit game-relative paths.
 3. Fully restart the game and load a save once. This creates preferences on a first installation.
-4. Open **Main Menu > Mod Settings > Health Regeneration**, choose settings, press **Apply**, then load a save.
+4. Open **Main Menu > Mod Settings > Health Regen - Configurable**, choose settings, press **Apply**, then load a save.
 
-For an update, replace/reinstall the same Health Regeneration entry with the rebuilt ZIP, deploy, and restart the game. Keep only this combined regeneration package enabled. The package adds its own UE4SS mod folder and does not contain Quiet Dawn files.
+For an update, replace/reinstall the same Health Regen - Configurable entry with the rebuilt ZIP, deploy, and restart the game. Keep only this combined regeneration package enabled. The package adds its own UE4SS mod folder and does not contain Quiet Dawn files.
 
 Preferences are generated on the first ready save-load session at `Dawnwalker/Binaries/Win64/ue4ss/Mods/HealthRegeneration/settings.ini`. Back up this file before uninstalling or replacing the mod. No personal `settings.ini` is shipped or replaced by the archive.
 

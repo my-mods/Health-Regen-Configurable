@@ -2,7 +2,7 @@
 local directory=assert(debug.getinfo(1,'S').source:sub(2):match('^(.*[/\\])'))
 function HealthRegenerationOutput(message) print(message..'\n') end
 local Diagnostics=dofile(directory..'UE4SSCommonDiagnostics.lua')
-HealthRegenerationReport=Diagnostics.new({prefix='[Health Regeneration] ',output=HealthRegenerationOutput}).log
+HealthRegenerationReport=Diagnostics.new({prefix='[Health Regen - Configurable] ',output=HealthRegenerationOutput}).log
 SaveLoadDiagnostics={debugLogging=false}
 local report=HealthRegenerationReport
 -- Match the common save-load contract: settings I/O belongs to Gameplay.lua.
