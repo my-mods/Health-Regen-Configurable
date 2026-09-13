@@ -1,9 +1,8 @@
 # Changelog
 
-## Unreleased
+## 1.0.1
 
-- Wait for completed save loading before regeneration setup or cleanup, including interrupted loads and player replacement.
-- Block automatic application of the vampire segment-recovery effect during asset loading and parent-effect refreshes.
+- Regeneration now waits until your save has finished loading.
 
 ## 1.0.0
 

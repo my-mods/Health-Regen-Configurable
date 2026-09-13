@@ -53,7 +53,7 @@ With **Restore vampire segments Off**, the selected base rate scales with live s
 
 With **Restore vampire segments On**, the added regeneration restores the selected percentage of current total blood capacity per second, capped at full health. Each tick reduces only the permanent blood damage needed for that tick's recovery. It uses health attribute modifiers and does not invoke feeding, overdrinking, or mutation-charge replenishment effects. Existing game regeneration bonuses continue separately.
 
-The native game regeneration effects check once per second. The added normal rate effects have no timer; they do not repeatedly apply healing at the ceiling. Optional segment restoration uses one additional native one-second effect. Regeneration setup and cleanup wait until save loading has completed. Segment restoration is applied only when explicitly enabled and initialized; loading its assets cannot automatically apply its blood modifiers. Ordinary player replacement rebinds effects using that session's settings snapshot. Setup has finite readiness retries and no idle Lua worker or settings polling.
+Regeneration starts after your save finishes loading. Lost vampire segments are restored only when **Restore vampire segments** is On.
 
 ## Source and rebuilding
 
