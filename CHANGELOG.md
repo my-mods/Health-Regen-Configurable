@@ -1,3 +1,8 @@
+## 1.1.0
+
+- Apply regeneration rates, combat regeneration and vampire segment recovery changes during play.
+- Fix a crash report appearing when quitting the game normally.
+
 # Changelog
 
 ## Unreleased

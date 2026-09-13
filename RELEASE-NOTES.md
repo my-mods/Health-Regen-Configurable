@@ -1,4 +1,4 @@
-# Health Regen - Configurable 1.0.2
+# Health Regen - Configurable 1.1.0
 
-- Fixed healing not starting after loading a save.
-- Fixed vampire segment restoration stopping before full health.
+- Apply regeneration rates, combat regeneration and vampire segment recovery changes during play.
+- Fix a crash report appearing when quitting the game normally.

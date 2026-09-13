@@ -102,7 +102,7 @@
     "packaging": "Bundled immutable source copies; source, staged and archived bytes verified against the lock."
   },
   "repository": "https://github.com/my-mods/Health-Regen-Configurable",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "releaseMaterials": {
     "Nexus/banner.jpg": "f7010a53c078b1e5221ff4caafd78e3cac6042ed1817e3ff590c9d2197d41031",
     "Nexus/thumbnail.jpg": "11b29f8892270794947efb77ead41b5d7c4f54d955c62bf8534d5a2b1506aa3f",

@@ -8,20 +8,27 @@ Regeneration stops when your health bar or current vampire segment is full. This
 
 [size=4][b][color=#E8C88A]Configuration[/color][/b][/size]
 
-Required: [url=https://www.nexusmods.com/thebloodofdawnwalker/mods/271]Mod Setting Menu 1.0.6 or later[/url]. Open Mod Settings and press Apply to save and update gameplay.
+Mod Setting Menu 1.0.6+ is required. Apply saves changes and updates gameplay. Enable HookProcessConsoleExec = 1 in your Vortex-managed UE4SS configuration.
 
-[size=3][b][color=#A8D5C2]Manual configuration (without the menu)[/color][/b][/size]
+[url=https://www.nexusmods.com/thebloodofdawnwalker/mods/271]Mod Setting Menu 1.0.6 or later[/url] is required. Press Apply to save and update gameplay.
+[list]
+[*][b][color=#A8D5C2]Human regeneration:[/color][/b] 0% to 5% per second; default 1.5%.
+[*][b][color=#A8D5C2]Vampire regeneration:[/color][/b] 0% to 5% per second; default 1.5%.
+[*][b][color=#A8D5C2]Combat regeneration:[/color][/b] Off by default. Off means outside combat only; On also allows combat regeneration.
+[*][b][color=#A8D5C2]Restore vampire segments:[/color][/b] Off by default. On allows regeneration to restore lost segments toward full health.
+[*][b][color=#A8D5C2]Logging:[/color][/b] Off by default; writes to UE4SS.log when enabled.
+[/list][color=#E6B980]Zero disables this mod's added regeneration for the selected form.[/color] Existing game regeneration bonuses remain separate. Regeneration does not revive a dead player.
 
-Load a save once to create settings.ini, then close the game. Open this file inside your The Blood of Dawnwalker game folder:
-[code]Dawnwalker\Binaries\Win64\ue4ss\Mods\HealthRegeneration\settings.ini[/code]
-The default settings are:
+[size=3][b][color=#A8D5C2]Manual configuration[/color][/b][/size]
+
+Launch the game once to create settings.ini, then close it. Open this file inside your The Blood of Dawnwalker game folder:
+[code]Dawnwalker\Binaries\Win64\ue4ss\Mods\HealthRegeneration\settings.ini[/code]The default settings are:
 [code][Settings]
 vampireRegenPercent = 1.5
 humanRegenPercent = 1.5
 combatRegen = 0
 restoreVampireSegments = 0
-debugLogging = 0[/code]
-Change either regeneration rate using the steps above; 1.5 means 1.5% per second. For combatRegen, restoreVampireSegments and debugLogging, use 0 for Off or 1 for On. Save the file, restart the game and load a save to apply your changes.
+debugLogging = 0[/code]Change either regeneration rate using the steps above; 1.5 means 1.5% per second. For combatRegen, restoreVampireSegments and debugLogging, use 0 for Off or 1 for On. Save the file, restart the game and load a save to apply your changes.
 
 [size=4][b][color=#E8C88A]Installation[/color][/b][/size]
 
@@ -29,7 +36,6 @@ Change either regeneration rate using the steps above; 1.5 means 1.5% per second
 [*][b][color=#A8D5C2]Vortex:[/color][/b] Install Health-Regen-Configurable.zip through Vortex, enable it and deploy.
 [*][b][color=#A8D5C2]Manual:[/color][/b] Copy the archive's Dawnwalker folder into ...\steamapps\common\The Blood of Dawnwalker\, preserving the folder structure.
 [/list]
-
 [size=4][b][color=#E8C88A]Credits and source[/color][/b][/size]
 
 Idea credit goes to [url=https://www.nexusmods.com/thebloodofdawnwalker/mods/387]Human Health Regen[/url] and [url=https://www.nexusmods.com/thebloodofdawnwalker/mods/391]Vampire Health Regen[/url] by KumasanGames. This implementation was completely rebuilt from stock game assets with its own configuration and runtime integration. Neither original mod's edited payloads are included.
@@ -37,8 +43,3 @@ Idea credit goes to [url=https://www.nexusmods.com/thebloodofdawnwalker/mods/387
 Thanks to Framecore, UE4SS contributors and mmarcussa. Dependency notices are included. The game and its stock assets belong to Rebel Wolves and their respective rights holders.
 
 [url=https://github.com/my-mods/Health-Regen-Configurable]Source code and documentation[/url]. Authored code and documentation use the MIT license; game assets and promotional imagery retain their original rights.
-
-
-[b]Live settings[/b]
-Mod Setting Menu 1.0.6+ is required. Settings are prepared at startup; Apply saves changes and updates gameplay. The loader must use HookProcessConsoleExec = 1, managed through your Vortex loader configuration.
-Human rate, vampire rate, combat rules and segment mode update independently. Rate or Logging changes in segment mode configure the existing owner without rebinding or refreshing its effect. Segment-mode transitions retain the removal, binding and guarded application sequence. Loading pauses both setup and cleanup.
