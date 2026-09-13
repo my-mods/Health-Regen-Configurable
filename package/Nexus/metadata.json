@@ -24,13 +24,15 @@
       "name": "UE4SS for BoD",
       "url": "https://www.nexusmods.com/thebloodofdawnwalker/mods/283",
       "note": "Framecore 2b required by the native helper."
-    },
-    {
-      "name": "Mod Setting Menu",
-      "url": "https://www.nexusmods.com/thebloodofdawnwalker/mods/271",
-      "note": "For in-game configuration. Parser checked with 1.0.5.1."
     }
   ],
   "source": "https://github.com/my-mods/Health-Regen-Configurable",
-  "license": "MIT for authored code and documentation; third-party game assets, dependencies and promotional imagery retain their own rights."
+  "license": "MIT for authored code and documentation; third-party game assets, dependencies and promotional imagery retain their own rights.",
+  "optionalMods": [
+    {
+      "name": "Mod Setting Menu",
+      "url": "https://www.nexusmods.com/thebloodofdawnwalker/mods/271",
+      "note": "Optional in-game configuration. Without the menu, defaults and manual settings.ini configuration work. Parser checked with 1.0.5.1."
+    }
+  ]
 }

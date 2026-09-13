@@ -64,7 +64,7 @@ local function tagComponent(name)
 end
 jobs[#jobs+1]=function()
     local e=effect('GE_HealthRegenerationSegments');cleanup(e)
-    E.remove(asc,e) -- Remove the zero-rate, non-periodic preload placeholder.
+    E.remove(asc,e) -- Clear an older/save-restored instance; automatic application is blocked.
 end
 jobs[#jobs+1]=function()
     local e=effect('GE_VampireSegmentGuardRate');cleanup(e)
@@ -119,7 +119,10 @@ for _,name in ipairs({'GE_VampireSegmentGuardRate','GE_HealthRegenerationHumanRa
         local enabled=(name=='GE_VampireSegmentGuardRate' and not segmentMode and settings.vampireRegenPercent>0)
             or (name=='GE_HealthRegenerationHumanRate' and settings.humanRegenPercent>0)
             or (name=='GE_HealthRegenerationSegments' and segmentMode)
-        if enabled then E.apply(asc,effect(name)) end
+        if enabled then
+            if name=='GE_HealthRegenerationSegments' then E.applySegments(asc,effect(name))
+            else E.apply(asc,effect(name)) end
+        end
     end
 end
 local run
@@ -129,6 +132,7 @@ local function schedule(delay)
     ExecuteInGameThreadWithDelay(delay,run)
 end
 local step=diagnostics.wrap('effectSetup',function()
+    assert(HealthRegenerationCanApply(),'Loading interrupted effect setup')
     if cursor>2 then assert(current(),'Player changed during effect setup') end
     return jobs[cursor]()
 end)

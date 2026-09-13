@@ -12,7 +12,7 @@
     "GE_BloodHealthRestorationDecrease.json": "28469d9a2dca195835c4e3628df4cd785201800e63bbab6b24a4e12264a50bb5",
     "GE_BloodRegen.json": "48aba006b117d685a2dea04bebc58f868fe58b46083d3c618496af73f1fa1724",
     "GE_HealthRegenerationHumanRate.json": "cb85840592ab834cf8ad1b405c2563e1607d3e1cc3b417f4e3bf875b5a954d54",
-    "GE_HealthRegenerationSegments.json": "dcdcbfbcf092efeea3cb5b64040b486b44a4b7563280a5864da7e6c421fcbf61",
+    "GE_HealthRegenerationSegments.json": "fcb853ca829b44966b54f39ec3740b0bad01a5e9e61cf1440b1338d0c20e826f",
     "GE_PlayerHealthRegen.json": "f9b3b7e769355e8022d5d74dc606c7f1ce5eca702d326f5b308f3e40a3131ffb",
     "GE_VampireSegmentGuardRate.json": "2cc5d9f6dc112eb74a52cb26e28b55144389006896782ac45b2210dcdc7590cc",
     "MMC_HealthRegenerationHeal.json": "ce69d0e14a5271518e6c0fd06cdd4d39e83703f210fab8864a083d23c478c97d",
@@ -33,7 +33,7 @@
     "calculation": "heal = min(max(0, capacity - blood), capacity * rate); unlock = -min(permanentDamage, max(0, heal - max(0, capacity - permanentDamage - blood)))",
     "periodSeconds": 1,
     "applicationTick": false,
-    "zeroDefaults": "All added coefficients start at zero. Segment preload has no period and is removed during setup. Native hooks are bound before enabling its coefficients and timer.",
+    "zeroDefaults": "All added coefficients start at zero. Contradictory application tag requirements block the hard-referenced segment effect from automatic application. After loading completion and native binding, Lua opens the application gate only for one explicit application and restores it synchronously, including application failures. Native hooks are bound before enabling coefficients and the one-second period.",
     "dispatch": "Two instance-filtered native CalculateBaseMagnitude post-hooks; no Lua on regeneration ticks."
   },
   "settings": {
@@ -58,7 +58,7 @@
     "combatRegen": 0,
     "restoreVampireSegments": 0,
     "debugLogging": 0,
-    "apply": "Read through the shared settings store only when a save-load session is ready; ordinary player replacement retains the current settings snapshot. No startup settings I/O or polling."
+    "apply": "Read through the shared settings store after verified loading completion; construction and possession cannot bypass the gate. Setup and cleanup pause during loading. Ordinary player replacement retains the current settings snapshot. No startup settings I/O or polling."
   },
   "loader": {
     "name": "UE4SS for BoD - Framecore 2b",
@@ -73,20 +73,20 @@
     "native/RegenerationMath.hpp": "e2335b13d4f3df5eb7edd219a004e69238468650a02cc61815bba8b41fc53054",
     "native/main.cpp": "1d32f854bfeb864f355b7a75672fb47e17cd0b658f6b2664e7ecbe95879235de",
     "src/lua/Config.lua": "689ce019e0d4ee0d7f86da706c8fe0de5cfa4038502eb2bc174c68e8756ad1eb",
-    "src/lua/Gameplay.lua": "73f02aa95ad8816c71075ee8e6e039b5bcb002b496cffd76a58a34f4e7039d15",
-    "src/lua/NativeEffects.lua": "cc15453089fac7df2cdf7de3e3d3756929a57dddf92531e57f99f7e32e3b3332",
+    "src/lua/Gameplay.lua": "af43e31db2e4daf9ff07d4aaa9107ad30551758615d431610f10d4b91bc4ff62",
+    "src/lua/NativeEffects.lua": "27c50633f9e3c7fe1f38f2d266184fb7840a8c177031dc758bd9b7880c1b948e",
     "src/lua/SettingsSchema.lua": "36f58af60369d2d5ed8448947a360f40f4002beb0cd12e9eb294251bfabd7e65",
     "src/lua/SettingsStore.lua": "db597ebcfbe67fd03aa16c3c2eb4129c346975961e4df0481bb70440aa7cfa26",
     "src/lua/UE4SSCommonDiagnostics.lua": "c82aaf42a83c99c4b0f84954f3c04732a9b26bddcb9b20b3ee8892c87b345172",
-    "src/lua/UE4SSCommonSession.lua": "60ffc2ca565c31c98a763b084fe1de4417c9f2b922ec22a136fb4ad42e8d9a62",
-    "src/lua/UE4SSDawnwalkerSaveLoad.lua": "71c112e47d0abe2646d8b03bf08e43b47a871ba5ebd5339f670fc5c95e82f2a1",
-    "src/lua/main.lua": "896a88c523e552c05e495f9d2b9187c88b50ed8e00a86a3bca52fd276019cbd2",
+    "src/lua/UE4SSCommonSession.lua": "3ac001eda6802f9e5cdfa5cae3a72b5449ae9bc83cd3b1bd5a81e464ec97f912",
+    "src/lua/UE4SSDawnwalkerSaveLoad.lua": "17e9cbb70326f536b14ba5512a46ac425e7e1446c90516e826b2092b30465707",
+    "src/lua/main.lua": "aa67dbf78e5e917121bcd276a8b475b81f24ebaa5fa0daf3dfe60ffe576ecba2",
     "src/mod_settings.ini": "5c4a3bf87e96cadd1d6dfdcaa0a739d753bd0d08c0f06d5eda656b37116b8035"
   },
   "dllSha256": "7181f11579493d56069dbec9b0a6cf88631b3ba011ce8b234a4d9554fd511c1b",
   "commonLibrary": {
     "repository": "https://github.com/my-mods/ue4ss-common",
-    "commit": "e373d3702d2ef18acb484ec484fe41332248520b",
+    "commit": "a5eb964f0f5282e7aab8d42048610a23deb887a6",
     "lock": "ue4ss-common.lock.json",
     "modules": [
       "SettingsStore",
@@ -103,9 +103,9 @@
     "Nexus/thumbnail.jpg": "11b29f8892270794947efb77ead41b5d7c4f54d955c62bf8534d5a2b1506aa3f",
     "Nexus/MEDIA-CREDITS.md": "20170c26a9b841ff2929285254c4bd195eea70cc3b6d3f777fc4d07e95b3b7ef",
     "Nexus/summary.txt": "1bfa0c924e73a6229988812775173c489045089c784be05071c49da3aed6f21e",
-    "Nexus/description.bbcode": "2f2588eaaa65cfaf90a68b4253398ca7762e4ef8d65e5fa694c91f13513f3ed8",
+    "Nexus/description.bbcode": "af07653ef1915ff3ece07ef264672951a439a6f9632743776106e54d4ef8bef7",
     "Nexus/file-description.txt": "85323d92452869ed3f52191d6a454228e5130c8cde0aa552eaad817a8f3b1b74",
-    "Nexus/changelog.txt": "0a652ba445b8c9882a9e1e6b1422a9cd65b75e4d8b423eda37352e2d1d2ef754",
-    "Nexus/metadata.json": "52c002032cdd3d14e8c2b04395cb06b6e6157cd9f7fb66d39fd1c4461d3b8c45"
+    "Nexus/changelog.txt": "390798746998cbd509400c157276dbffd29c5f311e60b77dc744a07bb1118478",
+    "Nexus/metadata.json": "9d59053bb27e23fda1d5bbf1247106ee1590546871e153891ebd255df8728bcd"
   }
 }

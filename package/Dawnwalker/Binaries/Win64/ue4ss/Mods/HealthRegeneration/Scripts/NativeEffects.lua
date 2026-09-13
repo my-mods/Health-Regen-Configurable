@@ -104,11 +104,43 @@ function M.remove(asc,effect)
     end
 end
 function M.apply(asc,effect)
+    assert(HealthRegenerationCanApply(),'Effect application deferred until loading completes')
     assert(M.valid(asc) and M.valid(effect.class),'Effect application context unavailable')
     -- The borrowed context never survives this callback.
     local context=asc:MakeEffectContext()
+    assert(HealthRegenerationCanApply(),'Loading started during effect context creation')
     asc:BP_ApplyGameplayEffectToSelf(effect.class,1,context)
     local count=asc:GetGameplayEffectCount(effect.class,nil,false)
     assert(count==1,'Owned effect application verification failed: '..effect.stem..' (count='..tostring(count)..')')
+end
+function M.applySegments(asc,effect)
+    local owner=effect.cdo.GEComponents[1]
+    assert(M.valid(owner),'Segment application gate unavailable')
+    local property=owner:Reflection():GetProperty('ApplicationTagRequirements')
+    assert(M.valid(property),'Segment application requirements unavailable')
+    local function matches(blocked)
+        local requirements=owner.ApplicationTagRequirements
+        local required,ignored=names(requirements.RequireTags),names(requirements.IgnoreTags)
+        if not blocked then return #required==0 and #ignored==0 end
+        return #required==1 and #ignored==1 and required[1]=='Player.IsVampire' and ignored[1]=='Player.IsVampire'
+    end
+    local function gate(blocked)
+        local tags=blocked and {'Player.IsVampire'} or {}
+        property:ImportText('(RequireTags='..container(tags)..',IgnoreTags='..container(tags)..')',
+            property:ContainerPtrToValuePtr(owner),0,owner)
+        assert(matches(blocked),'Segment application gate readback failed')
+    end
+    assert(matches(true),'Segment effect is not protected against automatic application')
+    assert(HealthRegenerationCanApply() and Session.active,'Segment session is no longer ready')
+    -- Never yield with this gate open. Parent effect refreshes and load-time
+    -- hard references see the blocked default even while segment mode is On.
+    local ok,err=pcall(function()
+        gate(false)
+        assert(Session.active,'Loading interrupted segment setup')
+        M.apply(asc,effect)
+    end)
+    local restored,restoreError=pcall(gate,true)
+    assert(restored,restoreError)
+    assert(ok,err)
 end
 return M

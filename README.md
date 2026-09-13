@@ -11,20 +11,12 @@ Regeneration arrives in one-second ticks. A 1.5% gain can trigger Quiet Dawn's h
 - Optional: [**Mod Setting Menu**](https://www.nexusmods.com/thebloodofdawnwalker/mods/271), tested against the 1.0.5.1 configuration parser, for in-game configuration. The mod also works with its defaults or manual INI edits without the menu.
 - Quiet Dawn is optional.
 
-The Lua scripts, native helper, and cooked assets belong to this single mod. Settings storage, save-load sessions, and Lua diagnostics use bundled, pinned **ue4ss-common** modules. No separate common-library installation or human/vampire regeneration mod is required.
+The Lua scripts, native helper, and cooked assets belong to this single mod. No separate human/vampire regeneration mod is required.
 
-## Installation and updates
+## Installation
 
-1. In Vortex, disable/remove **HumanHealthRegen**, **VampireHealthRegen**, and the earlier **Vampire Health Regen - Segment Guard** package, if present. Deploy so their old container files are removed.
-2. Install `Health-Regen-Configurable.zip` through Vortex, enable it, and deploy. Use the game-root installer; the package has explicit game-relative paths.
-3. Fully restart the game and load a save once. This creates preferences on a first installation.
-4. If using Mod Setting Menu, open **Main Menu > Mod Settings > Health Regen - Configurable**, choose settings, press **Apply**, then load a save.
-
-For an update, replace/reinstall the same Health Regen - Configurable entry with the rebuilt ZIP, deploy, and restart the game. Keep only this combined regeneration package enabled. The package adds its own UE4SS mod folder and does not contain Quiet Dawn files.
-
-Preferences are generated on the first ready save-load session at `Dawnwalker/Binaries/Win64/ue4ss/Mods/HealthRegeneration/settings.ini`. Back up this file before uninstalling or replacing the mod. No personal `settings.ini` is shipped or replaced by the archive.
-
-To uninstall, disable/remove the mod in Vortex, deploy, and restart the game.
+- Vortex: Install `Health-Regen-Configurable.zip` through Vortex, enable it and deploy.
+- Manual: Copy the archive's `Dawnwalker` folder into `E:\SteamLibrary\steamapps\common\The Blood of Dawnwalker`, preserving the folder structure.
 
 ## Configuration
 
@@ -61,19 +53,7 @@ With **Restore vampire segments Off**, the selected base rate scales with live s
 
 With **Restore vampire segments On**, the added regeneration restores the selected percentage of current total blood capacity per second, capped at full health. Each tick reduces only the permanent blood damage needed for that tick's recovery. It uses health attribute modifiers and does not invoke feeding, overdrinking, or mutation-charge replenishment effects. Existing game regeneration bonuses continue separately.
 
-The native game regeneration effects check once per second. The added normal rate effects have no timer; they do not repeatedly apply healing at the ceiling. Optional segment restoration uses one additional native one-second effect. Settings load through the shared save-load flow. Ordinary player replacement rebinds effects using that session's settings snapshot. Setup has finite readiness retries and no idle Lua worker or settings polling.
-
-## Compatibility
-
-The following stock assets are overridden:
-
-- `/Game/_Dawnwalker/Combat/Effects/GE_BloodHealthRestorationDecrease`
-- `/Game/_Dawnwalker/Player/Effects/GE_BloodRegen`
-- `/Game/_Dawnwalker/Player/Effects/GE_PlayerHealthRegen`
-
-Five additional assets under `/Game/_Dawnwalker/Player/Effects/` provide the two persistent rates, the optional segment effect, and its two magnitude calculations. Other mods editing these effects conflict even when Vortex shows different container filenames. Disable the old regeneration variants; a filename conflict winner alone cannot resolve overlapping cooked assets.
-
-Recheck compatibility after game or loader updates. The DLL verifies the supported Framecore hash before exposing its segment calculations. Unsupported segment setup is rejected. Live DLL/Lua hot reload is unsupported; restart the game when replacing files.
+The native game regeneration effects check once per second. The added normal rate effects have no timer; they do not repeatedly apply healing at the ceiling. Optional segment restoration uses one additional native one-second effect. Regeneration setup and cleanup wait until save loading has completed. Segment restoration is applied only when explicitly enabled and initialized; loading its assets cannot automatically apply its blood modifiers. Ordinary player replacement rebinds effects using that session's settings snapshot. Setup has finite readiness retries and no idle Lua worker or settings polling.
 
 ## Source and rebuilding
 
