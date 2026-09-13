@@ -1,9 +1,9 @@
 # Changelog
 
-## Unreleased
+## 1.0.2
 
-- Restore regeneration after loading a save.
-- Fix vampire segment recovery stopping early or reducing recoverable health.
+- Fixed healing not starting after loading a save.
+- Fixed vampire segment restoration stopping before full health.
 
 ## 1.0.1
 

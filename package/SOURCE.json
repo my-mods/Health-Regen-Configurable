@@ -81,7 +81,7 @@
     "src/lua/UE4SSCommonSession.lua": "3ac001eda6802f9e5cdfa5cae3a72b5449ae9bc83cd3b1bd5a81e464ec97f912",
     "src/lua/UE4SSDawnwalkerSaveLoad.lua": "17e9cbb70326f536b14ba5512a46ac425e7e1446c90516e826b2092b30465707",
     "src/lua/main.lua": "cd20e840253c867bb02736ce383c8d7ecb5476f01ed052ad43e51821b5abc9f2",
-    "src/mod_settings.ini": "27bb06c84662379493938a41d568a0c57c8d2ee754454b0cfe784ed86570355f"
+    "src/mod_settings.ini": "ebc3c9bc958e08daba41f45cbea43c1a0c4d1ac77d9194cf3bf2a41e54816f67"
   },
   "dllSha256": "65ad5d730a9da1bbe71f32f1bcd779b6a43894bd283befb3726aca15c7c0a3e6",
   "commonLibrary": {
@@ -97,7 +97,7 @@
     "packaging": "Bundled immutable source copies; source, staged and archived bytes verified against the lock."
   },
   "repository": "https://github.com/my-mods/Health-Regen-Configurable",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "releaseMaterials": {
     "Nexus/banner.jpg": "f7010a53c078b1e5221ff4caafd78e3cac6042ed1817e3ff590c9d2197d41031",
     "Nexus/thumbnail.jpg": "11b29f8892270794947efb77ead41b5d7c4f54d955c62bf8534d5a2b1506aa3f",
@@ -105,7 +105,7 @@
     "Nexus/summary.txt": "1bfa0c924e73a6229988812775173c489045089c784be05071c49da3aed6f21e",
     "Nexus/description.bbcode": "63e5e3e6a6f415b7cf8b4f1163d9168f4e17f02c8ab1297598e82d3fb50d0326",
     "Nexus/file-description.txt": "85323d92452869ed3f52191d6a454228e5130c8cde0aa552eaad817a8f3b1b74",
-    "Nexus/changelog.txt": "992875d81c3a4cb6267ed527ff669b9b6de117784e8e45188c530d71aa0236a7",
-    "Nexus/metadata.json": "5b1f9ed4b0de7060f63507d6b426262f1ff5a68f4544bad21f363f0b4bb0a750"
+    "Nexus/changelog.txt": "83e8e02e4c896905dd007d54f3ef70e9c8f05e7b951ba5308f2aad81b90f5843",
+    "Nexus/metadata.json": "be92eb958bf3854010922d2e977d293ccf88ea775fe47050308b0aa69e53e946"
   }
 }

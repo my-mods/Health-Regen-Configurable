@@ -1,3 +1,4 @@
-# Health Regen - Configurable 1.0.1
+# Health Regen - Configurable 1.0.2
 
-Regeneration now waits until your save has finished loading.
+- Fixed healing not starting after loading a save.
+- Fixed vampire segment restoration stopping before full health.

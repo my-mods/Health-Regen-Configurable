@@ -3,18 +3,18 @@
   "game": "thebloodofdawnwalker",
   "category": "Gameplay",
   "author": "oOCamilleOo",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "summary": "Configurable health regeneration for humans and vampires. Stops adding healing at full recoverable health or the current vampire segment limit, with optional combat and lost-segment recovery.",
   "tags": [
     "Gameplay",
     "Quality of Life",
-    "AI Assisted"
+    "AI-Generated Content"
   ],
   "file": {
     "name": "Health Regen - Configurable",
     "archive": "Health-Regen-Configurable.zip",
     "category": "main",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Human and vampire health regeneration with separate 0\u20135% rates, optional combat regeneration and optional vampire segment recovery. Both rates default to 1.5% outside combat. Recovery respects the current vampire segment limit by default.",
     "primaryModManagerDownload": true,
     "allowModManagerDownload": true
