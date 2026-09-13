@@ -93,7 +93,11 @@ struct State final: FUObjectDeleteListener {
         for(const auto& g:getters) if(match(g.identity)) active=false;
     }
     void OnUObjectArrayShutdown() override {
-        active=false;listening=false;
+        active=false;
+        // The engine requires listeners to remove themselves before this callback returns.
+        // Do not use stop(): object-table restoration is unsafe during array shutdown.
+        if(listening) { FUObjectArray::RemoveUObjectDeleteListener(this);listening=false; }
+        deletionInterest=0;
         std::lock_guard lock(identityMutex);
         blood={};unlock={};heal={};getters={};
     }

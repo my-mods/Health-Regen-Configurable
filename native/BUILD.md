@@ -32,6 +32,8 @@ UE4SS and fmt license notices are included under `LICENSES/`. ImGui, ImGuiColorT
 
 ## Live settings API
 
+The object-array shutdown callback disables calculation, unregisters its deletion listener and clears owned identities. It does not restore object tables or access dying game objects. Later cleanup can run again without removing the listener twice.
+
 `_HRNativeConfigure(expectedBloodAddress, rate, logging)` runs on the game thread. It accepts a finite rate in (0, 0.05], verifies the existing bound blood owner and indexed identity, then changes only rate and diagnostics. An inactive or paused binding returns false and cannot be resumed by configuration. It performs no discovery, effect application or rebinding. Lua removes the segment effect before stopping a binding and retains the strict loading gate for both setup and cleanup.
 
 Mod Setting Menu 1.0.6+ requires `HookProcessConsoleExec=1` in the loader profile. The mod archive does not supply that global INI.

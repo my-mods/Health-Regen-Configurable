@@ -27,14 +27,14 @@
     "src/lua/UE4SSDawnwalkerSettings.lua": "039b09679eafec2b19cd8f27e3033dec26a52484a7529edbf14f15193ba07ef1"
   },
   "nativeSources": {
-    "native/BUILD.md": "4818f4c73ad44af350c6986dad11e3052d43fd1cb1ee8597c27253c5442c275b",
+    "native/BUILD.md": "f114ba1a5a0c4ceb8468265b8ef4eda2fa349f342794f395681d17727d08f343",
     "native/CMakeLists.txt": "88de123faadf28187b97cab24e227f10a77ca94338607bea0ceab2de2169ca56",
     "native/Framecore2b.def": "b99b6244bc0b0df64e3a1de7a561c937b83e0a65e1f1d0db3476782c24d36b65",
-    "native/main.cpp": "5731c63b108ac81f1cbb5c5e31da91ce33f826ecd75df3f5ed1840a907701281",
+    "native/main.cpp": "1ab19f71c686e07be2655f319b565de35856c7f490ee9663d616ddec32844e24",
     "native/RegenerationMath.hpp": "e2335b13d4f3df5eb7edd219a004e69238468650a02cc61815bba8b41fc53054"
   },
   "nativeDll": {
     "path": "package/Dawnwalker/Binaries/Win64/ue4ss/Mods/HealthRegeneration/dlls/main.dll",
-    "sha256": "58d3df40971358e86c6196298a288114fd673be64b34f08651a686d960625db5"
+    "sha256": "424ec012d1c02888326512f3475ef434671a3118ca6e70575a32e538b9d73a04"
   }
 }

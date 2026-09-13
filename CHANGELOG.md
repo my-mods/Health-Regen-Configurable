@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Fixed a crash report appearing when quitting the game normally.
+
 ## 1.0.2
 
 - Fixed healing not starting after loading a save.

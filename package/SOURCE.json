@@ -86,7 +86,7 @@
     "src/lua/UE4SSDawnwalkerSettings.lua": "039b09679eafec2b19cd8f27e3033dec26a52484a7529edbf14f15193ba07ef1",
     "src/mod_settings.ini": "578d7e6d702f65c26b8c3fde5ec765157f4599b598879847134fafae7f39fa98"
   },
-  "dllSha256": "58d3df40971358e86c6196298a288114fd673be64b34f08651a686d960625db5",
+  "dllSha256": "424ec012d1c02888326512f3475ef434671a3118ca6e70575a32e538b9d73a04",
   "commonLibrary": {
     "repository": "https://github.com/my-mods/ue4ss-common",
     "commit": "b51434dee720bc000090d4cf387d60f8f6be7e60",
