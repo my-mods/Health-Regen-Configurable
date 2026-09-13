@@ -2,7 +2,8 @@
 
 ## Unreleased
 
-- Restore regeneration and vampire segment recovery after loading a save.
+- Restore regeneration after loading a save.
+- Fix vampire segment recovery stopping early or reducing recoverable health.
 
 ## 1.0.1
 

@@ -15,8 +15,8 @@
     "GE_HealthRegenerationSegments.json": "fcb853ca829b44966b54f39ec3740b0bad01a5e9e61cf1440b1338d0c20e826f",
     "GE_PlayerHealthRegen.json": "f9b3b7e769355e8022d5d74dc606c7f1ce5eca702d326f5b308f3e40a3131ffb",
     "GE_VampireSegmentGuardRate.json": "2cc5d9f6dc112eb74a52cb26e28b55144389006896782ac45b2210dcdc7590cc",
-    "MMC_HealthRegenerationHeal.json": "ce69d0e14a5271518e6c0fd06cdd4d39e83703f210fab8864a083d23c478c97d",
-    "MMC_HealthRegenerationUnlock.json": "008821c319121454ae6cfc077841e3d19888d047ae26415e5d92fa688b2361da"
+    "MMC_HealthRegenerationHeal.json": "401246f279ea1ba0f832fd2fe73810f56116d062c38779537886e9efa966bc1e",
+    "MMC_HealthRegenerationUnlock.json": "05b171f7235e4d749b5b995b660d404d5373c8630fc1e1f4310a10fb7affd92c"
   },
   "stockJsonInputs": {
     "stock-effect.json": "13a53d82f6a40b85656d685e915da25f883b0b875f8a0bb5696d34e8b273485a",
@@ -33,8 +33,8 @@
     "calculation": "heal = min(max(0, capacity - blood), capacity * rate); unlock = -min(permanentDamage, max(0, heal - max(0, capacity - permanentDamage - blood)))",
     "periodSeconds": 1,
     "applicationTick": false,
-    "zeroDefaults": "All added coefficients start at zero. Contradictory application tag requirements block the hard-referenced segment effect from automatic application. After loading completion and native binding, Lua opens the application gate only for one explicit application and restores it synchronously, including application failures. Native hooks are bound before enabling coefficients and the one-second period.",
-    "dispatch": "Two instance-filtered native CalculateBaseMagnitude post-hooks; no Lua on regeneration ticks."
+    "zeroDefaults": "All added coefficients start at zero. Contradictory application tag requirements block automatic segment-effect application. Both calculation classes have a zero-result native parent. After loading completion and a verified native binding, Lua opens the gate for one explicit application and restores it synchronously, including failures.",
+    "dispatch": "Two private native virtual-table calculation bindings on the owned calculation class defaults, with an actual-call probe before activation. The shared game table is unchanged. The calculation assets inherit the native zero-result GameplayModMagnitudeCalculation base. No Lua on regeneration ticks."
   },
   "settings": {
     "rates": [
@@ -67,13 +67,13 @@
     "engineHeaders": "eb40a05f49509bdeb1ac39287032b60af585cca8"
   },
   "runtimeSourceHashes": {
-    "native/BUILD.md": "7d80d3fe82c426774214e4c73473a48c5722d9d55f71f83ce72f667fba1a0e71",
+    "native/BUILD.md": "510c9245b092f2fa56d15da0584e2ee82e9c159e8f24cdb5b0c5cb5aab3dc54e",
     "native/CMakeLists.txt": "88de123faadf28187b97cab24e227f10a77ca94338607bea0ceab2de2169ca56",
     "native/Framecore2b.def": "b99b6244bc0b0df64e3a1de7a561c937b83e0a65e1f1d0db3476782c24d36b65",
     "native/RegenerationMath.hpp": "e2335b13d4f3df5eb7edd219a004e69238468650a02cc61815bba8b41fc53054",
-    "native/main.cpp": "1d32f854bfeb864f355b7a75672fb47e17cd0b658f6b2664e7ecbe95879235de",
+    "native/main.cpp": "edb8eaf6ecbb4a303775c79f2c857e120ed02f1b3e0a3f3a23ee722cd8bf08d1",
     "src/lua/Config.lua": "689ce019e0d4ee0d7f86da706c8fe0de5cfa4038502eb2bc174c68e8756ad1eb",
-    "src/lua/Gameplay.lua": "af43e31db2e4daf9ff07d4aaa9107ad30551758615d431610f10d4b91bc4ff62",
+    "src/lua/Gameplay.lua": "13f335d45fe75c5f8ed544cac4799c7df6a7d7a517eed6275bf42fb1a767c61a",
     "src/lua/NativeEffects.lua": "27c50633f9e3c7fe1f38f2d266184fb7840a8c177031dc758bd9b7880c1b948e",
     "src/lua/SettingsSchema.lua": "36f58af60369d2d5ed8448947a360f40f4002beb0cd12e9eb294251bfabd7e65",
     "src/lua/SettingsStore.lua": "db597ebcfbe67fd03aa16c3c2eb4129c346975961e4df0481bb70440aa7cfa26",
@@ -83,7 +83,7 @@
     "src/lua/main.lua": "cd20e840253c867bb02736ce383c8d7ecb5476f01ed052ad43e51821b5abc9f2",
     "src/mod_settings.ini": "27bb06c84662379493938a41d568a0c57c8d2ee754454b0cfe784ed86570355f"
   },
-  "dllSha256": "7181f11579493d56069dbec9b0a6cf88631b3ba011ce8b234a4d9554fd511c1b",
+  "dllSha256": "65ad5d730a9da1bbe71f32f1bcd779b6a43894bd283befb3726aca15c7c0a3e6",
   "commonLibrary": {
     "repository": "https://github.com/my-mods/ue4ss-common",
     "commit": "a5eb964f0f5282e7aab8d42048610a23deb887a6",

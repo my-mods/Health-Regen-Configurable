@@ -21,7 +21,7 @@
     "Class",
     "Object",
     "/Script/DogwoodStats",
-    "MMC_BloodRegen",
+    "GameplayModMagnitudeCalculation",
     "VampireAttributeSet",
     "/Script/GameplayAbilities",
     "GameplayEffect",
@@ -30,7 +30,7 @@
     "GameplayAttribute",
     "GameplayTag",
     "Default__TargetTagRequirementsGameplayEffectComponent",
-    "Default__MMC_BloodRegen"
+    "Default__GameplayModMagnitudeCalculation"
   ],
   "CustomSerializationFlags": "None",
   "UseSeparateBulkDataFiles": true,
@@ -254,8 +254,8 @@
     },
     {
       "$type": "UAssetAPI.Import, UAssetAPI",
-      "ObjectName": "MMC_BloodRegen",
-      "OuterIndex": -10,
+      "ObjectName": "GameplayModMagnitudeCalculation",
+      "OuterIndex": -12,
       "ClassPackage": "/Script/CoreUObject",
       "ClassName": "Class",
       "PackageName": null,
@@ -281,8 +281,8 @@
     },
     {
       "$type": "UAssetAPI.Import, UAssetAPI",
-      "ObjectName": "MMC_BloodRegen",
-      "OuterIndex": -10,
+      "ObjectName": "GameplayModMagnitudeCalculation",
+      "OuterIndex": -12,
       "ClassPackage": "/Script/CoreUObject",
       "ClassName": "Class",
       "PackageName": null,
@@ -299,10 +299,10 @@
     },
     {
       "$type": "UAssetAPI.Import, UAssetAPI",
-      "ObjectName": "Default__MMC_BloodRegen",
-      "OuterIndex": -10,
-      "ClassPackage": "/Script/DogwoodStats",
-      "ClassName": "MMC_BloodRegen",
+      "ObjectName": "Default__GameplayModMagnitudeCalculation",
+      "OuterIndex": -12,
+      "ClassPackage": "/Script/GameplayAbilities",
+      "ClassName": "GameplayModMagnitudeCalculation",
       "PackageName": null,
       "bImportOptional": false
     },

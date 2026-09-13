@@ -11,6 +11,7 @@
 #include <Unreal/UFunctionStructs.hpp>
 #include <Unreal/Core/Windows/AllowWindowsPlatformTypes.hpp>
 #include <Windows.h>
+#include <intrin.h>
 #include <bcrypt.h>
 #include <array>
 #include <atomic>
@@ -65,16 +66,22 @@ float read(UObject* owner,const Getter& g) {
     owner->ProcessEvent(g.function,params.data());
     float value;std::memcpy(&value,params.data()+g.offset,sizeof(value));return value;
 }
+// Build 25232147: GameplayModMagnitudeCalculation has 92 virtual entries;
+// CalculateBaseMagnitude_Implementation is slot 90. Only our two CDOs receive
+// a private table; the game's shared table and stock calculations stay intact.
 struct State final: FUObjectDeleteListener {
     std::mutex identityMutex;
     std::atomic_bool active{};
     std::atomic<uint64_t> deletionInterest{};
-    Identity blood{},unlock{},heal{},functionIdentity{};
+    Identity blood{},unlock{},heal{};
     std::array<Getter,3> getters{};
-    UFunction* function{};
-    std::array<CallbackId,2> hooks{InvalidCallbackId,InvalidCallbackId};
-    bool listening{},debug{};
+    std::array<void*,92> magnitudeTable{};
+    void** originalTable{};
+    inline static std::atomic<State*> dispatchState{};
+    bool listening{},debug{},probing{};
+    int probeHits{};
     float rate{};
+    float lastBlood{},lastCapacity{},lastDamage{},lastUnlock{},lastHeal{};
     uint64_t calls{},zeros{},errors{},nanos{};
     static uint64_t interest(uintptr_t address){return uint64_t{1}<<((address^(address>>11))&63);}
     void NotifyUObjectDeleted(const UObjectBase* object,int32 index) override {
@@ -82,70 +89,103 @@ struct State final: FUObjectDeleteListener {
         if(!(deletionInterest.load(std::memory_order_relaxed)&interest(address)))return;
         std::lock_guard lock(identityMutex);
         const auto match=[&](const Identity& id){return id.index==index&&id.address==address;};
-        if(match(blood)||match(unlock)||match(heal)||match(functionIdentity)) active=false;
+        if(match(blood)||match(unlock)||match(heal)) active=false;
         for(const auto& g:getters) if(match(g.identity)) active=false;
     }
-    void OnUObjectArrayShutdown() override { active=false;function=nullptr;hooks.fill(InvalidCallbackId);listening=false; }
+    void OnUObjectArrayShutdown() override {
+        active=false;listening=false;
+        std::lock_guard lock(identityMutex);
+        blood={};unlock={};heal={};getters={};
+    }
+    static float __fastcall dispatch(UObject* context,const void*) noexcept {
+        if(!IsInGameThreadRaw())return 0.0f;
+        auto state=dispatchState.load(std::memory_order_acquire);
+        return state ? state->calculate(context) : 0.0f;
+    }
+    static void** table(UObject* object){return *reinterpret_cast<void***>(object);}
+    void restore(const Identity& id) noexcept {
+        if(auto object=resolve(id))
+            _InterlockedCompareExchangePointer(reinterpret_cast<void* volatile*>(object),originalTable,magnitudeTable.data());
+    }
     void stop() {
         active=false;
+        // Keep the immutable private table alive until DLL shutdown, even if a
+        // deleted CDO is still unwinding. Never dereference an invalid identity.
+        restore(unlock);restore(heal);
         deletionInterest=0;
-        if(function && resolve(functionIdentity)==function) for(auto id:hooks) if(id!=InvalidCallbackId) function->UnregisterHook(id);
-        hooks.fill(InvalidCallbackId);function=nullptr;functionIdentity={};
         if(listening) { FUObjectArray::RemoveUObjectDeleteListener(this);listening=false; }
         std::lock_guard lock(identityMutex);
         blood={};unlock={};heal={};getters={};
     }
-    void calculate(UnrealScriptFunctionCallableContext& context,bool unlocking) noexcept {
-        // Instance filtering occurs in the host. No Lua, discovery, metadata
-        // traversal, settings I/O or scheduler is involved in a regen tick.
-        if(!context.RESULT_DECL) return;
-        context.SetReturnValue(0.0f); // The inherited MMC is never the fallback.
-        if(!active.load(std::memory_order_acquire) || !IsInGameThreadRaw()) return;
+    ~State(){stop();auto expected=this;dispatchState.compare_exchange_strong(expected,nullptr);}
+    float calculate(UObject* context) noexcept {
+        if(!active.load(std::memory_order_acquire))return 0.0f;
+        const bool unlocking=reinterpret_cast<uintptr_t>(context)==unlock.address;
+        if(!unlocking && reinterpret_cast<uintptr_t>(context)!=heal.address)return 0.0f;
+        if(probing)++probeHits;
         const auto started=debug ? std::chrono::steady_clock::now() : std::chrono::steady_clock::time_point{};
         try {
             auto owner=resolve(blood);
-            if(!owner || resolve(unlocking?unlock:heal)!=context.Context) { active=false;return; }
-            const auto tick=HealthRegeneration::segmentTick(read(owner,getters[0]),read(owner,getters[1]),read(owner,getters[2]),rate);
+            if(!owner || resolve(unlocking?unlock:heal)!=context) { active=false;return 0.0f; }
+            const float bloodValue=read(owner,getters[0]),capacity=read(owner,getters[1]),damage=read(owner,getters[2]);
+            const auto tick=HealthRegeneration::segmentTick(bloodValue,capacity,damage,rate);
             const float amount=unlocking ? tick.unlock : tick.heal;
-            context.SetReturnValue(amount);
-            if(debug) {++calls;if(amount==0)++zeros;nanos+=std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now()-started).count();}
-        } catch(...) {active=false;if(debug)++errors;}
+            if(debug) {
+                lastBlood=bloodValue;lastCapacity=capacity;lastDamage=damage;lastUnlock=tick.unlock;lastHeal=tick.heal;
+                ++calls;if(amount==0)++zeros;nanos+=std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now()-started).count();
+            }
+            return amount;
+        } catch(...) {active=false;if(debug)++errors;return 0.0f;}
     }
     void bind(UObject* owner,UObject* unlockCDO,UObject* healCDO,float requested,bool logging) {
         if(!IsInGameThread()) throw std::runtime_error("Health Regen - Configurable setup requires the game thread");
         stop();
         blood=identify(owner);unlock=identify(unlockCDO);heal=identify(healCDO);
-        if(!blood.address||!unlock.address||!heal.address||unlock.address==heal.address || requested<=0||requested>0.05f)
+        if(!blood.address||!unlock.address||!heal.address||unlock.address==heal.address||requested<=0||requested>0.05f)
             throw std::runtime_error("Invalid segment regeneration context");
         auto bloodClass=UObjectGlobals::StaticFindObject<UClass*>(nullptr,nullptr,L"/Script/DogwoodStats.BloodBarComponent");
+        auto calculationClass=UObjectGlobals::StaticFindObject<UClass*>(nullptr,nullptr,L"/Script/GameplayAbilities.GameplayModMagnitudeCalculation");
         if(!bloodClass || !owner->IsA(bloodClass))throw std::runtime_error("Unexpected blood component class");
-        getters={getter(L"/Script/DogwoodStats.BloodBarComponent:GetBlood"),getter(L"/Script/DogwoodStats.BloodBarComponent:GetBloodBarLength"),getter(L"/Script/DogwoodStats.BloodBarComponent:GetBloodPermDamage")};
-        function=UObjectGlobals::StaticFindObject<UFunction*>(nullptr,nullptr,L"/Script/GameplayAbilities.GameplayModMagnitudeCalculation:CalculateBaseMagnitude");
-        if(!function || !function->HasAnyFunctionFlags(EFunctionFlags::FUNC_Native)) throw std::runtime_error("Native magnitude function unavailable");
-        int returns=0;
-        for(auto p:TFieldRange<FProperty>(function,EFieldIterationFlags::IncludeDeprecated)) if(p->HasAnyPropertyFlags(EPropertyFlags::CPF_ReturnParm)) {
-            if(p->GetClass().GetFName().ToString()!=STR("FloatProperty")) throw std::runtime_error("Unexpected magnitude return type");
-            ++returns;
+        if(!calculationClass||!unlockCDO->IsA(calculationClass)||!healCDO->IsA(calculationClass))
+            throw std::runtime_error("Unexpected segment calculation class");
+        const auto image=reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
+        auto expectedTable=reinterpret_cast<void**>(image+0x76c77f0);
+        if(table(unlockCDO)!=expectedTable||table(healCDO)!=expectedTable
+            ||expectedTable[90]!=reinterpret_cast<void*>(image+0x1271ab0))
+            throw std::runtime_error("Segment calculation layout mismatch; install the matching assets and helper");
+        if(!originalTable){
+            originalTable=expectedTable;
+            std::memcpy(magnitudeTable.data(),originalTable,sizeof(magnitudeTable));
+            magnitudeTable[90]=reinterpret_cast<void*>(&dispatch);
         }
-        if(returns!=1) throw std::runtime_error("Missing magnitude return value");
-        functionIdentity=identify(function);
-        if(!functionIdentity.address)throw std::runtime_error("Invalid magnitude function identity");
+        getters={getter(L"/Script/DogwoodStats.BloodBarComponent:GetBlood"),getter(L"/Script/DogwoodStats.BloodBarComponent:GetBloodBarLength"),getter(L"/Script/DogwoodStats.BloodBarComponent:GetBloodPermDamage")};
         debug=logging;rate=requested;calls=zeros=errors=nanos=0;
-        uint64_t mask=interest(blood.address)|interest(unlock.address)|interest(heal.address)|interest(functionIdentity.address);
+        uint64_t mask=interest(blood.address)|interest(unlock.address)|interest(heal.address);
         for(const auto& g:getters)mask|=interest(g.identity.address);
         deletionInterest=mask;
         FUObjectArray::AddUObjectDeleteListener(this);listening=true;
+        dispatchState.store(this,std::memory_order_release);
         try {
-            hooks[0]=function->RegisterPostHookForInstance([](UnrealScriptFunctionCallableContext& c,void* p){static_cast<State*>(p)->calculate(c,true);},this,unlockCDO);
-            hooks[1]=function->RegisterPostHookForInstance([](UnrealScriptFunctionCallableContext& c,void* p){static_cast<State*>(p)->calculate(c,false);},this,healCDO);
-            if(hooks[0]==InvalidCallbackId||hooks[1]==InvalidCallbackId) throw std::runtime_error("Segment magnitude registration failed");
+            for(auto object:{unlockCDO,healCDO})
+                if(_InterlockedCompareExchangePointer(reinterpret_cast<void* volatile*>(object),magnitudeTable.data(),originalTable)!=originalTable)
+                    throw std::runtime_error("Segment calculation binding was replaced");
             active=true;
-        } catch(...) {stop();throw;}
+            // Probe the actual virtual call route before enabling either effect
+            // modifier. This takes only read-only getters and never applies health.
+            using Magnitude=float(__fastcall*)(UObject*,const void*);
+            probing=true;probeHits=0;
+            const float u=reinterpret_cast<Magnitude>(table(unlockCDO)[90])(unlockCDO,nullptr);
+            const float h=reinterpret_cast<Magnitude>(table(healCDO)[90])(healCDO,nullptr);
+            probing=false;
+            if(probeHits!=2||!active||!std::isfinite(u)||!std::isfinite(h)||u>0||h<0)
+                throw std::runtime_error("Segment calculation dispatch verification failed");
+            calls=zeros=errors=nanos=0; // Subsequent counters describe game execution.
+        } catch(...) {probing=false;stop();throw;}
     }
 };
 std::shared_ptr<State> current;
-bool supportedRuntime() {
-    wchar_t path[32768];auto module=GetModuleHandleW(L"UE4SS.dll");auto length=GetModuleFileNameW(module,path,32768);
+bool moduleMatches(HMODULE module,const std::array<unsigned char,32>& expected) {
+    wchar_t path[32768];auto length=GetModuleFileNameW(module,path,32768);
     if(!module||!length||length==32768)return false;
     std::ifstream file(std::filesystem::path(path),std::ios::binary);if(!file)return false;
     BCRYPT_ALG_HANDLE algorithm{};BCRYPT_HASH_HANDLE hash{};
@@ -157,8 +197,12 @@ bool supportedRuntime() {
         ok=good&&file.eof()&&BCryptFinishHash(hash,digest.data(),digest.size(),0)>=0;BCryptDestroyHash(hash);
     }
     BCryptCloseAlgorithmProvider(algorithm,0);
-    constexpr std::array<unsigned char,32> expected{0xfb,0x18,0x39,0xee,0x91,0xf7,0x1f,0x83,0xd5,0x08,0xd4,0x4a,0x27,0x63,0xa1,0x5a,0xc1,0xbb,0x0c,0x5f,0xb4,0xe5,0x04,0xac,0x0f,0xcf,0xca,0x64,0x37,0x6a,0x05,0x4a};
+
     return ok&&digest==expected;
+}
+bool supportedRuntime() {
+    return moduleMatches(GetModuleHandleW(L"UE4SS.dll"),{0xfb,0x18,0x39,0xee,0x91,0xf7,0x1f,0x83,0xd5,0x08,0xd4,0x4a,0x27,0x63,0xa1,0x5a,0xc1,0xbb,0x0c,0x5f,0xb4,0xe5,0x04,0xac,0x0f,0xcf,0xca,0x64,0x37,0x6a,0x05,0x4a})
+        && moduleMatches(GetModuleHandleW(nullptr),{0xcb,0x9b,0x7d,0x7b,0xd8,0x8a,0x67,0x54,0xc0,0xa9,0xc0,0x83,0x18,0xaa,0x64,0xd5,0x01,0x3d,0xdf,0xd9,0x2d,0x5b,0xad,0xca,0xe8,0x4e,0x1b,0x4e,0xa9,0x80,0xdc,0xfc});
 }
 class HealthRegenerationMod final:public CppUserModBase {
     std::shared_ptr<State> state=std::make_shared<State>();
@@ -177,6 +221,12 @@ public:
         lua.register_function("_HRNativeStop",[](const Lua& l){
             if(!IsInGameThread())throw std::runtime_error("Health Regen - Configurable stop requires the game thread");
             auto s=current;s->stop();l.set_integer(s->calls);l.set_integer(s->zeros);l.set_integer(s->errors);l.set_number(s->nanos/1e6);return 4;
+        });
+        lua.register_function("_HRNativeStats",[](const Lua& l){
+            if(!IsInGameThread())throw std::runtime_error("Health Regen - Configurable diagnostics require the game thread");
+            auto s=current;l.set_integer(s->calls);l.set_integer(s->zeros);l.set_integer(s->errors);l.set_number(s->nanos/1e6);
+            l.set_number(s->lastBlood);l.set_number(s->lastCapacity);l.set_number(s->lastDamage);
+            l.set_number(s->lastUnlock);l.set_number(s->lastHeal);return 9;
         });
         lua.register_function("_HRNativePause",[](const Lua&){current->active=false;return 0;});
     }

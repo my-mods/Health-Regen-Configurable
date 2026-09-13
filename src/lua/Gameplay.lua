@@ -101,7 +101,8 @@ jobs[#jobs+1]=function()
 end
 jobs[#jobs+1]=function()
     if not segmentMode then return end
-    assert(type(_HRNativeBind)=='function','Segment restoration requires the bundled DLL and Framecore 2b')
+    assert(type(_HRNativeBind)=='function' and type(_HRNativeStats)=='function',
+        'Segment restoration requires the matching bundled DLL and Framecore 2b')
     local e=effect('GE_HealthRegenerationSegments')
     E.combat(tagComponent('GE_HealthRegenerationSegments'),settings.combatRegen==1,'segment-tags')
     assert(_HRNativeBind(blood:GetAddress(),effect('MMC_HealthRegenerationUnlock').cdo:GetAddress(),
@@ -167,5 +168,16 @@ run=function()
             settings.humanRegenPercent,settings.vampireRegenPercent,tostring(settings.combatRegen==1),tostring(segmentMode))
     end
     diagnostics.flush(true)
+    if segmentMode and diagnostics.debugLogging then
+        -- One diagnostic snapshot after the engine has had time to execute the
+        -- periodic effect. No settings polling or ongoing diagnostic worker.
+        ExecuteInGameThreadWithDelay(3000,function()
+            if not Session.active or not HealthRegenerationCanApply() then return end
+            local calls,zeros,errors,ms,value,capacity,damage,unlock,heal=_HRNativeStats()
+            diagnostics.debug('Segment execution: %d calls, %d zero, %d errors, %.3f ms; blood=%.3f capacity=%.3f lost=%.3f unlock=%.3f heal=%.3f',
+                calls,zeros,errors,ms,value,capacity,damage,unlock,heal)
+            diagnostics.flush(true)
+        end)
+    end
 end
 schedule(16)
