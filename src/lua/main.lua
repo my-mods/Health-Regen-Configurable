@@ -91,8 +91,13 @@ function api.RegisterHook(path,pre,post)
             restart()
         end)
     elseif path=='/Script/DogwoodCombat.CombatSubsystem:OnLoadingScreenStateChanged' then
-        return RegisterHook(path,pre,function(context,state)
-            local value=tonumber(state:get())
+        local loadingWidget
+        local function changed(context,state)
+            local value=tonumber(type(state)=='number' and state or state:get())
+            -- Combat's native delegate is not dispatched through this UFunction
+            -- in every session. The loading widget also signals its final fade.
+            -- If that widget has started, wait for it to finish before resuming.
+            if value==0 and loadingWidget then return end
             if value==0 then
                 loading,loadComplete=false,true;completionSerial=completionSerial+1
                 manager.resumeCleanup()
@@ -102,7 +107,25 @@ function api.RegisterHook(path,pre,post)
             end
             post(context,state)
             if value==0 and (restartPawn or retry) then restart() end
+        end
+        local function widgetHook(name,callback)
+            local ok,err=pcall(RegisterHook,'/Script/DogwoodUI.DWLoadingScreenWidget:'..name,function() end,callback)
+            if not ok then report('Loading-screen event unavailable ('..name..'): '..tostring(err)) end
+        end
+        widgetHook('NotifyLoadingScreenStarted',function(context)
+            local widget=context:get()
+            if not valid(widget) then return end
+            loadingWidget=widget:GetAddress()
+            changed(context,1)
         end)
+        widgetHook('OnFadeOutFinished',function(context)
+            local widget=context:get()
+            if not valid(widget) then return end
+            if loadingWidget and loadingWidget~=widget:GetAddress() then return end
+            loadingWidget=nil
+            changed(context,0)
+        end)
+        return RegisterHook(path,pre,changed)
     elseif path=='/Script/DogwoodUI.SaveWindowBase:RequestLoadSave' then
         return RegisterHook(path,function(...)
             loadComplete=false;pause();return pre(...)

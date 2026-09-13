@@ -53,7 +53,7 @@ With **Restore vampire segments Off**, the selected base rate scales with live s
 
 With **Restore vampire segments On**, the added regeneration restores the selected percentage of current total blood capacity per second, capped at full health. Each tick reduces only the permanent blood damage needed for that tick's recovery. It uses health attribute modifiers and does not invoke feeding, overdrinking, or mutation-charge replenishment effects. Existing game regeneration bonuses continue separately.
 
-Regeneration starts after your save finishes loading. Lost vampire segments are restored only when **Restore vampire segments** is On.
+Regeneration starts once the loading screen closes. Lost vampire segments are restored only when **Restore vampire segments** is On.
 
 ## Source and rebuilding
 

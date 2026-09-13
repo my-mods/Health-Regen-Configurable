@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Restore regeneration and vampire segment recovery after loading a save.
+
 ## 1.0.1
 
 - Regeneration now waits until your save has finished loading.

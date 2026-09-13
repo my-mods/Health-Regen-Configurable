@@ -58,7 +58,7 @@
     "combatRegen": 0,
     "restoreVampireSegments": 0,
     "debugLogging": 0,
-    "apply": "Read through the shared settings store after verified loading completion; construction and possession cannot bypass the gate. Setup and cleanup pause during loading. Ordinary player replacement retains the current settings snapshot. No startup settings I/O or polling."
+    "apply": "Read through the shared settings store after loading completion, using the native loading-widget fade-out event as well as the combat loading notification. An active loading widget must finish before setup resumes. Construction and possession cannot bypass the gate. Setup and cleanup pause during loading. Ordinary player replacement retains the current settings snapshot. No startup settings I/O or polling."
   },
   "loader": {
     "name": "UE4SS for BoD - Framecore 2b",
@@ -80,7 +80,7 @@
     "src/lua/UE4SSCommonDiagnostics.lua": "c82aaf42a83c99c4b0f84954f3c04732a9b26bddcb9b20b3ee8892c87b345172",
     "src/lua/UE4SSCommonSession.lua": "3ac001eda6802f9e5cdfa5cae3a72b5449ae9bc83cd3b1bd5a81e464ec97f912",
     "src/lua/UE4SSDawnwalkerSaveLoad.lua": "17e9cbb70326f536b14ba5512a46ac425e7e1446c90516e826b2092b30465707",
-    "src/lua/main.lua": "aa67dbf78e5e917121bcd276a8b475b81f24ebaa5fa0daf3dfe60ffe576ecba2",
+    "src/lua/main.lua": "cd20e840253c867bb02736ce383c8d7ecb5476f01ed052ad43e51821b5abc9f2",
     "src/mod_settings.ini": "27bb06c84662379493938a41d568a0c57c8d2ee754454b0cfe784ed86570355f"
   },
   "dllSha256": "7181f11579493d56069dbec9b0a6cf88631b3ba011ce8b234a4d9554fd511c1b",
