@@ -5,7 +5,7 @@ local settings=SaveLoadContext.settings or dofile(directory..'Config.lua').load(
 HealthRegenerationRememberSettings(settings)
 SaveLoadDiagnostics.debugLogging=settings.debugLogging==1
 local diagnostics=dofile(directory..'UE4SSCommonDiagnostics.lua').new({
-    debugLogging=settings.debugLogging==1,prefix='[Health Regen - Configurable] ',
+    mutable=true,debugLogging=settings.debugLogging==1,prefix='[Health Regen - Configurable] ',
     output=HealthRegenerationOutput,clock=os.clock,
 })
 local pawn,world=SaveLoadContext.pawn,SaveLoadContext.world
@@ -14,6 +14,17 @@ local asc,blood,ascClass,gameplay
 local effects={}
 local cursor,attempts,pending,finished=1,0,false,false
 local segmentMode=settings.restoreVampireSegments==1 and settings.vampireRegenPercent>0
+local desiredSettings=settings
+local appliedSettings=settings
+local initialComplete=false
+local beginLive,schedule,initialDiagnosticDone
+Session.onSettings(function(values)
+    desiredSettings=values
+    HealthRegenerationRememberSettings(values)
+    SaveLoadDiagnostics.debugLogging=values.debugLogging==1
+    diagnostics.setEnabled(values.debugLogging==1)
+    if initialComplete and finished and beginLive then beginLive() end
+end)
 local function current()
     if not E.valid(pawn) or not E.valid(world) then return false end
     if pawn:GetAddress()~=pawnId or pawn:GetWorld():GetAddress()~=worldId then return false end
@@ -127,18 +138,19 @@ for _,name in ipairs({'GE_VampireSegmentGuardRate','GE_HealthRegenerationHumanRa
     end
 end
 local run
-local function schedule(delay)
+schedule=function(delay)
     if pending or finished then return end
     pending=true
     ExecuteInGameThreadWithDelay(delay,run)
 end
 local step=diagnostics.wrap('effectSetup',function()
     assert(HealthRegenerationCanApply(),'Loading interrupted effect setup')
-    if cursor>2 then assert(current(),'Player changed during effect setup') end
+    if initialComplete or cursor>2 then assert(current(),'Player changed during effect setup') end
     return jobs[cursor]()
 end)
 run=function()
     pending=false
+    if initialComplete and cursor==1 and desiredSettings~=settings then beginLive();return end
     local ok,result=pcall(step)
     if not Session.active then return end -- A nested lifecycle event owns the next setup.
     diagnostics.count('setupSlices')
@@ -163,12 +175,15 @@ run=function()
     cursor=cursor+1
     if cursor<=#jobs then schedule(16);return end
     finished=true
+    initialComplete=true
+    appliedSettings=settings
     if diagnostics.debugLogging then
         diagnostics.debug('Applied human %.2f%%, vampire %.2f%%, combat %s, segments %s',
             settings.humanRegenPercent,settings.vampireRegenPercent,tostring(settings.combatRegen==1),tostring(segmentMode))
     end
     diagnostics.flush(true)
-    if segmentMode and diagnostics.debugLogging then
+    if segmentMode and diagnostics.debugLogging and not initialDiagnosticDone then
+        initialDiagnosticDone=true
         -- One diagnostic snapshot after the engine has had time to execute the
         -- periodic effect. No settings polling or ongoing diagnostic worker.
         ExecuteInGameThreadWithDelay(3000,function()
@@ -179,5 +194,81 @@ run=function()
             diagnostics.flush(true)
         end)
     end
+    if desiredSettings~=settings then beginLive() end
+end
+
+beginLive=function()
+    local target=desiredSettings
+    local old=appliedSettings
+    local human=old.humanRegenPercent~=target.humanRegenPercent
+    local vampire=old.vampireRegenPercent~=target.vampireRegenPercent
+    local combat=old.combatRegen~=target.combatRegen
+    local nextSegment=target.restoreVampireSegments==1 and target.vampireRegenPercent>0
+    local transition=segmentMode~=nextSegment
+    local logging=old.debugLogging~=target.debugLogging
+    jobs={}
+    local function add(fn) jobs[#jobs+1]=fn end
+    local function refresh(name,enabled)
+        add(function() E.remove(asc,effect(name)) end)
+        if enabled then add(function()
+            if name=='GE_HealthRegenerationSegments' then E.applySegments(asc,effect(name))
+            else E.apply(asc,effect(name)) end
+        end) end
+    end
+    if human then
+        add(function() E.rate(effect('GE_HealthRegenerationHumanRate').cdo,target.humanRegenPercent,'human-rate') end)
+    end
+    if combat then
+        for _,name in ipairs({'GE_VampireSegmentGuardRate','GE_HealthRegenerationHumanRate','GE_PlayerHealthRegen'}) do
+            add(function() E.combat(tagComponent(name),target.combatRegen==1,name..'-tags') end)
+        end
+        add(function() E.combat(effect('GE_PlayerHealthRegen').cdo,target.combatRegen==1,'human-legacy-tags') end)
+        refresh('GE_PlayerHealthRegen',true)
+    end
+    if human or combat then refresh('GE_HealthRegenerationHumanRate',target.humanRegenPercent>0) end
+    if transition then
+        -- Keep calculation bindings alive until their active effect is removed.
+        add(function() E.remove(asc,effect('GE_HealthRegenerationSegments')) end)
+        if segmentMode then add(function() _HRNativeStop() end) end
+        add(function() E.rate(effect('GE_VampireSegmentGuardRate').cdo,nextSegment and 0 or target.vampireRegenPercent,'vampire-rate') end)
+        refresh('GE_VampireSegmentGuardRate',not nextSegment and target.vampireRegenPercent>0)
+        if nextSegment then
+            for _,stem in ipairs({'MMC_HealthRegenerationUnlock','MMC_HealthRegenerationHeal'}) do
+                add(function()
+                    if not effects[stem] then effects[stem]=E.class(stem) end
+                    if not effects[stem] then return 'wait' end
+                end)
+            end
+            add(function()
+                local state=pawn.PlayerState
+                blood=E.valid(state) and state.BloodBar or nil
+                if not E.valid(blood) then return 'wait' end
+                assert(_HRNativeBind(blood:GetAddress(),effect('MMC_HealthRegenerationUnlock').cdo:GetAddress(),
+                    effect('MMC_HealthRegenerationHeal').cdo:GetAddress(),target.vampireRegenPercent/100,target.debugLogging==1),
+                    'Segment calculation initialization failed')
+            end)
+            add(function() E.combat(tagComponent('GE_HealthRegenerationSegments'),target.combatRegen==1,'segment-tags') end)
+            add(function() E.segmentParameters(effect('GE_HealthRegenerationSegments').cdo) end)
+            add(function() E.applySegments(asc,effect('GE_HealthRegenerationSegments')) end)
+        end
+    elseif nextSegment then
+        if vampire or logging then
+            add(function()
+                assert(_HRNativeConfigure(blood:GetAddress(),target.vampireRegenPercent/100,target.debugLogging==1),
+                    'Segment owner is paused or replaced')
+            end)
+        end
+        if combat then
+            add(function() E.combat(tagComponent('GE_HealthRegenerationSegments'),target.combatRegen==1,'segment-tags') end)
+            refresh('GE_HealthRegenerationSegments',true)
+        end
+    else
+        if vampire then add(function() E.rate(effect('GE_VampireSegmentGuardRate').cdo,target.vampireRegenPercent,'vampire-rate') end) end
+        if vampire or combat then refresh('GE_VampireSegmentGuardRate',target.vampireRegenPercent>0) end
+    end
+    settings=target;segmentMode=nextSegment
+    if #jobs==0 then finished=true;appliedSettings=settings;return end
+    cursor,attempts,finished=1,0,false
+    schedule(16)
 end
 schedule(16)

@@ -16,9 +16,37 @@
   },
   {
     "type": "attribute",
+    "source": "DMM-API-SOURCE.json",
+    "key": "healthRegenerationReleaseMaterials",
+    "value": [
+      "DMM-API-SOURCE.json",
+      "mod.manifest",
+      "README.txt",
+      "LICENSE",
+      "CHANGELOG.md",
+      "RELEASE-NOTES.md",
+      "SOURCE.json",
+      "ue4ss-common.lock.json",
+      "Data/HealthRegeneration-LAYOUT.txt",
+      "LICENSES/HealthRegeneration-fmt.txt",
+      "LICENSES/HealthRegeneration-ue4ss-common.txt",
+      "LICENSES/HealthRegeneration-UE4SS.txt",
+      "Nexus/banner.jpg",
+      "Nexus/thumbnail.jpg",
+      "Nexus/MEDIA-CREDITS.md",
+      "Nexus/summary.txt",
+      "Nexus/description.bbcode",
+      "Nexus/file-description.txt",
+      "Nexus/changelog.txt",
+      "Nexus/metadata.json"
+    ]
+  },
+  {
+    "type": "attribute",
     "source": "mod.manifest",
     "key": "healthRegenerationReleaseMaterials",
     "value": [
+      "DMM-API-SOURCE.json",
       "mod.manifest",
       "README.txt",
       "LICENSE",
@@ -45,6 +73,7 @@
     "source": "README.txt",
     "key": "healthRegenerationReleaseMaterials",
     "value": [
+      "DMM-API-SOURCE.json",
       "mod.manifest",
       "README.txt",
       "LICENSE",
@@ -71,6 +100,7 @@
     "source": "LICENSE",
     "key": "healthRegenerationReleaseMaterials",
     "value": [
+      "DMM-API-SOURCE.json",
       "mod.manifest",
       "README.txt",
       "LICENSE",
@@ -97,6 +127,7 @@
     "source": "CHANGELOG.md",
     "key": "healthRegenerationReleaseMaterials",
     "value": [
+      "DMM-API-SOURCE.json",
       "mod.manifest",
       "README.txt",
       "LICENSE",
@@ -123,6 +154,7 @@
     "source": "RELEASE-NOTES.md",
     "key": "healthRegenerationReleaseMaterials",
     "value": [
+      "DMM-API-SOURCE.json",
       "mod.manifest",
       "README.txt",
       "LICENSE",
@@ -149,6 +181,7 @@
     "source": "SOURCE.json",
     "key": "healthRegenerationReleaseMaterials",
     "value": [
+      "DMM-API-SOURCE.json",
       "mod.manifest",
       "README.txt",
       "LICENSE",
@@ -175,6 +208,7 @@
     "source": "ue4ss-common.lock.json",
     "key": "healthRegenerationReleaseMaterials",
     "value": [
+      "DMM-API-SOURCE.json",
       "mod.manifest",
       "README.txt",
       "LICENSE",
@@ -201,6 +235,7 @@
     "source": "Data/HealthRegeneration-LAYOUT.txt",
     "key": "healthRegenerationReleaseMaterials",
     "value": [
+      "DMM-API-SOURCE.json",
       "mod.manifest",
       "README.txt",
       "LICENSE",
@@ -227,6 +262,7 @@
     "source": "LICENSES/HealthRegeneration-fmt.txt",
     "key": "healthRegenerationReleaseMaterials",
     "value": [
+      "DMM-API-SOURCE.json",
       "mod.manifest",
       "README.txt",
       "LICENSE",
@@ -253,6 +289,7 @@
     "source": "LICENSES/HealthRegeneration-ue4ss-common.txt",
     "key": "healthRegenerationReleaseMaterials",
     "value": [
+      "DMM-API-SOURCE.json",
       "mod.manifest",
       "README.txt",
       "LICENSE",
@@ -279,6 +316,7 @@
     "source": "LICENSES/HealthRegeneration-UE4SS.txt",
     "key": "healthRegenerationReleaseMaterials",
     "value": [
+      "DMM-API-SOURCE.json",
       "mod.manifest",
       "README.txt",
       "LICENSE",
@@ -305,6 +343,7 @@
     "source": "Nexus/banner.jpg",
     "key": "healthRegenerationReleaseMaterials",
     "value": [
+      "DMM-API-SOURCE.json",
       "mod.manifest",
       "README.txt",
       "LICENSE",
@@ -331,6 +370,7 @@
     "source": "Nexus/thumbnail.jpg",
     "key": "healthRegenerationReleaseMaterials",
     "value": [
+      "DMM-API-SOURCE.json",
       "mod.manifest",
       "README.txt",
       "LICENSE",
@@ -357,6 +397,7 @@
     "source": "Nexus/MEDIA-CREDITS.md",
     "key": "healthRegenerationReleaseMaterials",
     "value": [
+      "DMM-API-SOURCE.json",
       "mod.manifest",
       "README.txt",
       "LICENSE",
@@ -383,6 +424,7 @@
     "source": "Nexus/summary.txt",
     "key": "healthRegenerationReleaseMaterials",
     "value": [
+      "DMM-API-SOURCE.json",
       "mod.manifest",
       "README.txt",
       "LICENSE",
@@ -409,6 +451,7 @@
     "source": "Nexus/description.bbcode",
     "key": "healthRegenerationReleaseMaterials",
     "value": [
+      "DMM-API-SOURCE.json",
       "mod.manifest",
       "README.txt",
       "LICENSE",
@@ -435,6 +478,7 @@
     "source": "Nexus/file-description.txt",
     "key": "healthRegenerationReleaseMaterials",
     "value": [
+      "DMM-API-SOURCE.json",
       "mod.manifest",
       "README.txt",
       "LICENSE",
@@ -461,6 +505,7 @@
     "source": "Nexus/changelog.txt",
     "key": "healthRegenerationReleaseMaterials",
     "value": [
+      "DMM-API-SOURCE.json",
       "mod.manifest",
       "README.txt",
       "LICENSE",
@@ -487,6 +532,7 @@
     "source": "Nexus/metadata.json",
     "key": "healthRegenerationReleaseMaterials",
     "value": [
+      "DMM-API-SOURCE.json",
       "mod.manifest",
       "README.txt",
       "LICENSE",
@@ -513,6 +559,7 @@
     "source": "Data\\HealthRegeneration-LAYOUT.txt",
     "key": "healthRegenerationReleaseMaterials",
     "value": [
+      "DMM-API-SOURCE.json",
       "mod.manifest",
       "README.txt",
       "LICENSE",
@@ -539,6 +586,7 @@
     "source": "LICENSES\\HealthRegeneration-fmt.txt",
     "key": "healthRegenerationReleaseMaterials",
     "value": [
+      "DMM-API-SOURCE.json",
       "mod.manifest",
       "README.txt",
       "LICENSE",
@@ -565,6 +613,7 @@
     "source": "LICENSES\\HealthRegeneration-ue4ss-common.txt",
     "key": "healthRegenerationReleaseMaterials",
     "value": [
+      "DMM-API-SOURCE.json",
       "mod.manifest",
       "README.txt",
       "LICENSE",
@@ -591,6 +640,7 @@
     "source": "LICENSES\\HealthRegeneration-UE4SS.txt",
     "key": "healthRegenerationReleaseMaterials",
     "value": [
+      "DMM-API-SOURCE.json",
       "mod.manifest",
       "README.txt",
       "LICENSE",
@@ -617,6 +667,7 @@
     "source": "Nexus\\banner.jpg",
     "key": "healthRegenerationReleaseMaterials",
     "value": [
+      "DMM-API-SOURCE.json",
       "mod.manifest",
       "README.txt",
       "LICENSE",
@@ -643,6 +694,7 @@
     "source": "Nexus\\thumbnail.jpg",
     "key": "healthRegenerationReleaseMaterials",
     "value": [
+      "DMM-API-SOURCE.json",
       "mod.manifest",
       "README.txt",
       "LICENSE",
@@ -669,6 +721,7 @@
     "source": "Nexus\\MEDIA-CREDITS.md",
     "key": "healthRegenerationReleaseMaterials",
     "value": [
+      "DMM-API-SOURCE.json",
       "mod.manifest",
       "README.txt",
       "LICENSE",
@@ -695,6 +748,7 @@
     "source": "Nexus\\summary.txt",
     "key": "healthRegenerationReleaseMaterials",
     "value": [
+      "DMM-API-SOURCE.json",
       "mod.manifest",
       "README.txt",
       "LICENSE",
@@ -721,6 +775,7 @@
     "source": "Nexus\\description.bbcode",
     "key": "healthRegenerationReleaseMaterials",
     "value": [
+      "DMM-API-SOURCE.json",
       "mod.manifest",
       "README.txt",
       "LICENSE",
@@ -747,6 +802,7 @@
     "source": "Nexus\\file-description.txt",
     "key": "healthRegenerationReleaseMaterials",
     "value": [
+      "DMM-API-SOURCE.json",
       "mod.manifest",
       "README.txt",
       "LICENSE",
@@ -773,6 +829,7 @@
     "source": "Nexus\\changelog.txt",
     "key": "healthRegenerationReleaseMaterials",
     "value": [
+      "DMM-API-SOURCE.json",
       "mod.manifest",
       "README.txt",
       "LICENSE",
@@ -799,6 +856,7 @@
     "source": "Nexus\\metadata.json",
     "key": "healthRegenerationReleaseMaterials",
     "value": [
+      "DMM-API-SOURCE.json",
       "mod.manifest",
       "README.txt",
       "LICENSE",

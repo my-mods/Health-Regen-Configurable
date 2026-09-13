@@ -58,7 +58,7 @@
     "combatRegen": 0,
     "restoreVampireSegments": 0,
     "debugLogging": 0,
-    "apply": "Read through the shared settings store after loading completion, using the native loading-widget fade-out event as well as the combat loading notification. An active loading widget must finish before setup resumes. Construction and possession cannot bypass the gate. Setup and cleanup pause during loading. Ordinary player replacement retains the current settings snapshot. No startup settings I/O or polling."
+    "apply": "Prepare missing preferences at startup. Committed menu values update affected effects through one bounded worker. Loading-widget and combat loading gates pause setup and cleanup. Segment rate/logging changes configure the existing bound owner without effect application. Ordinary player replacement retains the latest snapshot; no polling."
   },
   "loader": {
     "name": "UE4SS for BoD - Framecore 2b",
@@ -67,32 +67,37 @@
     "engineHeaders": "eb40a05f49509bdeb1ac39287032b60af585cca8"
   },
   "runtimeSourceHashes": {
-    "native/BUILD.md": "510c9245b092f2fa56d15da0584e2ee82e9c159e8f24cdb5b0c5cb5aab3dc54e",
+    "native/BUILD.md": "4818f4c73ad44af350c6986dad11e3052d43fd1cb1ee8597c27253c5442c275b",
     "native/CMakeLists.txt": "88de123faadf28187b97cab24e227f10a77ca94338607bea0ceab2de2169ca56",
     "native/Framecore2b.def": "b99b6244bc0b0df64e3a1de7a561c937b83e0a65e1f1d0db3476782c24d36b65",
+    "native/main.cpp": "5731c63b108ac81f1cbb5c5e31da91ce33f826ecd75df3f5ed1840a907701281",
     "native/RegenerationMath.hpp": "e2335b13d4f3df5eb7edd219a004e69238468650a02cc61815bba8b41fc53054",
-    "native/main.cpp": "edb8eaf6ecbb4a303775c79f2c857e120ed02f1b3e0a3f3a23ee722cd8bf08d1",
     "src/lua/Config.lua": "689ce019e0d4ee0d7f86da706c8fe0de5cfa4038502eb2bc174c68e8756ad1eb",
-    "src/lua/Gameplay.lua": "13f335d45fe75c5f8ed544cac4799c7df6a7d7a517eed6275bf42fb1a767c61a",
+    "src/lua/dmm_api.lua": "6bb667bffc543d1c5c1b36ab6da66c621d6c81c9ee46f94f0f6339cae9cc884c",
+    "src/lua/Gameplay.lua": "9e7d577a3bbe57d7476d075180ea2105144edbe4a2f3d76f87c7fb1c5650041d",
+    "src/lua/LiveSettings.lua": "32c738b2c34294dbf19f6fdeb9a3671448db4dc002e1aa7663dd479c7963a6c6",
+    "src/lua/main.lua": "de5659460e4cfc2054f22198a16ae026150681c49b628e4d85127b718eccee7d",
     "src/lua/NativeEffects.lua": "27c50633f9e3c7fe1f38f2d266184fb7840a8c177031dc758bd9b7880c1b948e",
     "src/lua/SettingsSchema.lua": "36f58af60369d2d5ed8448947a360f40f4002beb0cd12e9eb294251bfabd7e65",
     "src/lua/SettingsStore.lua": "db597ebcfbe67fd03aa16c3c2eb4129c346975961e4df0481bb70440aa7cfa26",
-    "src/lua/UE4SSCommonDiagnostics.lua": "c82aaf42a83c99c4b0f84954f3c04732a9b26bddcb9b20b3ee8892c87b345172",
-    "src/lua/UE4SSCommonSession.lua": "3ac001eda6802f9e5cdfa5cae3a72b5449ae9bc83cd3b1bd5a81e464ec97f912",
+    "src/lua/UE4SSCommonDiagnostics.lua": "a6c3de0fb908085654e967a0c38c388dd021d19af7fecc0bb0722a3ea1b20f0e",
+    "src/lua/UE4SSCommonSession.lua": "924272d0246d73759ba57a6ed5f0feea319065a96119d7c9ff7248dd345a09a2",
     "src/lua/UE4SSDawnwalkerSaveLoad.lua": "17e9cbb70326f536b14ba5512a46ac425e7e1446c90516e826b2092b30465707",
-    "src/lua/main.lua": "cd20e840253c867bb02736ce383c8d7ecb5476f01ed052ad43e51821b5abc9f2",
-    "src/mod_settings.ini": "ebc3c9bc958e08daba41f45cbea43c1a0c4d1ac77d9194cf3bf2a41e54816f67"
+    "src/lua/UE4SSDawnwalkerSettings.lua": "039b09679eafec2b19cd8f27e3033dec26a52484a7529edbf14f15193ba07ef1",
+    "src/mod_settings.ini": "578d7e6d702f65c26b8c3fde5ec765157f4599b598879847134fafae7f39fa98"
   },
-  "dllSha256": "65ad5d730a9da1bbe71f32f1bcd779b6a43894bd283befb3726aca15c7c0a3e6",
+  "dllSha256": "58d3df40971358e86c6196298a288114fd673be64b34f08651a686d960625db5",
   "commonLibrary": {
     "repository": "https://github.com/my-mods/ue4ss-common",
-    "commit": "a5eb964f0f5282e7aab8d42048610a23deb887a6",
+    "commit": "b51434dee720bc000090d4cf387d60f8f6be7e60",
     "lock": "ue4ss-common.lock.json",
     "modules": [
       "SettingsStore",
       "UE4SSCommonSession",
       "UE4SSDawnwalkerSaveLoad",
-      "UE4SSCommonDiagnostics"
+      "UE4SSCommonDiagnostics",
+      "LICENSE",
+      "UE4SSDawnwalkerSettings"
     ],
     "packaging": "Bundled immutable source copies; source, staged and archived bytes verified against the lock."
   },
@@ -102,10 +107,17 @@
     "Nexus/banner.jpg": "f7010a53c078b1e5221ff4caafd78e3cac6042ed1817e3ff590c9d2197d41031",
     "Nexus/thumbnail.jpg": "11b29f8892270794947efb77ead41b5d7c4f54d955c62bf8534d5a2b1506aa3f",
     "Nexus/MEDIA-CREDITS.md": "20170c26a9b841ff2929285254c4bd195eea70cc3b6d3f777fc4d07e95b3b7ef",
-    "Nexus/summary.txt": "1bfa0c924e73a6229988812775173c489045089c784be05071c49da3aed6f21e",
-    "Nexus/description.bbcode": "63e5e3e6a6f415b7cf8b4f1163d9168f4e17f02c8ab1297598e82d3fb50d0326",
+    "Nexus/summary.txt": "535407118ad13e4cbb41815c649390c559763eb48c1bc6e0b9f27f55a0a3b703",
+    "Nexus/description.bbcode": "f9b146da5994ec403242074c7364f9fc453ad1e39c8e806fc5808754ba5fff17",
     "Nexus/file-description.txt": "85323d92452869ed3f52191d6a454228e5130c8cde0aa552eaad817a8f3b1b74",
     "Nexus/changelog.txt": "83e8e02e4c896905dd007d54f3ef70e9c8f05e7b951ba5308f2aad81b90f5843",
-    "Nexus/metadata.json": "be92eb958bf3854010922d2e977d293ccf88ea775fe47050308b0aa69e53e946"
+    "Nexus/metadata.json": "6abb7d9540b854fdf9a1dfc3f7df44dc79f0e2b1a80c1c1bcecb040e09b512dd"
+  },
+  "liveSettings": {
+    "menu": "Mod Setting Menu 1.0.6+",
+    "provenance": "DMM-API-SOURCE.json",
+    "loaderRequirement": "HookProcessConsoleExec=1",
+    "startup": "Prepare missing preferences once; do not activate gameplay effects.",
+    "callback": "Validate committed numeric values, preserve file-only keys, merge pending changes and update affected runtime state. No configuration I/O or polling."
   }
 }

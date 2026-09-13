@@ -8,15 +8,7 @@ Regeneration stops when your health bar or current vampire segment is full. This
 
 [size=4][b][color=#E8C88A]Configuration[/color][/b][/size]
 
-[url=https://www.nexusmods.com/thebloodofdawnwalker/mods/271]Mod Settings Menu[/url] is optional. Without it, the mod uses the defaults below unless you change settings.ini manually.
-[list]
-[*][b][color=#A8D5C2]Human regeneration:[/color][/b] 0% to 5% per second; default 1.5%.[/*]
-[*][b][color=#A8D5C2]Vampire regeneration:[/color][/b] 0% to 5% per second; default 1.5%.[/*]
-[*][b][color=#A8D5C2]Combat regeneration:[/color][/b] Off by default. Off means outside combat only; On also allows combat regeneration.[/*]
-[*][b][color=#A8D5C2]Restore vampire segments:[/color][/b] Off by default. On allows regeneration to restore lost segments toward full health.[/*]
-[*][b][color=#A8D5C2]Logging:[/color][/b] Off by default; writes to UE4SS.log when enabled.[/*]
-[/list]
-[color=#E6B980]Zero disables this mod's added regeneration for the selected form.[/color] Existing game regeneration bonuses remain separate. Regeneration does not revive a dead player.
+Required: [url=https://www.nexusmods.com/thebloodofdawnwalker/mods/271]Mod Setting Menu 1.0.6 or later[/url]. Open Mod Settings and press Apply to save and update gameplay.
 
 [size=3][b][color=#A8D5C2]Manual configuration (without the menu)[/color][/b][/size]
 
@@ -45,3 +37,8 @@ Idea credit goes to [url=https://www.nexusmods.com/thebloodofdawnwalker/mods/387
 Thanks to Framecore, UE4SS contributors and mmarcussa. Dependency notices are included. The game and its stock assets belong to Rebel Wolves and their respective rights holders.
 
 [url=https://github.com/my-mods/Health-Regen-Configurable]Source code and documentation[/url]. Authored code and documentation use the MIT license; game assets and promotional imagery retain their original rights.
+
+
+[b]Live settings[/b]
+Mod Setting Menu 1.0.6+ is required. Settings are prepared at startup; Apply saves changes and updates gameplay. The loader must use HookProcessConsoleExec = 1, managed through your Vortex loader configuration.
+Human rate, vampire rate, combat rules and segment mode update independently. Rate or Logging changes in segment mode configure the existing owner without rebinding or refreshing its effect. Segment-mode transitions retain the removal, binding and guarded application sequence. Loading pauses both setup and cleanup.

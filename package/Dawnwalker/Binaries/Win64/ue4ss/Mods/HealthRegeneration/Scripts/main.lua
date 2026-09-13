@@ -10,7 +10,11 @@ local settingsSnapshot
 function HealthRegenerationRememberSettings(values) settingsSnapshot=values end
 local loading,loadComplete,completionSerial=false,false,0
 function HealthRegenerationCanApply() return loadComplete and not loading end
-local manager=dofile(directory..'UE4SSCommonSession.lua').new(_G,directory,report,{canCleanup=HealthRegenerationCanApply})
+local live=dofile(directory..'LiveSettings.lua').new(directory,report)
+HealthRegenerationLiveSettings=live
+local prepared,values=pcall(function() return dofile(directory..'Config.lua').load(directory) end)
+if prepared then live.seed(values);settingsSnapshot=values else report('Settings preparation failed: '..tostring(values)) end
+local manager=dofile(directory..'UE4SSCommonSession.lua').new(_G,directory,report,{canCleanup=HealthRegenerationCanApply,settings=live,loadSettings=function() return dofile(directory..'Config.lua').load(directory) end})
 local latest,restartPending,restartController,restartPawn,retry
 local engine,gameplay
 local activationPending,activationContext,activationSerial=nil,nil,0

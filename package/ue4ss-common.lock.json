@@ -1,6 +1,6 @@
 {
   "repository": "https://github.com/my-mods/ue4ss-common",
-  "commit": "a5eb964f0f5282e7aab8d42048610a23deb887a6",
+  "commit": "b51434dee720bc000090d4cf387d60f8f6be7e60",
   "modules": [
     {
       "source": "src/SettingsStore.lua",
@@ -12,7 +12,7 @@
     },
     {
       "source": "src/UE4SSCommonSession.lua",
-      "sha256": "3ac001eda6802f9e5cdfa5cae3a72b5449ae9bc83cd3b1bd5a81e464ec97f912",
+      "sha256": "924272d0246d73759ba57a6ed5f0feea319065a96119d7c9ff7248dd345a09a2",
       "destinations": [
         "src/lua/UE4SSCommonSession.lua",
         "package/Dawnwalker/Binaries/Win64/ue4ss/Mods/HealthRegeneration/Scripts/UE4SSCommonSession.lua"
@@ -28,7 +28,7 @@
     },
     {
       "source": "src/UE4SSCommonDiagnostics.lua",
-      "sha256": "c82aaf42a83c99c4b0f84954f3c04732a9b26bddcb9b20b3ee8892c87b345172",
+      "sha256": "a6c3de0fb908085654e967a0c38c388dd021d19af7fecc0bb0722a3ea1b20f0e",
       "destinations": [
         "src/lua/UE4SSCommonDiagnostics.lua",
         "package/Dawnwalker/Binaries/Win64/ue4ss/Mods/HealthRegeneration/Scripts/UE4SSCommonDiagnostics.lua"
@@ -40,6 +40,14 @@
       "destinations": [
         "LICENSES/HealthRegeneration-ue4ss-common.txt",
         "package/LICENSES/HealthRegeneration-ue4ss-common.txt"
+      ]
+    },
+    {
+      "source": "src/games/UE4SSDawnwalkerSettings.lua",
+      "sha256": "039b09679eafec2b19cd8f27e3033dec26a52484a7529edbf14f15193ba07ef1",
+      "destinations": [
+        "src/lua/UE4SSDawnwalkerSettings.lua",
+        "package/Dawnwalker/Binaries/Win64/ue4ss/Mods/HealthRegeneration/Scripts/UE4SSDawnwalkerSettings.lua"
       ]
     }
   ]

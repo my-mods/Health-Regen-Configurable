@@ -5,6 +5,7 @@ function M.new(api, directory, report, options)
     local notifications, hooks, maps = {}, {}, {}
     local deferredCleanup
     local canCleanup = options and options.canCleanup
+    local settings = options and options.settings
     report = report or function() end
     local function guard(scope, fn)
         return function(...)
@@ -44,6 +45,16 @@ function M.new(api, directory, report, options)
     local function launch(file, context)
         local scope = {active=true, timers={}, journal={}, order={}, cleanup={}}
         current = scope
+        if settings then
+            if context.settings==nil and options.loadSettings then
+                local ok,values=pcall(options.loadSettings)
+                if ok and type(values)=='table' then
+                    local accepted,err=pcall(settings.seed,values)
+                    if not accepted then report('Settings snapshot rejected: '..tostring(err)) end
+                elseif not ok then report('Settings read failed: '..tostring(values)) end
+            end
+            context.settings=settings.snapshot()
+        end
         local env = setmetatable({Session=scope, SaveLoadContext=context}, {__index=api})
         env._G = env
         local loaded = {}
@@ -68,6 +79,21 @@ function M.new(api, directory, report, options)
             local result = api.CancelDelayedAction(id)
             scope.timers[id] = nil
             return result
+        end
+        function scope.onSettings(callback)
+            assert(settings, 'Session has no settings adapter')
+            scope.settingsHandler=callback
+        end
+        -- Whole-mod enable/disable only. Ordinary edits use onSettings in place.
+        function scope.restart()
+            if scope.restartPending then return end
+            scope.restartPending=true
+            env.ExecuteInGameThreadWithDelay(16,function()
+                scope.restartPending=false
+                if settings and context.settings and settings.snapshot()
+                    and settings.snapshot().enabled==context.settings.enabled then return end
+                manager.open(file,context)
+            end)
         end
         function env.NotifyOnNewObject(path, callback)
             local slot = watch(path)
@@ -130,6 +156,20 @@ function M.new(api, directory, report, options)
             return true
         end
         function scope.onClose(callback) scope.cleanup[#scope.cleanup+1] = callback end
+        -- A consumer may release one owned field from its bounded live worker.
+        -- Keep the journal entry so repeated toggles do not grow cleanup state.
+        function scope.restore(key)
+            assert(scope.active, 'Inactive session')
+            local entry=scope.journal[key]
+            if not entry then return false end
+            local value,valid=entry.get()
+            if valid==false or not equal(value,entry.last) or equal(value,entry.original) then return false end
+            entry.set(entry.original)
+            local restored,stillValid=entry.get()
+            assert(stillValid==false or equal(restored,entry.original), 'Live restore readback failed: '..key)
+            entry.last=entry.original
+            return true
+        end
         -- UObject methods can disappear while a retained wrapper still says valid.
         -- Keep an owned identity snapshot and check it before dispatching a method.
         -- Use for transient object values; scalar/global journals retain strict cleanup.
@@ -244,6 +284,13 @@ function M.new(api, directory, report, options)
         generation = generation + 1
         local ticket = generation
         manager.close(function() if ticket == generation then launch(file, context) end end)
+    end
+    if settings then
+        settings.attach(function(values,changes)
+            if current and current.active and current.settingsHandler then
+                current.settingsHandler(values,changes)
+            end
+        end)
     end
     return manager
 end

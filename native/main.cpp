@@ -182,6 +182,17 @@ struct State final: FUObjectDeleteListener {
             calls=zeros=errors=nanos=0; // Subsequent counters describe game execution.
         } catch(...) {probing=false;stop();throw;}
     }
+    bool configure(uintptr_t expectedBlood,float requested,bool logging) {
+        if(!IsInGameThread()) throw std::runtime_error("Segment settings require the game thread");
+        if(!std::isfinite(requested)||requested<=0||requested>0.05f)
+            throw std::runtime_error("Invalid segment regeneration rate");
+        if(!active.load(std::memory_order_acquire)||blood.address!=expectedBlood||!resolve(blood)) return false;
+        // The calculation route and configuration are game-thread-only. Never
+        // rebind, discover objects, apply effects, or reactivate a paused owner.
+        rate=requested;
+        if(debug!=logging) { calls=zeros=errors=nanos=0;debug=logging; }
+        return true;
+    }
 };
 std::shared_ptr<State> current;
 bool moduleMatches(HMODULE module,const std::array<unsigned char,32>& expected) {
@@ -217,6 +228,11 @@ public:
             auto heal=reinterpret_cast<UObject*>(static_cast<uintptr_t>(l.get_integer()));
             const float rate=static_cast<float>(l.get_number());const bool logging=l.get_bool();
             current->bind(blood,unlock,heal,rate,logging);l.set_bool(true);return 1;
+        });
+        lua.register_function("_HRNativeConfigure",[](const Lua& l){
+            const auto owner=static_cast<uintptr_t>(l.get_integer());
+            const auto rate=static_cast<float>(l.get_number());const bool logging=l.get_bool();
+            l.set_bool(current->configure(owner,rate,logging));return 1;
         });
         lua.register_function("_HRNativeStop",[](const Lua& l){
             if(!IsInGameThread())throw std::runtime_error("Health Regen - Configurable stop requires the game thread");

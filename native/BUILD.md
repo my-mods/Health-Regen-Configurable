@@ -29,3 +29,9 @@ Object identities retain an address, index and existing serial. A deletion liste
 Logging records a single execution snapshot after setup, plus aggregate calculation counts and elapsed time on cleanup, only when `debugLogging=1`; disabled instrumentation does not measure each callback. Offline tests of the calculations and lifecycle do not establish in-game frame times or full engine compatibility.
 
 UE4SS and fmt license notices are included under `LICENSES/`. ImGui, ImGuiColorTextEdit and Zydis/Zycore headers are transitively required by the SDK; their implementations are not linked into the DLL.
+
+## Live settings API
+
+`_HRNativeConfigure(expectedBloodAddress, rate, logging)` runs on the game thread. It accepts a finite rate in (0, 0.05], verifies the existing bound blood owner and indexed identity, then changes only rate and diagnostics. An inactive or paused binding returns false and cannot be resumed by configuration. It performs no discovery, effect application or rebinding. Lua removes the segment effect before stopping a binding and retains the strict loading gate for both setup and cleanup.
+
+Mod Setting Menu 1.0.6+ requires `HookProcessConsoleExec=1` in the loader profile. The mod archive does not supply that global INI.

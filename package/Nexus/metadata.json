@@ -15,7 +15,7 @@
     "archive": "Health-Regen-Configurable.zip",
     "category": "main",
     "version": "1.0.2",
-    "description": "Human and vampire health regeneration with separate 0\u20135% rates, optional combat regeneration and optional vampire segment recovery. Both rates default to 1.5% outside combat. Recovery respects the current vampire segment limit by default.",
+    "description": "Human and vampire health regeneration with separate 0–5% rates, optional combat regeneration and optional vampire segment recovery. Both rates default to 1.5% outside combat. Recovery respects the current vampire segment limit by default.",
     "primaryModManagerDownload": true,
     "allowModManagerDownload": true
   },
@@ -24,15 +24,21 @@
       "name": "UE4SS for BoD",
       "url": "https://www.nexusmods.com/thebloodofdawnwalker/mods/283",
       "note": "Framecore 2b required by the native helper."
+    },
+    {
+      "name": "Mod Setting Menu",
+      "url": "https://www.nexusmods.com/thebloodofdawnwalker/mods/271",
+      "note": "Required for live Apply. UE4SS HookProcessConsoleExec must be 1.",
+      "minimumVersion": "1.0.6",
+      "optional": false
     }
   ],
   "source": "https://github.com/my-mods/Health-Regen-Configurable",
   "license": "MIT for authored code and documentation; third-party game assets, dependencies and promotional imagery retain their own rights.",
-  "optionalMods": [
-    {
-      "name": "Mod Setting Menu",
-      "url": "https://www.nexusmods.com/thebloodofdawnwalker/mods/271",
-      "note": "Optional in-game configuration. Without the menu, defaults and manual settings.ini configuration work."
-    }
-  ]
+  "optionalMods": [],
+  "liveSettings": {
+    "minimumMenuVersion": "1.0.6",
+    "HookProcessConsoleExec": 1,
+    "apply": "Committed values update gameplay through bounded workers."
+  }
 }

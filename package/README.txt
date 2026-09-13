@@ -8,7 +8,7 @@ Regeneration arrives in one-second ticks. A 1.5% gain can trigger Quiet Dawn's h
 
 - The Blood of Dawnwalker, Steam build **25232147**, UE **5.5.4**.
 - [**UE4SS for BoD — Framecore 2b**](https://www.nexusmods.com/thebloodofdawnwalker/mods/283). The bundled native helper targets that loader version.
-- Optional: [**Mod Setting Menu**](https://www.nexusmods.com/thebloodofdawnwalker/mods/271), tested against the 1.0.5.1 configuration parser, for in-game configuration. The mod also works with its defaults or manual INI edits without the menu.
+- Required: [Mod Setting Menu 1.0.6 or later](https://www.nexusmods.com/thebloodofdawnwalker/mods/271).
 - Quiet Dawn is optional.
 
 The Lua scripts, native helper, and cooked assets belong to this single mod. No separate human/vampire regeneration mod is required.
@@ -20,6 +20,14 @@ The Lua scripts, native helper, and cooked assets belong to this single mod. No 
 
 ## Configuration
 
+Mod Setting Menu 1.0.6 or later is required. Its callback bridge also requires `HookProcessConsoleExec = 1` in `UE4SS-settings.ini`. Manage that loader setting through your Vortex loader configuration; this archive contains no replacement global UE4SS INI.
+
+Settings are prepared when the game starts and are available from the main menu before the first save. Press **Apply** to save and update the active game. Changes made while loading are retained for the next valid player. Restore and Discard leave saved settings unchanged; Reset takes effect after Apply.
+
+Human rate, vampire rate, combat rules and segment mode update independently. Rate or Logging changes in segment mode configure the existing owner without rebinding or refreshing its effect. Segment-mode transitions retain the removal, binding and guarded application sequence. Loading pauses both setup and cleanup.
+
+Logging is the final, sole diagnostic control. It changes immediately; verbose logging is Off by default. Logs are written to `Dawnwalker/Binaries/Win64/ue4ss/UE4SS.log`. Settings are never polled.
+
 | Setting | Choices | Default |
 | --- | --- | --- |
 | Vampire regeneration per second | 0%, 0.25%, 0.5%, 0.75%, 1%, 1.25%, 1.5%, 1.75%, 2%, 2.5%, 3%, 3.5%, 4%, 4.5%, 5% | 1.5% |
@@ -28,9 +36,9 @@ The Lua scripts, native helper, and cooked assets belong to this single mod. No 
 | Restore vampire segments | Off: respect the recoverable segment ceiling. On: restore lost segments toward full health. | Off |
 | Logging | Write setup and aggregate diagnostics to `ue4ss/UE4SS.log`. | Off |
 
-Mod Setting Menu is optional. Without it, the mod uses the defaults above unless you edit `settings.ini` manually. With the menu, press **Apply**, then load a save to use the new settings.
+Required: [Mod Setting Menu 1.0.6 or later](https://www.nexusmods.com/thebloodofdawnwalker/mods/271). Open Mod Settings and press Apply to save and update gameplay.
 
-To configure without the menu, load a save once to generate `Dawnwalker/Binaries/Win64/ue4ss/Mods/HealthRegeneration/settings.ini` inside the game folder, then close the game and edit that file:
+To edit the settings file directly, launch the game once to generate `Dawnwalker/Binaries/Win64/ue4ss/Mods/HealthRegeneration/settings.ini` inside the game folder, then close the game and edit that file:
 
 ```ini
 [Settings]
