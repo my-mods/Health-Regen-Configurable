@@ -67,10 +67,10 @@
     "engineHeaders": "eb40a05f49509bdeb1ac39287032b60af585cca8"
   },
   "runtimeSourceHashes": {
-    "native/BUILD.md": "4818f4c73ad44af350c6986dad11e3052d43fd1cb1ee8597c27253c5442c275b",
+    "native/BUILD.md": "4e47caec0e3ab0bed07bfa1b9d51b528112e62deecf242050a388e118ab6988e",
     "native/CMakeLists.txt": "88de123faadf28187b97cab24e227f10a77ca94338607bea0ceab2de2169ca56",
     "native/Framecore2b.def": "b99b6244bc0b0df64e3a1de7a561c937b83e0a65e1f1d0db3476782c24d36b65",
-    "native/main.cpp": "5731c63b108ac81f1cbb5c5e31da91ce33f826ecd75df3f5ed1840a907701281",
+    "native/main.cpp": "99f65362f8032cc3dc64c15ded490fc1b11c67c9bcc9b50c97ff21249de14d75",
     "native/RegenerationMath.hpp": "e2335b13d4f3df5eb7edd219a004e69238468650a02cc61815bba8b41fc53054",
     "src/lua/Config.lua": "689ce019e0d4ee0d7f86da706c8fe0de5cfa4038502eb2bc174c68e8756ad1eb",
     "src/lua/dmm_api.lua": "6bb667bffc543d1c5c1b36ab6da66c621d6c81c9ee46f94f0f6339cae9cc884c",
@@ -84,9 +84,11 @@
     "src/lua/UE4SSCommonSession.lua": "924272d0246d73759ba57a6ed5f0feea319065a96119d7c9ff7248dd345a09a2",
     "src/lua/UE4SSDawnwalkerSaveLoad.lua": "17e9cbb70326f536b14ba5512a46ac425e7e1446c90516e826b2092b30465707",
     "src/lua/UE4SSDawnwalkerSettings.lua": "039b09679eafec2b19cd8f27e3033dec26a52484a7529edbf14f15193ba07ef1",
-    "src/mod_settings.ini": "578d7e6d702f65c26b8c3fde5ec765157f4599b598879847134fafae7f39fa98"
+    "src/mod_settings.ini": "e3c6966a31588dcd27f813f5b8be511b038ce993e4c97bd17d5d7c3a2d5a8a51",
+    "native/CodeCompatibility.hpp": "a6f91f0cc49c101ecc749b9294dea030aea5c715bd33a84b8d476d6b7d56fa5d",
+    "native/GameCode.hpp": "6ff27c0efbba32cb5db96b72d1855b577f67b234ea7e4ac7273ce19ba3726ef7"
   },
-  "dllSha256": "424ec012d1c02888326512f3475ef434671a3118ca6e70575a32e538b9d73a04",
+  "dllSha256": "76a8b063eea6f5c6b02b2bc136096864c0ad52adb6bd391d70e8bbcae2237c63",
   "commonLibrary": {
     "repository": "https://github.com/my-mods/ue4ss-common",
     "commit": "b51434dee720bc000090d4cf387d60f8f6be7e60",
@@ -108,10 +110,10 @@
     "Nexus/thumbnail.jpg": "11b29f8892270794947efb77ead41b5d7c4f54d955c62bf8534d5a2b1506aa3f",
     "Nexus/MEDIA-CREDITS.md": "20170c26a9b841ff2929285254c4bd195eea70cc3b6d3f777fc4d07e95b3b7ef",
     "Nexus/summary.txt": "535407118ad13e4cbb41815c649390c559763eb48c1bc6e0b9f27f55a0a3b703",
-    "Nexus/description.bbcode": "f9b146da5994ec403242074c7364f9fc453ad1e39c8e806fc5808754ba5fff17",
-    "Nexus/file-description.txt": "85323d92452869ed3f52191d6a454228e5130c8cde0aa552eaad817a8f3b1b74",
-    "Nexus/changelog.txt": "83e8e02e4c896905dd007d54f3ef70e9c8f05e7b951ba5308f2aad81b90f5843",
-    "Nexus/metadata.json": "6abb7d9540b854fdf9a1dfc3f7df44dc79f0e2b1a80c1c1bcecb040e09b512dd"
+    "Nexus/description.bbcode": "2ff1b7b01815691aeca481b74096e0ed95bdf8b2a8da34aecc6c7c26cc7f3833",
+    "Nexus/file-description.txt": "9e0c4356d0697652e951fb448174abf47b4a357b2ec5549ec94c4791c086370c",
+    "Nexus/changelog.txt": "17388839aceb2388cd12710b19c8c991a3c98de63207ab923b0c3d10b548ac49",
+    "Nexus/metadata.json": "63afa7956a0bcc42ee716c587dce69e80ffd6634064aab51cbee4ec73a2f797e"
   },
   "liveSettings": {
     "menu": "Mod Setting Menu 1.0.6+",
@@ -119,5 +121,7 @@
     "loaderRequirement": "HookProcessConsoleExec=1",
     "startup": "Prepare missing preferences once; do not activate gameplay effects.",
     "callback": "Validate committed numeric values, preserve file-only keys, merge pending changes and update affected runtime state. No configuration I/O or polling."
-  }
+  },
+  "exeSha256Role": "Analysis provenance only; not a runtime executable allowlist.",
+  "nativeValidation": "Loaded four-byte calculation code and 92 base virtual-table entries; module-relative pointers support ASLR. Required ranges must be accessible. Separate Framecore 2b ABI fingerprint retained."
 }

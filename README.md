@@ -6,7 +6,7 @@ Regeneration arrives in one-second ticks. A 1.5% gain can trigger Quiet Dawn's h
 
 ## Requirements
 
-- The Blood of Dawnwalker, Steam build **25232147**, UE **5.5.4**.
+- The Blood of Dawnwalker for PC, with the native calculation layout supported by the bundled helper. Reference build: **1.0.5 / Steam 25232147**, UE **5.5.4**.
 - [**UE4SS for BoD — Framecore 2b**](https://www.nexusmods.com/thebloodofdawnwalker/mods/283). The bundled native helper targets that loader version.
 - Required: [Mod Setting Menu 1.0.6 or later](https://www.nexusmods.com/thebloodofdawnwalker/mods/271).
 - Quiet Dawn is optional.

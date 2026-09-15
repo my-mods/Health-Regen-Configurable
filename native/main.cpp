@@ -23,6 +23,7 @@
 #include <stdexcept>
 #include <cstring>
 #include "RegenerationMath.hpp"
+#include "GameCode.hpp"
 
 namespace {
 using namespace RC;
@@ -216,15 +217,25 @@ bool moduleMatches(HMODULE module,const std::array<unsigned char,32>& expected) 
     return ok&&digest==expected;
 }
 bool supportedRuntime() {
-    return moduleMatches(GetModuleHandleW(L"UE4SS.dll"),{0xfb,0x18,0x39,0xee,0x91,0xf7,0x1f,0x83,0xd5,0x08,0xd4,0x4a,0x27,0x63,0xa1,0x5a,0xc1,0xbb,0x0c,0x5f,0xb4,0xe5,0x04,0xac,0x0f,0xcf,0xca,0x64,0x37,0x6a,0x05,0x4a})
-        && moduleMatches(GetModuleHandleW(nullptr),{0xcb,0x9b,0x7d,0x7b,0xd8,0x8a,0x67,0x54,0xc0,0xa9,0xc0,0x83,0x18,0xaa,0x64,0xd5,0x01,0x3d,0xdf,0xd9,0x2d,0x5b,0xad,0xca,0xe8,0x4e,0x1b,0x4e,0xa9,0x80,0xdc,0xfc});
+    return moduleMatches(GetModuleHandleW(L"UE4SS.dll"),{0xfb,0x18,0x39,0xee,0x91,0xf7,0x1f,0x83,0xd5,0x08,0xd4,0x4a,0x27,0x63,0xa1,0x5a,0xc1,0xbb,0x0c,0x5f,0xb4,0xe5,0x04,0xac,0x0f,0xcf,0xca,0x64,0x37,0x6a,0x05,0x4a});
 }
 class HealthRegenerationMod final:public CppUserModBase {
     std::shared_ptr<State> state=std::make_shared<State>();
 public:
     HealthRegenerationMod(){ModName=STR("Health Regen - Configurable");ModVersion=STR("1.0.0");ModAuthors=STR("oOCamilleOo");}
     void on_lua_start(StringViewType name,Lua& lua,Lua&,Lua&,Lua*)override {
-        if(name!=STR("HealthRegeneration")||!supportedRuntime())return;
+        if(name!=STR("HealthRegeneration"))return;
+        if(!supportedRuntime()) {
+            Output::send(STR("[HealthRegeneration] Native helper unavailable: unsupported UE4SS library; requires Framecore 2b.\n"));
+            return;
+        }
+        try {
+            NativeCompatibility::validateContract(reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr)),HealthRegeneration::Build::code,HealthRegeneration::Build::pointers);
+        } catch(const std::exception& error) {
+            const std::string message=error.what();
+            Output::send(std::wstring(L"[HealthRegeneration] Native helper unavailable: ")+std::wstring(message.begin(),message.end())+L"\n");
+            return;
+        }
         current=state;
         lua.register_function("_HRNativeBind",[](const Lua& l){
             auto blood=reinterpret_cast<UObject*>(static_cast<uintptr_t>(l.get_integer()));

@@ -8,5 +8,5 @@
     <version>1.1.0</version>
     <created_on>2026-09-12</created_on>
   </info>
-  <supports><game>The Blood of Dawnwalker</game><steam_build>25232147</steam_build><unreal_engine>5.5.4</unreal_engine></supports>
+  <supports><game>The Blood of Dawnwalker</game><unreal_engine>5.5.4</unreal_engine></supports>
 </mod>

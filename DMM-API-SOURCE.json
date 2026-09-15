@@ -27,14 +27,16 @@
     "src/lua/UE4SSDawnwalkerSettings.lua": "039b09679eafec2b19cd8f27e3033dec26a52484a7529edbf14f15193ba07ef1"
   },
   "nativeSources": {
-    "native/BUILD.md": "f114ba1a5a0c4ceb8468265b8ef4eda2fa349f342794f395681d17727d08f343",
+    "native/BUILD.md": "4e47caec0e3ab0bed07bfa1b9d51b528112e62deecf242050a388e118ab6988e",
     "native/CMakeLists.txt": "88de123faadf28187b97cab24e227f10a77ca94338607bea0ceab2de2169ca56",
+    "native/CodeCompatibility.hpp": "a6f91f0cc49c101ecc749b9294dea030aea5c715bd33a84b8d476d6b7d56fa5d",
     "native/Framecore2b.def": "b99b6244bc0b0df64e3a1de7a561c937b83e0a65e1f1d0db3476782c24d36b65",
-    "native/main.cpp": "1ab19f71c686e07be2655f319b565de35856c7f490ee9663d616ddec32844e24",
+    "native/GameCode.hpp": "6ff27c0efbba32cb5db96b72d1855b577f67b234ea7e4ac7273ce19ba3726ef7",
+    "native/main.cpp": "99f65362f8032cc3dc64c15ded490fc1b11c67c9bcc9b50c97ff21249de14d75",
     "native/RegenerationMath.hpp": "e2335b13d4f3df5eb7edd219a004e69238468650a02cc61815bba8b41fc53054"
   },
   "nativeDll": {
     "path": "package/Dawnwalker/Binaries/Win64/ue4ss/Mods/HealthRegeneration/dlls/main.dll",
-    "sha256": "424ec012d1c02888326512f3475ef434671a3118ca6e70575a32e538b9d73a04"
+    "sha256": "76a8b063eea6f5c6b02b2bc136096864c0ad52adb6bd391d70e8bbcae2237c63"
   }
 }
