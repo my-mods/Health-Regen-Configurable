@@ -1,16 +1,13 @@
+# Changelog
+
+## 1.1.1
+
+- Fixed an issue that could prevent vampire segment recovery from working for some players.
+
 ## 1.1.0
 
 - Apply regeneration rates, combat regeneration and vampire segment recovery changes during play.
 - Fix a crash report appearing when quitting the game normally.
-
-# Changelog
-
-## Unreleased
-
-- Allow executable-file differences outside the native calculation code and layout used for vampire segment restoration.
-- Report the native code or table address when the segment helper cannot initialize.
-
-- Fixed a crash report appearing when quitting the game normally.
 
 ## 1.0.2
 

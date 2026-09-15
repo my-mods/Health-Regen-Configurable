@@ -222,7 +222,7 @@ bool supportedRuntime() {
 class HealthRegenerationMod final:public CppUserModBase {
     std::shared_ptr<State> state=std::make_shared<State>();
 public:
-    HealthRegenerationMod(){ModName=STR("Health Regen - Configurable");ModVersion=STR("1.0.0");ModAuthors=STR("oOCamilleOo");}
+    HealthRegenerationMod(){ModName=STR("Health Regen - Configurable");ModVersion=STR("1.1.1");ModAuthors=STR("oOCamilleOo");}
     void on_lua_start(StringViewType name,Lua& lua,Lua&,Lua&,Lua*)override {
         if(name!=STR("HealthRegeneration"))return;
         if(!supportedRuntime()) {

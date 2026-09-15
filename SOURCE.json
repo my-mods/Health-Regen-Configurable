@@ -70,7 +70,7 @@
     "native/BUILD.md": "4e47caec0e3ab0bed07bfa1b9d51b528112e62deecf242050a388e118ab6988e",
     "native/CMakeLists.txt": "88de123faadf28187b97cab24e227f10a77ca94338607bea0ceab2de2169ca56",
     "native/Framecore2b.def": "b99b6244bc0b0df64e3a1de7a561c937b83e0a65e1f1d0db3476782c24d36b65",
-    "native/main.cpp": "99f65362f8032cc3dc64c15ded490fc1b11c67c9bcc9b50c97ff21249de14d75",
+    "native/main.cpp": "a6682c63b835801e1656cb8c8bec9feb5e2cb515c885babe0f0354b85d2ed7e6",
     "native/RegenerationMath.hpp": "e2335b13d4f3df5eb7edd219a004e69238468650a02cc61815bba8b41fc53054",
     "src/lua/Config.lua": "689ce019e0d4ee0d7f86da706c8fe0de5cfa4038502eb2bc174c68e8756ad1eb",
     "src/lua/dmm_api.lua": "6bb667bffc543d1c5c1b36ab6da66c621d6c81c9ee46f94f0f6339cae9cc884c",
@@ -84,11 +84,11 @@
     "src/lua/UE4SSCommonSession.lua": "924272d0246d73759ba57a6ed5f0feea319065a96119d7c9ff7248dd345a09a2",
     "src/lua/UE4SSDawnwalkerSaveLoad.lua": "17e9cbb70326f536b14ba5512a46ac425e7e1446c90516e826b2092b30465707",
     "src/lua/UE4SSDawnwalkerSettings.lua": "039b09679eafec2b19cd8f27e3033dec26a52484a7529edbf14f15193ba07ef1",
-    "src/mod_settings.ini": "e3c6966a31588dcd27f813f5b8be511b038ce993e4c97bd17d5d7c3a2d5a8a51",
+    "src/mod_settings.ini": "cce5265d2477b93b3edd6a8ea775ad7d2b83a02b608b431c2496c2ee744601a2",
     "native/CodeCompatibility.hpp": "a6f91f0cc49c101ecc749b9294dea030aea5c715bd33a84b8d476d6b7d56fa5d",
     "native/GameCode.hpp": "6ff27c0efbba32cb5db96b72d1855b577f67b234ea7e4ac7273ce19ba3726ef7"
   },
-  "dllSha256": "76a8b063eea6f5c6b02b2bc136096864c0ad52adb6bd391d70e8bbcae2237c63",
+  "dllSha256": "8aa26d1b6ccc13dcf70a058ee16d96320f7e9e4c39d913bee8c514adeeb52a44",
   "commonLibrary": {
     "repository": "https://github.com/my-mods/ue4ss-common",
     "commit": "b51434dee720bc000090d4cf387d60f8f6be7e60",
@@ -104,16 +104,16 @@
     "packaging": "Bundled immutable source copies; source, staged and archived bytes verified against the lock."
   },
   "repository": "https://github.com/my-mods/Health-Regen-Configurable",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "releaseMaterials": {
     "Nexus/banner.jpg": "f7010a53c078b1e5221ff4caafd78e3cac6042ed1817e3ff590c9d2197d41031",
     "Nexus/thumbnail.jpg": "11b29f8892270794947efb77ead41b5d7c4f54d955c62bf8534d5a2b1506aa3f",
     "Nexus/MEDIA-CREDITS.md": "20170c26a9b841ff2929285254c4bd195eea70cc3b6d3f777fc4d07e95b3b7ef",
     "Nexus/summary.txt": "535407118ad13e4cbb41815c649390c559763eb48c1bc6e0b9f27f55a0a3b703",
-    "Nexus/description.bbcode": "2ff1b7b01815691aeca481b74096e0ed95bdf8b2a8da34aecc6c7c26cc7f3833",
-    "Nexus/file-description.txt": "9e0c4356d0697652e951fb448174abf47b4a357b2ec5549ec94c4791c086370c",
-    "Nexus/changelog.txt": "17388839aceb2388cd12710b19c8c991a3c98de63207ab923b0c3d10b548ac49",
-    "Nexus/metadata.json": "63afa7956a0bcc42ee716c587dce69e80ffd6634064aab51cbee4ec73a2f797e"
+    "Nexus/description.bbcode": "91bce8c9b1df33e776e80c317e71e65b172527d7302b1a256b7f141542efad38",
+    "Nexus/file-description.txt": "8d8ee1766d692501c1b09ae0d26b64be1489a28197f42d52fdac43478eab1926",
+    "Nexus/changelog.txt": "8d8ee1766d692501c1b09ae0d26b64be1489a28197f42d52fdac43478eab1926",
+    "Nexus/metadata.json": "fbaf3ec6141e86296efa560a0a362392f60b06254028c6a4a89bbe562b61419f"
   },
   "liveSettings": {
     "menu": "Mod Setting Menu 1.0.6+",
