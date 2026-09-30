@@ -113,7 +113,7 @@ end
 jobs[#jobs+1]=function()
     if not segmentMode then return end
     assert(type(_HRNativeBind)=='function' and type(_HRNativeStats)=='function',
-        'Segment restoration requires the matching bundled DLL and Framecore 2b')
+        'Segment restoration requires the matching bundled DLL and a supported UE4SS runtime')
     local e=effect('GE_HealthRegenerationSegments')
     E.combat(tagComponent('GE_HealthRegenerationSegments'),settings.combatRegen==1,'segment-tags')
     assert(_HRNativeBind(blood:GetAddress(),effect('MMC_HealthRegenerationUnlock').cdo:GetAddress(),
@@ -203,8 +203,11 @@ beginLive=function()
     local human=old.humanRegenPercent~=target.humanRegenPercent
     local vampire=old.vampireRegenPercent~=target.vampireRegenPercent
     local combat=old.combatRegen~=target.combatRegen
+    -- A newer Apply can replace a queued batch before its first job runs.
+    -- Plan from committed effects, not the previous batch's intended mode.
+    local previousSegment=old.restoreVampireSegments==1 and old.vampireRegenPercent>0
     local nextSegment=target.restoreVampireSegments==1 and target.vampireRegenPercent>0
-    local transition=segmentMode~=nextSegment
+    local transition=previousSegment~=nextSegment
     local logging=old.debugLogging~=target.debugLogging
     jobs={}
     local function add(fn) jobs[#jobs+1]=fn end
@@ -229,7 +232,7 @@ beginLive=function()
     if transition then
         -- Keep calculation bindings alive until their active effect is removed.
         add(function() E.remove(asc,effect('GE_HealthRegenerationSegments')) end)
-        if segmentMode then add(function() _HRNativeStop() end) end
+        if previousSegment then add(function() _HRNativeStop() end) end
         add(function() E.rate(effect('GE_VampireSegmentGuardRate').cdo,nextSegment and 0 or target.vampireRegenPercent,'vampire-rate') end)
         refresh('GE_VampireSegmentGuardRate',not nextSegment and target.vampireRegenPercent>0)
         if nextSegment then

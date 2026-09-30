@@ -15,7 +15,7 @@
   "runtimeSources": {
     "src/lua/Config.lua": "689ce019e0d4ee0d7f86da706c8fe0de5cfa4038502eb2bc174c68e8756ad1eb",
     "src/lua/dmm_api.lua": "6bb667bffc543d1c5c1b36ab6da66c621d6c81c9ee46f94f0f6339cae9cc884c",
-    "src/lua/Gameplay.lua": "9e7d577a3bbe57d7476d075180ea2105144edbe4a2f3d76f87c7fb1c5650041d",
+    "src/lua/Gameplay.lua": "30e8d2eda866be2a4178588e417fe7448a9e1024fdeab035bf64121ae248cd04",
     "src/lua/LiveSettings.lua": "32c738b2c34294dbf19f6fdeb9a3671448db4dc002e1aa7663dd479c7963a6c6",
     "src/lua/main.lua": "de5659460e4cfc2054f22198a16ae026150681c49b628e4d85127b718eccee7d",
     "src/lua/NativeEffects.lua": "27c50633f9e3c7fe1f38f2d266184fb7840a8c177031dc758bd9b7880c1b948e",
@@ -27,16 +27,17 @@
     "src/lua/UE4SSDawnwalkerSettings.lua": "039b09679eafec2b19cd8f27e3033dec26a52484a7529edbf14f15193ba07ef1"
   },
   "nativeSources": {
-    "native/BUILD.md": "4e47caec0e3ab0bed07bfa1b9d51b528112e62deecf242050a388e118ab6988e",
+    "native/BUILD.md": "35879aaaadb62ab3933c792f19789b307594bb9bff1ae5e3c2218dff0abb390e",
     "native/CMakeLists.txt": "88de123faadf28187b97cab24e227f10a77ca94338607bea0ceab2de2169ca56",
     "native/CodeCompatibility.hpp": "a6f91f0cc49c101ecc749b9294dea030aea5c715bd33a84b8d476d6b7d56fa5d",
     "native/Framecore2b.def": "b99b6244bc0b0df64e3a1de7a561c937b83e0a65e1f1d0db3476782c24d36b65",
     "native/GameCode.hpp": "6ff27c0efbba32cb5db96b72d1855b577f67b234ea7e4ac7273ce19ba3726ef7",
-    "native/main.cpp": "a6682c63b835801e1656cb8c8bec9feb5e2cb515c885babe0f0354b85d2ed7e6",
+    "native/HostCompatibility.hpp": "921c21083df3bf9789f46d00710bf8ce7af4b8541b9d47ff7ec1d9ef1fb83df4",
+    "native/main.cpp": "a5c158dbf45a8a8fd993c934bbad4074a0af8fcdbf34915fd231f0a584fbe5c0",
     "native/RegenerationMath.hpp": "e2335b13d4f3df5eb7edd219a004e69238468650a02cc61815bba8b41fc53054"
   },
   "nativeDll": {
     "path": "package/Dawnwalker/Binaries/Win64/ue4ss/Mods/HealthRegeneration/dlls/main.dll",
-    "sha256": "8aa26d1b6ccc13dcf70a058ee16d96320f7e9e4c39d913bee8c514adeeb52a44"
+    "sha256": "4caffd342a707ca0ea31d94e96577a07a144edc59e592a2c1c8e3e39b68877c1"
   }
 }

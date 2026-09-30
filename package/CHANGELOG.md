@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Allow native vampire segment recovery to start with Vercadi UE4SS RC6.
+- Fix rapid settings changes interrupting vampire regeneration setup.
+
 ## 1.1.1
 
 - Fixed an issue that could prevent vampire segment recovery from working for some players.

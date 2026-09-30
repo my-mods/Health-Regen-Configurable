@@ -7,7 +7,7 @@ Regeneration arrives in one-second ticks. A 1.5% gain can trigger Quiet Dawn's h
 ## Requirements
 
 - The Blood of Dawnwalker for PC, with the native calculation layout supported by the bundled helper. Reference build: **1.0.5 / Steam 25232147**, UE **5.5.4**.
-- [**UE4SS for BoD — Framecore 2b**](https://www.nexusmods.com/thebloodofdawnwalker/mods/283). The bundled native helper targets that loader version.
+- [**Framecore UE4SS 2b**](https://www.nexusmods.com/thebloodofdawnwalker/mods/283) or [**Vercadi UE4SS 1.2.1-rc6**](https://www.nexusmods.com/thebloodofdawnwalker/mods/18) (Nexus package version 1.3).
 - Required: [Mod Setting Menu 1.0.6 or later](https://www.nexusmods.com/thebloodofdawnwalker/mods/271).
 - Quiet Dawn is optional.
 
@@ -24,7 +24,7 @@ Mod Setting Menu 1.0.6 or later is required. Its callback bridge also requires `
 
 Settings are prepared when the game starts and are available from the main menu before the first save. Press **Apply** to save and update the active game. Changes made while loading are retained for the next valid player. Restore and Discard leave saved settings unchanged; Reset takes effect after Apply.
 
-Human rate, vampire rate, combat rules and segment mode update independently. Rate or Logging changes in segment mode configure the existing owner without rebinding or refreshing its effect. Segment-mode transitions retain the removal, binding and guarded application sequence. Loading pauses both setup and cleanup.
+Human rate, vampire rate, combat rules and segment mode update independently. Rate or Logging changes in segment mode configure the existing owner without rebinding or refreshing its effect. Rapid Apply changes are combined before setup starts, using the effects currently active. Segment-mode transitions retain the removal, binding and guarded application sequence. Loading pauses both setup and cleanup.
 
 Logging is the final, sole diagnostic control. It changes immediately; verbose logging is Off by default. Logs are written to `Dawnwalker/Binaries/Win64/ue4ss/UE4SS.log`. Settings are never polled.
 

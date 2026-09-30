@@ -1,4 +1,4 @@
-// Health Regen - Configurable. MIT. RE-UE4SS 97b7e501c / UEPseudo eb40a05f; Framecore 2b.
+// Health Regen - Configurable. MIT. RE-UE4SS 97b7e501c / UEPseudo eb40a05f.
 // Pure magnitude calculations only: the engine applies the two native modifiers.
 #include <Mod/CppUserModBase.hpp>
 #include <LuaMadeSimple/LuaMadeSimple.hpp>
@@ -24,6 +24,7 @@
 #include <cstring>
 #include "RegenerationMath.hpp"
 #include "GameCode.hpp"
+#include "HostCompatibility.hpp"
 
 namespace {
 using namespace RC;
@@ -200,24 +201,8 @@ struct State final: FUObjectDeleteListener {
     }
 };
 std::shared_ptr<State> current;
-bool moduleMatches(HMODULE module,const std::array<unsigned char,32>& expected) {
-    wchar_t path[32768];auto length=GetModuleFileNameW(module,path,32768);
-    if(!module||!length||length==32768)return false;
-    std::ifstream file(std::filesystem::path(path),std::ios::binary);if(!file)return false;
-    BCRYPT_ALG_HANDLE algorithm{};BCRYPT_HASH_HANDLE hash{};
-    if(BCryptOpenAlgorithmProvider(&algorithm,BCRYPT_SHA256_ALGORITHM,nullptr,0)<0)return false;
-    std::array<unsigned char,32> digest{};bool ok=false;
-    if(BCryptCreateHash(algorithm,&hash,nullptr,0,nullptr,0,0)>=0) {
-        std::array<char,65536> data{};bool good=true;
-        while(file.read(data.data(),data.size())||file.gcount())if(BCryptHashData(hash,reinterpret_cast<PUCHAR>(data.data()),static_cast<ULONG>(file.gcount()),0)<0){good=false;break;}
-        ok=good&&file.eof()&&BCryptFinishHash(hash,digest.data(),digest.size(),0)>=0;BCryptDestroyHash(hash);
-    }
-    BCryptCloseAlgorithmProvider(algorithm,0);
-
-    return ok&&digest==expected;
-}
 bool supportedRuntime() {
-    return moduleMatches(GetModuleHandleW(L"UE4SS.dll"),{0xfb,0x18,0x39,0xee,0x91,0xf7,0x1f,0x83,0xd5,0x08,0xd4,0x4a,0x27,0x63,0xa1,0x5a,0xc1,0xbb,0x0c,0x5f,0xb4,0xe5,0x04,0xac,0x0f,0xcf,0xca,0x64,0x37,0x6a,0x05,0x4a});
+    return HostCompatibility::identifyLoaded()!=HostCompatibility::Runtime::Unsupported;
 }
 class HealthRegenerationMod final:public CppUserModBase {
     std::shared_ptr<State> state=std::make_shared<State>();
@@ -226,7 +211,7 @@ public:
     void on_lua_start(StringViewType name,Lua& lua,Lua&,Lua&,Lua*)override {
         if(name!=STR("HealthRegeneration"))return;
         if(!supportedRuntime()) {
-            Output::send(STR("[HealthRegeneration] Native helper unavailable: unsupported UE4SS library; requires Framecore 2b.\n"));
+            Output::send(STR("[HealthRegeneration] Native helper unavailable: unsupported UE4SS C++ interface; use Framecore 2b or Vercadi 1.2.1-rc6.\n"));
             return;
         }
         try {
