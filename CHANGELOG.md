@@ -1,9 +1,9 @@
 # Changelog
 
-## Unreleased
+## 1.1.2
 
-- Remove loader-fingerprint restrictions from native vampire segment recovery.
 - Fix rapid settings changes interrupting vampire regeneration setup.
+- Remove unnecessary UE4SS restrictions from native vampire segment recovery.
 
 ## 1.1.1
 

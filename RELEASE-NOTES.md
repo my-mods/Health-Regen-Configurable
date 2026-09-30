@@ -1,3 +1,4 @@
-# Health Regen - Configurable 1.1.1
+# Health Regen - Configurable 1.1.2
 
-Fixed an issue that could prevent vampire segment recovery from working for some players.
+- Fix rapid settings changes interrupting vampire regeneration setup.
+- Remove unnecessary UE4SS restrictions from native vampire segment recovery.

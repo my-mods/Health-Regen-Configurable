@@ -32,11 +32,11 @@
     "native/CodeCompatibility.hpp": "a6f91f0cc49c101ecc749b9294dea030aea5c715bd33a84b8d476d6b7d56fa5d",
     "native/Framecore2b.def": "b99b6244bc0b0df64e3a1de7a561c937b83e0a65e1f1d0db3476782c24d36b65",
     "native/GameCode.hpp": "6ff27c0efbba32cb5db96b72d1855b577f67b234ea7e4ac7273ce19ba3726ef7",
-    "native/main.cpp": "a1a0f96a5dd0786200e2c9e05ae1fb949680e684963171b89324c26cb9080ede",
+    "native/main.cpp": "cb4121db70bf3d6f62e845218aaed86d947655a635ef8c902dd06e10bc2de2dc",
     "native/RegenerationMath.hpp": "e2335b13d4f3df5eb7edd219a004e69238468650a02cc61815bba8b41fc53054"
   },
   "nativeDll": {
     "path": "package/Dawnwalker/Binaries/Win64/ue4ss/Mods/HealthRegeneration/dlls/main.dll",
-    "sha256": "77ef28a6bb57092ad25c7f26943606be9a9c5b9db8989ad2f48c1d6db3e4c8d3"
+    "sha256": "6fb33463d7748905ab00d3fc3876abe9b301da2d3f352d56037cf8e2413951bc"
   }
 }
