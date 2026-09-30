@@ -61,11 +61,10 @@
     "apply": "Prepare missing preferences at startup. Committed menu values update affected effects through one bounded worker. Loading-widget and combat loading gates pause setup and cleanup. Segment rate/logging changes configure the existing bound owner without effect application. Ordinary player replacement retains the latest snapshot; no polling."
   },
   "loader": {
-    "name": "Pinned UE4SS 97b7e501c C++ interface; Framecore 2b or Vercadi RC6",
-    "sha256": "fb1839ee91f71f83d508d44a2763a15ac1bb0c5fb4e504ac0fcfca64376a054a",
+    "name": "UE4SS C++ mod, Lua, reflection and object-array APIs",
     "sdk": "97b7e501c19d8b2b7c662feee73aaa0dc1f0a4d1",
     "engineHeaders": "eb40a05f49509bdeb1ac39287032b60af585cca8",
-    "supported": [
+    "testedReferences": [
       {
         "name": "Framecore 2b",
         "sha256": "fb1839ee91f71f83d508d44a2763a15ac1bb0c5fb4e504ac0fcfca64376a054a"
@@ -74,13 +73,15 @@
         "name": "Vercadi 1.2.1-rc6 (Nexus 1.3)",
         "sha256": "795c3732dd4dde53d1c9210d93ae8191b983031cd275e7e1cf93fef69fad6deb"
       }
-    ]
+    ],
+    "referenceSha256": "fb1839ee91f71f83d508d44a2763a15ac1bb0c5fb4e504ac0fcfca64376a054a",
+    "runtimePolicy": "No version, fork-name or whole-DLL hash allowlist; required game code, object layouts and native binding probes are checked."
   },
   "runtimeSourceHashes": {
-    "native/BUILD.md": "35879aaaadb62ab3933c792f19789b307594bb9bff1ae5e3c2218dff0abb390e",
+    "native/BUILD.md": "c292a436480fc893132248e8f2cddf93a016e2fea1481f6d393d930a3a459d3e",
     "native/CMakeLists.txt": "88de123faadf28187b97cab24e227f10a77ca94338607bea0ceab2de2169ca56",
     "native/Framecore2b.def": "b99b6244bc0b0df64e3a1de7a561c937b83e0a65e1f1d0db3476782c24d36b65",
-    "native/main.cpp": "a5c158dbf45a8a8fd993c934bbad4074a0af8fcdbf34915fd231f0a584fbe5c0",
+    "native/main.cpp": "a1a0f96a5dd0786200e2c9e05ae1fb949680e684963171b89324c26cb9080ede",
     "native/RegenerationMath.hpp": "e2335b13d4f3df5eb7edd219a004e69238468650a02cc61815bba8b41fc53054",
     "src/lua/Config.lua": "689ce019e0d4ee0d7f86da706c8fe0de5cfa4038502eb2bc174c68e8756ad1eb",
     "src/lua/dmm_api.lua": "6bb667bffc543d1c5c1b36ab6da66c621d6c81c9ee46f94f0f6339cae9cc884c",
@@ -96,10 +97,9 @@
     "src/lua/UE4SSDawnwalkerSettings.lua": "039b09679eafec2b19cd8f27e3033dec26a52484a7529edbf14f15193ba07ef1",
     "src/mod_settings.ini": "cce5265d2477b93b3edd6a8ea775ad7d2b83a02b608b431c2496c2ee744601a2",
     "native/CodeCompatibility.hpp": "a6f91f0cc49c101ecc749b9294dea030aea5c715bd33a84b8d476d6b7d56fa5d",
-    "native/GameCode.hpp": "6ff27c0efbba32cb5db96b72d1855b577f67b234ea7e4ac7273ce19ba3726ef7",
-    "native/HostCompatibility.hpp": "921c21083df3bf9789f46d00710bf8ce7af4b8541b9d47ff7ec1d9ef1fb83df4"
+    "native/GameCode.hpp": "6ff27c0efbba32cb5db96b72d1855b577f67b234ea7e4ac7273ce19ba3726ef7"
   },
-  "dllSha256": "4caffd342a707ca0ea31d94e96577a07a144edc59e592a2c1c8e3e39b68877c1",
+  "dllSha256": "77ef28a6bb57092ad25c7f26943606be9a9c5b9db8989ad2f48c1d6db3e4c8d3",
   "commonLibrary": {
     "repository": "https://github.com/my-mods/ue4ss-common",
     "commit": "b51434dee720bc000090d4cf387d60f8f6be7e60",

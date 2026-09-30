@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Allow native vampire segment recovery to start with Vercadi UE4SS RC6.
+- Remove loader-fingerprint restrictions from native vampire segment recovery.
 - Fix rapid settings changes interrupting vampire regeneration setup.
 
 ## 1.1.1

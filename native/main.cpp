@@ -24,7 +24,6 @@
 #include <cstring>
 #include "RegenerationMath.hpp"
 #include "GameCode.hpp"
-#include "HostCompatibility.hpp"
 
 namespace {
 using namespace RC;
@@ -201,19 +200,12 @@ struct State final: FUObjectDeleteListener {
     }
 };
 std::shared_ptr<State> current;
-bool supportedRuntime() {
-    return HostCompatibility::identifyLoaded()!=HostCompatibility::Runtime::Unsupported;
-}
 class HealthRegenerationMod final:public CppUserModBase {
     std::shared_ptr<State> state=std::make_shared<State>();
 public:
     HealthRegenerationMod(){ModName=STR("Health Regen - Configurable");ModVersion=STR("1.1.1");ModAuthors=STR("oOCamilleOo");}
     void on_lua_start(StringViewType name,Lua& lua,Lua&,Lua&,Lua*)override {
         if(name!=STR("HealthRegeneration"))return;
-        if(!supportedRuntime()) {
-            Output::send(STR("[HealthRegeneration] Native helper unavailable: unsupported UE4SS C++ interface; use Framecore 2b or Vercadi 1.2.1-rc6.\n"));
-            return;
-        }
         try {
             NativeCompatibility::validateContract(reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr)),HealthRegeneration::Build::code,HealthRegeneration::Build::pointers);
         } catch(const std::exception& error) {
