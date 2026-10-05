@@ -7,7 +7,7 @@ Regeneration arrives in one-second ticks. A 1.5% gain can trigger Quiet Dawn's h
 ## Requirements
 
 - The Blood of Dawnwalker for PC, with the native calculation layout supported by the bundled helper. Reference build: **1.0.5 / Steam 25232147**, UE **5.5.4**.
-- A Dawnwalker-compatible UE4SS installation providing the imported C++ mod, Lua and object APIs. Framecore 2b and Vercadi RC6 are tested references; version names and DLL hashes do not restrict startup.
+- Required: [UE4SS for Dawnwalker by Vercadi](https://www.nexusmods.com/thebloodofdawnwalker/mods/18) **1.3 (RC6) or later**. The loader must provide the C++ mod, Lua and object APIs used by the mod.
 - Required: [Mod Setting Menu 1.0.6 or later](https://www.nexusmods.com/thebloodofdawnwalker/mods/271).
 - Quiet Dawn is optional.
 
@@ -75,4 +75,4 @@ In the package, place the containers under `Dawnwalker/Content/Paks/~mods/`. Pla
 
 The game and stock assets belong to Rebel Wolves and their respective rights holders. The idea was inspired by KumasanGames' [Human Health Regen](https://www.nexusmods.com/thebloodofdawnwalker/mods/387) and [Vampire Health Regen](https://www.nexusmods.com/thebloodofdawnwalker/mods/391). This implementation was completely rebuilt from stock game assets with its own configuration and runtime integration; neither original mod's edited payloads are included.
 
-The native integration uses UE4SS, its engine adaptation headers, and Framecore's exported hooks. The included notices cover these dependencies and fmt headers.
+The native integration uses UE4SS, its engine adaptation headers, and exported native hooks. The included notices cover these dependencies and fmt headers.
