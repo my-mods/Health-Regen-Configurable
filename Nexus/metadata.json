@@ -21,9 +21,10 @@
   },
   "requirements": [
     {
-      "name": "UE4SS for BoD",
-      "url": "https://www.nexusmods.com/thebloodofdawnwalker/mods/283",
-      "note": "Framecore 2b required by the native helper."
+      "name": "UE4SS for Dawnwalker by Vercadi",
+      "url": "https://www.nexusmods.com/thebloodofdawnwalker/mods/18",
+      "note": "Required: Vercadi's UE4SS for Dawnwalker, Nexus version 1.3 (RC6) or later.",
+      "minimumVersion": "1.3"
     },
     {
       "name": "Mod Setting Menu",
@@ -40,5 +41,6 @@
     "minimumMenuVersion": "1.0.6",
     "HookProcessConsoleExec": 1,
     "apply": "Committed values update gameplay through bounded workers."
-  }
+  },
+  "requirementsMode": "file-to-file"
 }
