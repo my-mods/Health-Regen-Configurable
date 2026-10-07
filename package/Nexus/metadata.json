@@ -3,7 +3,7 @@
   "game": "thebloodofdawnwalker",
   "category": "Gameplay",
   "author": "oOCamilleOo",
-  "version": "1.1.2",
+  "version": "1.2.0-dev",
   "summary": "Configurable health regeneration for humans and vampires. Stops adding healing at full recoverable health or the current vampire segment limit, with optional combat and lost-segment recovery.",
   "tags": [
     "Gameplay",
@@ -14,22 +14,22 @@
     "name": "Health Regen - Configurable",
     "archive": "Health-Regen-Configurable.zip",
     "category": "main",
-    "version": "1.1.2",
+    "version": "1.2.0-dev",
     "description": "Fixed an issue that could prevent vampire segment recovery from working for some players.",
     "primaryModManagerDownload": true,
     "allowModManagerDownload": true
   },
   "requirements": [
     {
-      "name": "UE4SS for Dawnwalker by Vercadi",
+      "name": "UE4SS for Dawnwalker",
       "url": "https://www.nexusmods.com/thebloodofdawnwalker/mods/18",
-      "note": "Required: Vercadi's UE4SS for Dawnwalker, Nexus version 1.3 (RC6) or later.",
+      "note": "UE4SS for Dawnwalker",
       "minimumVersion": "1.3"
     },
     {
       "name": "Mod Setting Menu",
       "url": "https://www.nexusmods.com/thebloodofdawnwalker/mods/271",
-      "note": "Required for live Apply. UE4SS HookProcessConsoleExec must be 1.",
+      "note": "Mod Setting Menu",
       "minimumVersion": "1.0.6",
       "optional": false
     }

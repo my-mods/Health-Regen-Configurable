@@ -1,5 +1,7 @@
 # Changelog
 
+- Choose Off, Error, Warning, Info or Debug logging; Warning is the default.
+
 ## 1.1.2
 
 - Fix rapid settings changes interrupting vampire regeneration setup.

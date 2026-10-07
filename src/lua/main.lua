@@ -1,8 +1,10 @@
 -- MIT. Main Menu > Mod Settings > Apply, then load a save.
 local directory=assert(debug.getinfo(1,'S').source:sub(2):match('^(.*[/\\])'))
+ModDiagnosticLevel=dofile(directory..'ModLogLevels.lua').readLevel(dofile(directory..'SettingsStore.lua').path(directory))
 function HealthRegenerationOutput(message) print(message..'\n') end
-local Diagnostics=dofile(directory..'UE4SSCommonDiagnostics.lua')
-HealthRegenerationReport=Diagnostics.new({prefix='[Health Regen - Configurable] ',output=HealthRegenerationOutput}).log
+local Diagnostics=dofile(directory..'ModDiagnostics.lua')
+local diagnostics=Diagnostics.new({prefix='[Health Regen - Configurable] ',output=HealthRegenerationOutput})
+HealthRegenerationReport=diagnostics.warning
 SaveLoadDiagnostics={debugLogging=false}
 local report=HealthRegenerationReport
 -- Match the common save-load contract: settings I/O belongs to Gameplay.lua.
@@ -13,7 +15,7 @@ function HealthRegenerationCanApply() return loadComplete and not loading end
 local live=dofile(directory..'LiveSettings.lua').new(directory,report)
 HealthRegenerationLiveSettings=live
 local prepared,values=pcall(function() return dofile(directory..'Config.lua').load(directory) end)
-if prepared then live.seed(values);settingsSnapshot=values else report('Settings preparation failed: '..tostring(values)) end
+if prepared then live.seed(values);settingsSnapshot=values else diagnostics.error('Settings preparation failed: '..tostring(values)) end
 local manager=dofile(directory..'UE4SSCommonSession.lua').new(_G,directory,report,{canCleanup=HealthRegenerationCanApply,settings=live,loadSettings=function() return dofile(directory..'Config.lua').load(directory) end})
 local latest,restartPending,restartController,restartPawn,retry
 local engine,gameplay
@@ -153,4 +155,4 @@ end
 local started,err=pcall(function()
     dofile(directory..'UE4SSDawnwalkerSaveLoad.lua').start(api,session,directory..'Gameplay.lua',report,SaveLoadDiagnostics,{requireLoadComplete=true})
 end)
-if not started then report('Save-load hooks unavailable: '..tostring(err)) end
+if not started then diagnostics.error('Save-load hooks unavailable: '..tostring(err)) end

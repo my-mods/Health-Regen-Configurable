@@ -3,9 +3,9 @@ local directory=assert(debug.getinfo(1,'S').source:sub(2):match('^(.*[/\\])'))
 local E=dofile(directory..'NativeEffects.lua')
 local settings=SaveLoadContext.settings or dofile(directory..'Config.lua').load(directory)
 HealthRegenerationRememberSettings(settings)
-SaveLoadDiagnostics.debugLogging=settings.debugLogging==1
-local diagnostics=dofile(directory..'UE4SSCommonDiagnostics.lua').new({
-    mutable=true,debugLogging=settings.debugLogging==1,prefix='[Health Regen - Configurable] ',
+SaveLoadDiagnostics.debugLogging=settings.logLevel==4
+local diagnostics=dofile(directory..'ModDiagnostics.lua').new({
+    mutable=true,debugLogging=settings.logLevel==4,prefix='[Health Regen - Configurable] ',
     output=HealthRegenerationOutput,clock=os.clock,
 })
 local pawn,world=SaveLoadContext.pawn,SaveLoadContext.world
@@ -21,8 +21,8 @@ local beginLive,schedule,initialDiagnosticDone
 Session.onSettings(function(values)
     desiredSettings=values
     HealthRegenerationRememberSettings(values)
-    SaveLoadDiagnostics.debugLogging=values.debugLogging==1
-    diagnostics.setEnabled(values.debugLogging==1)
+    SaveLoadDiagnostics.debugLogging=values.logLevel==4
+    diagnostics.setLevel(values.logLevel)
     if initialComplete and finished and beginLive then beginLive() end
 end)
 local function current()
@@ -117,7 +117,7 @@ jobs[#jobs+1]=function()
     local e=effect('GE_HealthRegenerationSegments')
     E.combat(tagComponent('GE_HealthRegenerationSegments'),settings.combatRegen==1,'segment-tags')
     assert(_HRNativeBind(blood:GetAddress(),effect('MMC_HealthRegenerationUnlock').cdo:GetAddress(),
-        effect('MMC_HealthRegenerationHeal').cdo:GetAddress(),settings.vampireRegenPercent/100,settings.debugLogging==1)==true,
+        effect('MMC_HealthRegenerationHeal').cdo:GetAddress(),settings.vampireRegenPercent/100,settings.logLevel==4)==true,
         'Segment calculation initialization failed')
     E.segmentParameters(e.cdo)
 end
@@ -208,7 +208,7 @@ beginLive=function()
     local previousSegment=old.restoreVampireSegments==1 and old.vampireRegenPercent>0
     local nextSegment=target.restoreVampireSegments==1 and target.vampireRegenPercent>0
     local transition=previousSegment~=nextSegment
-    local logging=old.debugLogging~=target.debugLogging
+    local logging=old.logLevel~=target.logLevel
     jobs={}
     local function add(fn) jobs[#jobs+1]=fn end
     local function refresh(name,enabled)
@@ -247,7 +247,7 @@ beginLive=function()
                 blood=E.valid(state) and state.BloodBar or nil
                 if not E.valid(blood) then return 'wait' end
                 assert(_HRNativeBind(blood:GetAddress(),effect('MMC_HealthRegenerationUnlock').cdo:GetAddress(),
-                    effect('MMC_HealthRegenerationHeal').cdo:GetAddress(),target.vampireRegenPercent/100,target.debugLogging==1),
+                    effect('MMC_HealthRegenerationHeal').cdo:GetAddress(),target.vampireRegenPercent/100,target.logLevel==4),
                     'Segment calculation initialization failed')
             end)
             add(function() E.combat(tagComponent('GE_HealthRegenerationSegments'),target.combatRegen==1,'segment-tags') end)
@@ -257,7 +257,7 @@ beginLive=function()
     elseif nextSegment then
         if vampire or logging then
             add(function()
-                assert(_HRNativeConfigure(blood:GetAddress(),target.vampireRegenPercent/100,target.debugLogging==1),
+                assert(_HRNativeConfigure(blood:GetAddress(),target.vampireRegenPercent/100,target.logLevel==4),
                     'Segment owner is paused or replaced')
             end)
         end

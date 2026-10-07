@@ -115,16 +115,16 @@
     "packaging": "Bundled immutable source copies; source, staged and archived bytes verified against the lock."
   },
   "repository": "https://github.com/my-mods/Health-Regen-Configurable",
-  "version": "1.1.3-dev",
+  "version": "1.2.0-dev",
   "releaseMaterials": {
     "Nexus/banner.jpg": "f7010a53c078b1e5221ff4caafd78e3cac6042ed1817e3ff590c9d2197d41031",
     "Nexus/thumbnail.jpg": "11b29f8892270794947efb77ead41b5d7c4f54d955c62bf8534d5a2b1506aa3f",
     "Nexus/MEDIA-CREDITS.md": "20170c26a9b841ff2929285254c4bd195eea70cc3b6d3f777fc4d07e95b3b7ef",
     "Nexus/summary.txt": "535407118ad13e4cbb41815c649390c559763eb48c1bc6e0b9f27f55a0a3b703",
-    "Nexus/description.bbcode": "91bce8c9b1df33e776e80c317e71e65b172527d7302b1a256b7f141542efad38",
+    "Nexus/description.bbcode": "b4472f320e544048fca2c476a0b164970b146b715fdcf325960f67623a0059f7",
     "Nexus/file-description.txt": "d6f6798170a04fb3d849dbf47ed0390078885d6da1f135230d9e8d1e6d4577f1",
     "Nexus/changelog.txt": "d6f6798170a04fb3d849dbf47ed0390078885d6da1f135230d9e8d1e6d4577f1",
-    "Nexus/metadata.json": "e073c0eb229167b9df8508e05e76ff4cb418f44a46388755889a9ab4f9d6fa4e"
+    "Nexus/metadata.json": "1f64b118197feb921d5e20d1aae8d05df3d30642ffadf1cb9a541a227204e5df"
   },
   "liveSettings": {
     "menu": "Mod Setting Menu 1.0.6+",

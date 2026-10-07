@@ -76,3 +76,7 @@ In the package, place the containers under `Dawnwalker/Content/Paks/~mods/`. Pla
 The game and stock assets belong to Rebel Wolves and their respective rights holders. The idea was inspired by KumasanGames' [Human Health Regen](https://www.nexusmods.com/thebloodofdawnwalker/mods/387) and [Vampire Health Regen](https://www.nexusmods.com/thebloodofdawnwalker/mods/391). This implementation was completely rebuilt from stock game assets with its own configuration and runtime integration; neither original mod's edited payloads are included.
 
 The native integration uses UE4SS, its engine adaptation headers, and exported native hooks. The included notices cover these dependencies and fmt headers.
+
+### Logging
+
+Logging is the final diagnostic setting: **Off**, **Error**, **Warning** (default), **Info**, or **Debug**. Levels include all more severe messages. Off silences this mod; Debug includes detailed events and timing summaries in `Dawnwalker/Binaries/Win64/ue4ss/UE4SS.log`. Old Logging Debug preferences become Debug; old Off preferences become Warning.

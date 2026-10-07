@@ -203,14 +203,14 @@ std::shared_ptr<State> current;
 class HealthRegenerationMod final:public CppUserModBase {
     std::shared_ptr<State> state=std::make_shared<State>();
 public:
-    HealthRegenerationMod(){ModName=STR("Health Regen - Configurable");ModVersion=STR("1.1.3-dev");ModAuthors=STR("oOCamilleOo");}
+    HealthRegenerationMod(){ModName=STR("Health Regen - Configurable");ModVersion=STR("1.2.0-dev");ModAuthors=STR("oOCamilleOo");}
     void on_lua_start(StringViewType name,Lua& lua,Lua&,Lua&,Lua*)override {
         if(name!=STR("HealthRegeneration"))return;
         try {
             NativeCompatibility::validateContract(reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr)),HealthRegeneration::Build::code,HealthRegeneration::Build::pointers);
         } catch(const std::exception& error) {
             const std::string message=error.what();
-            Output::send(std::wstring(L"[HealthRegeneration] Native helper unavailable: ")+std::wstring(message.begin(),message.end())+L"\n");
+            // Lua reports absent capability after reading the player's level.
             return;
         }
         current=state;

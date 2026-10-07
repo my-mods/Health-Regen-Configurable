@@ -5,5 +5,5 @@ return {
     {key='humanRegenPercent',default=1.5,values=rates},
     {key='combatRegen',default=0,values={0,1}},
     {key='restoreVampireSegments',default=0,values={0,1}},
-    {key='debugLogging',default=0,values={0,1}},
+    {key='logLevel',default=2,values={0,1,2,3,4}},
 }
