@@ -90,7 +90,7 @@
         "impact": "patch",
         "rationale": "Correct shipped dependency documentation and consistent package version metadata; regeneration behavior is unchanged.",
         "majorOverride": false,
-        "reviewedInputs": "4b50c720ed2de600dcd8105bc2cad2eff71fa0b83b3c51f9f944838c9a39465a",
+        "reviewedInputs": "694009dddb3785055cbd5d15cc6a4cf4d2d78a82e2c9f476f361e9a49179a412",
         "divergenceReviewed": false
       }
     }
