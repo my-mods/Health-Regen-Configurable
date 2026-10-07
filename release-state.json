@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "packages": {
+    "main": {
+      "id": "HealthRegeneration",
+      "name": "Health Regen - Configurable",
+      "archive": "Health-Regen-Configurable.zip",
+      "packageFormat": 1,
+      "baseline": {
+        "kind": "nexus",
+        "version": "1.1.2",
+        "normalizedVersion": "1.1.2",
+        "sourceCommit": "fb23a851c4e43b747110a171b0bd1001dbd8304d",
+        "sourceTag": "v1.1.2",
+        "archiveSha256": "20a55c585b99d66eb570dd64e279f970d9bd76950f3c8c8b8df63bdea46efc1c",
+        "verifiedAt": "2026-10-07T12:13:12.9659854Z",
+        "nexus": {
+          "game": "thebloodofdawnwalker",
+          "pageId": "448",
+          "modId": "41742787150272",
+          "fileChainId": "7953321",
+          "versionId": "41742787152771",
+          "siteFileId": "2947"
+        }
+      },
+      "bindings": [
+        {
+          "path": "Nexus/metadata.json",
+          "jsonPointer": [
+            "version"
+          ],
+          "members": [
+            "Nexus/metadata.json"
+          ]
+        },
+        {
+          "path": "Nexus/metadata.json",
+          "jsonPointer": [
+            "file",
+            "version"
+          ],
+          "members": [
+            "Nexus/metadata.json"
+          ]
+        },
+        {
+          "path": "SOURCE.json",
+          "jsonPointer": [
+            "version"
+          ],
+          "members": [
+            "SOURCE.json"
+          ]
+        },
+        {
+          "path": "native/main.cpp",
+          "pattern": "ModVersion\\s*=\\s*(?:STR\\(|L)?\"(?P<version>[^\"]+)\"",
+          "count": 1,
+          "members": []
+        },
+        {
+          "path": "package/Dawnwalker/Binaries/Win64/ue4ss/Mods/HealthRegeneration/mod_settings.ini",
+          "pattern": "^Version\\s*=\\s*(?P<version>[^\\r\\n]+)",
+          "count": 1,
+          "members": [
+            "Dawnwalker/Binaries/Win64/ue4ss/Mods/HealthRegeneration/mod_settings.ini"
+          ]
+        },
+        {
+          "path": "package/mod.manifest",
+          "pattern": "<version>(?P<version>[^<]+)</version>",
+          "count": 1,
+          "members": [
+            "mod.manifest"
+          ]
+        },
+        {
+          "path": "src/mod_settings.ini",
+          "pattern": "^Version\\s*=\\s*(?P<version>[^\\r\\n]+)",
+          "count": 1,
+          "members": []
+        }
+      ],
+      "excludePaths": [
+        "Optional",
+        "Compatibility",
+        "VortexExtension"
+      ],
+      "pending": {
+        "impact": "patch",
+        "rationale": "Correct shipped dependency documentation and consistent package version metadata; regeneration behavior is unchanged.",
+        "majorOverride": false,
+        "reviewedInputs": "4b50c720ed2de600dcd8105bc2cad2eff71fa0b83b3c51f9f944838c9a39465a",
+        "divergenceReviewed": false
+      }
+    }
+  }
+}

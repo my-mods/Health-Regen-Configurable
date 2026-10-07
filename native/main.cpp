@@ -203,7 +203,7 @@ std::shared_ptr<State> current;
 class HealthRegenerationMod final:public CppUserModBase {
     std::shared_ptr<State> state=std::make_shared<State>();
 public:
-    HealthRegenerationMod(){ModName=STR("Health Regen - Configurable");ModVersion=STR("1.1.2");ModAuthors=STR("oOCamilleOo");}
+    HealthRegenerationMod(){ModName=STR("Health Regen - Configurable");ModVersion=STR("1.1.3-dev");ModAuthors=STR("oOCamilleOo");}
     void on_lua_start(StringViewType name,Lua& lua,Lua&,Lua&,Lua*)override {
         if(name!=STR("HealthRegeneration"))return;
         try {
