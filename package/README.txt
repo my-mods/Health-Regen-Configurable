@@ -75,7 +75,7 @@ In the package, place the containers under `Dawnwalker/Content/Paks/~mods/`. Pla
 
 The game and stock assets belong to Rebel Wolves and their respective rights holders. The idea was inspired by KumasanGames' [Human Health Regen](https://www.nexusmods.com/thebloodofdawnwalker/mods/387) and [Vampire Health Regen](https://www.nexusmods.com/thebloodofdawnwalker/mods/391). This implementation was completely rebuilt from stock game assets with its own configuration and runtime integration; neither original mod's edited payloads are included.
 
-The native integration uses UE4SS, its engine adaptation headers, and exported native hooks. The included notices cover these dependencies and fmt headers.
+The native integration uses UE4SS, its engine adaptation headers, and exported native hooks. The included notices cover these dependencies, fmt headers, and the Zydis/Zycore instruction decoder.
 
 ### Logging
 

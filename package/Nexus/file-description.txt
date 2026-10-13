@@ -1,2 +1,1 @@
-Fix rapid settings changes interrupting vampire regeneration setup.
-Remove unnecessary UE4SS restrictions from native vampire segment recovery.
+Choose Off, Error, Warning, Info or Debug logging; Warning is the default.

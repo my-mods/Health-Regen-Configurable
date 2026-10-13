@@ -1,96 +1,97 @@
 [size=5][b][color=#E8C88A]Health Regen - Configurable[/color][/b][/size]
-
-Human and vampire health regeneration in one configurable mod. Choose separate rates for each form, keep regeneration outside combat, or allow it during combat. Both forms default to 1.5% per second.
-
-[size=4][b][color=#E8C88A]Stops healing at the limit[/color][/b][/size]
-
-Regeneration stops when your health bar or current vampire segment is full. This avoids the original vampire mod's repeated healing attempts at the limit.
-
-[size=4][b][color=#E8C88A]Configuration[/color][/b][/size]
-
-Choose your settings in [url=https://www.nexusmods.com/thebloodofdawnwalker/mods/271]Mod Setting Menu[/url], then press Apply to save and update gameplay.
-[list]
-[*][b][color=#A8D5C2]Human regeneration:[/color][/b] 0% to 5% per second; default 1.5%.
-[*][b][color=#A8D5C2]Vampire regeneration:[/color][/b] 0% to 5% per second; default 1.5%.
-[*][b][color=#A8D5C2]Combat regeneration:[/color][/b] Off by default. Off means outside combat only; On also allows combat regeneration.
-[*][b][color=#A8D5C2]Restore vampire segments:[/color][/b] Off by default. On allows regeneration to restore lost segments toward full health.
-[*][b][color=#A8D5C2]Logging:[/color][/b] Off by default; writes to UE4SS.log when enabled.
-[/list][color=#E6B980]Zero disables this mod's added regeneration for the selected form.[/color] Existing game regeneration bonuses remain separate. Regeneration does not revive a dead player.
-
-[size=3][b][color=#A8D5C2]Manual configuration[/color][/b][/size]
-
-Launch the game once to create settings.ini, then close it. Open this file inside your The Blood of Dawnwalker game folder:
-[code]Dawnwalker\Binaries\Win64\ue4ss\Mods\HealthRegeneration\settings.ini[/code]The default settings are:
-[code][Settings]
-vampireRegenPercent = 1.5
-humanRegenPercent = 1.5
-combatRegen = 0
-restoreVampireSegments = 0
-debugLogging = 0[/code]Change either regeneration rate using the steps above; 1.5 means 1.5% per second. For combatRegen, restoreVampireSegments and debugLogging, use 0 for Off or 1 for On. Save the file, restart the game and load a save to apply your changes.
-
-[size=4][b][color=#E8C88A]Installation[/color][/b][/size]
-
-[list]
-[*][b][color=#A8D5C2]Vortex:[/color][/b] Install Health-Regen-Configurable.zip through Vortex, enable it and deploy.
-[*][b][color=#A8D5C2]Manual:[/color][/b] Copy the archive's Dawnwalker folder into your The Blood of Dawnwalker game folder, preserving the folder structure.
-[/list]
-
-[size=4][b][color=#E8C88A]Reporting Bugs and other issues[/color][/b][/size]
-
-If you encounter an issue, set [b]Logging[/b] to [b]Debug[/b] in this mod’s Mod Setting Menu settings, apply the change, reproduce the issue. Then start either a bug report in the Bugs tab on Nexus (preferred method for me to track things), or at least start a new thread in comments and send me [b]Dawnwalker/Binaries/Win64/ue4ss/UE4SS.log[/b] from your game folder. Do not report unrelated bugs in other people's threads, please, this makes it impossible for me to track issues.
-
-[size=4][b][color=#E8C88A]Credits and source[/color][/b][/size]
-
-Idea credit goes to [url=https://www.nexusmods.com/thebloodofdawnwalker/mods/387]Human Health Regen[/url] and [url=https://www.nexusmods.com/thebloodofdawnwalker/mods/391]Vampire Health Regen[/url] by KumasanGames. This implementation was completely rebuilt from stock game assets with its own configuration and runtime integration. Neither original mod's edited payloads are included.
-
-Thanks to Vercadi, UE4SS contributors and mmarcussa. Dependency notices are included. The game and its stock assets belong to Rebel Wolves and their respective rights holders.
-
-[url=https://github.com/my-mods/Health-Regen-Configurable]Source code and documentation[/url]. Authored code and documentation use the MIT license; game assets and promotional imagery retain their original rights.
-
-[size=5][b][color=#E8C88A]My Dawnwalker mods[/color][/b][/size]
-
-[size=4][b][color=#E8C88A]Combat your way[/color][/b][/size]
-
-[b][color=#A8D5C2][url=https://www.nexusmods.com/thebloodofdawnwalker/mods/161]Easier Parry and Dodge While Blocking[/url][/color][/b]
-Make parry and perfect-dodge windows longer or shorter to suit your timing.
-[b]Highlights:[/b] Consistent same-side or opposite-side ripostes; dodge while blocking; adjustable dodge invulnerability duration.
-
-[b][color=#A8D5C2][url=https://www.nexusmods.com/thebloodofdawnwalker/mods/480]Combat Camera - Configurable[/url][/color][/b]
-Choose how your camera follows enemies and how you select your targets.
-[b]Highlights:[/b] Free, smooth or native tracking; camera-directed or fixed targets; automatic lock on hit; optional center dot.
-
-[b][color=#A8D5C2][url=https://www.nexusmods.com/thebloodofdawnwalker/mods/284]Fair Duelist - Customizable Difficulty[/url][/color][/b]
-Build your own difficulty with precise control over combat balance.
-[b]Highlights:[/b] Enemy health and damage; stamina costs; normal, low-health and ranged attack delays; coordinated enemy attacks.
-
-[b][color=#A8D5C2][url=https://www.nexusmods.com/thebloodofdawnwalker/mods/448]Health Regen - Configurable[/url][/color][/b]
-Set separate health regeneration rates for your human and vampire forms.
-[b]Highlights:[/b] Optional healing during combat; optional recovery of lost vampire segments; healing stops at the selected limit.
-
-[size=4][b][color=#E8C88A]Controls and exploration[/color][/b][/size]
-
-[b][color=#A8D5C2][url=https://www.nexusmods.com/thebloodofdawnwalker/mods/203]Controller Tweaks and Remap[/url][/color][/b]
-Tailor your controller layout and make walking and menu access more comfortable.
-[b]Highlights:[/b] 31 controller settings; wider walking range; short press for Map, long press for Game Hub; controller stutter fixes.
-
-[b][color=#A8D5C2][url=https://www.nexusmods.com/thebloodofdawnwalker/mods/449]Press to Gather - Configurable[/url][/color][/b]
-Gather nearby harvestable resources with one keyboard press or controller hold.
-[b]Highlights:[/b] Adjustable 10–200 m range; 14 controller button choices; support for 17 additional wild plant types.
-
-[b][color=#A8D5C2][url=https://www.nexusmods.com/thebloodofdawnwalker/mods/711]Less Wildlife[/url][/color][/b]
-Make ordinary boar herds and wolf packs smaller—or larger.
-[b]Highlights:[/b] Population from 10% to 200%; separate boar and wolf switches; quest and named animals keep their normal values.
-
-[size=4][b][color=#E8C88A]Your view, your style[/color][/b][/size]
-
-[b][color=#A8D5C2][url=https://www.nexusmods.com/thebloodofdawnwalker/mods/452]Quiet Dawn - Configurable HUD[/url][/color][/b]
-Clear the screen while keeping health and stamina alerts when you need them.
-[b]Highlights:[/b] 17 panels with independent opacity and size; hold-to-peek; configurable combat cues, enemy information and effect icons.
-
-[b][color=#A8D5C2][url=https://www.nexusmods.com/thebloodofdawnwalker/mods/721]Style Without Sacrifice - Your Transmogrification Wardrobe[/url][/color][/b]
-Choose your equipment's appearance while keeping its stats.
-[b]Highlights:[/b] Separate day and night outfits; three saved presets; character preview; hide selected equipment; collected or all looks.
-
-[b][color=#A8D5C2][url=https://www.nexusmods.com/thebloodofdawnwalker/mods/694]Night Vision - Configurable[/url][/color][/b]
-See in the dark as a vampire with natural colours or your preferred monochrome blend.
-[b]Highlights:[/b] Independent brightness and colour controls; keyboard or controller toggle; stays enabled through save loading and camera changes.
+<br />
+<br />Human and vampire health regeneration in one configurable mod. Choose separate rates for each form, keep regeneration outside combat, or allow it during combat. Both forms default to 1.5% per second.
+<br />
+<br />[size=4][b][color=#E8C88A]Stops healing at the limit[/color][/b][/size]
+<br />
+<br />Regeneration stops when your health bar or current vampire segment is full. This avoids the original vampire mod's repeated healing attempts at the limit.
+<br />
+<br />[size=4][b][color=#E8C88A]Configuration[/color][/b][/size]
+<br />
+<br />Choose your settings in [url=https://www.nexusmods.com/thebloodofdawnwalker/mods/271]Mod Setting Menu[/url], then press Apply to save and update gameplay.
+<br />[list]
+<br />[*][b][color=#A8D5C2]Human regeneration:[/color][/b] 0% to 5% per second; default 1.5%.[/*]
+<br />[*][b][color=#A8D5C2]Vampire regeneration:[/color][/b] 0% to 5% per second; default 1.5%.[/*]
+<br />[*][b][color=#A8D5C2]Combat regeneration:[/color][/b] Off by default. Off means outside combat only; On also allows combat regeneration.[/*]
+<br />[*][b][color=#A8D5C2]Restore vampire segments:[/color][/b] Off by default. On allows regeneration to restore lost segments toward full health.[/*]
+<br />[*][b][color=#A8D5C2]Logging:[/color][/b] Choose Off, Error, Warning, Info or Debug. Warning is the default; Off is silent. Debug records detailed troubleshooting information in Dawnwalker/Binaries/Win64/ue4ss/UE4SS.log.[/*]
+<br />[/list][color=#E6B980]Zero disables this mod's added regeneration for the selected form.[/color] Existing game regeneration bonuses remain separate. Regeneration does not revive a dead player.
+<br />
+<br />[size=3][b][color=#A8D5C2]Manual configuration[/color][/b][/size]
+<br />
+<br />Launch the game once to create settings.ini, then close it. Open this file inside your The Blood of Dawnwalker game folder:
+<br />[code]Dawnwalker&#92;Binaries&#92;Win64&#92;ue4ss&#92;Mods&#92;HealthRegeneration&#92;settings.ini[/code]The default settings are:
+<br />[code][Settings]
+<br />vampireRegenPercent = 1.5
+<br />humanRegenPercent = 1.5
+<br />combatRegen = 0
+<br />restoreVampireSegments = 0
+<br />logLevel = 2[/code]Change either regeneration rate using the steps above; 1.5 means 1.5% per second. For combatRegen and restoreVampireSegments, use 0 for Off or 1 for On. logLevel uses Off=0, Error=1, Warning=2, Info=3 and Debug=4. Save the file, restart the game and load a save to apply your changes.
+<br />
+<br />[size=4][b][color=#E8C88A]Installation[/color][/b][/size]
+<br />
+<br />[list]
+<br />[*][b][color=#A8D5C2]Vortex:[/color][/b] Install Health-Regen-Configurable.zip through Vortex, enable it and deploy.[/*]
+<br />[*][b][color=#A8D5C2]Manual:[/color][/b] Copy the archive's Dawnwalker folder into your The Blood of Dawnwalker game folder, preserving the folder structure.[/*]
+<br />[/list]
+<br />[size=4][b][color=#E8C88A]Reporting Bugs and other issues[/color][/b][/size]
+<br />
+<br />If you encounter an issue, set [b]Logging[/b] to [b]Debug[/b] in this mod’s Mod Setting Menu settings, apply the change, reproduce the issue. Then start either a bug report in the Bugs tab on Nexus (preferred method for me to track things), or at least start a new thread in comments and send me [b]Dawnwalker/Binaries/Win64/ue4ss/UE4SS.log[/b] from your game folder. Do not report unrelated bugs in other people's threads, please, this makes it impossible for me to track issues.
+<br />
+<br />
+<br />[size=4][b][color=#E8C88A]Credits and source[/color][/b][/size]
+<br />
+<br />Idea credit goes to [url=https://www.nexusmods.com/thebloodofdawnwalker/mods/387]Human Health Regen[/url] and [url=https://www.nexusmods.com/thebloodofdawnwalker/mods/391]Vampire Health Regen[/url] by KumasanGames. This implementation was completely rebuilt from stock game assets with its own configuration and runtime integration. Neither original mod's edited payloads are included.
+<br />
+<br />Thanks to Vercadi, UE4SS contributors and mmarcussa. Dependency notices are included. The game and its stock assets belong to Rebel Wolves and their respective rights holders.
+<br />
+<br />[url=https://github.com/my-mods/Health-Regen-Configurable]Source code and documentation[/url]. Authored code and documentation use the MIT license; game assets and promotional imagery retain their original rights.
+<br />
+<br />[size=5][b][color=#E8C88A]My Dawnwalker mods[/color][/b][/size]
+<br />
+<br />[size=4][b][color=#E8C88A]Combat your way[/color][/b][/size]
+<br />
+<br />[b][color=#A8D5C2][url=https://www.nexusmods.com/thebloodofdawnwalker/mods/161]Easier Parry and Dodge While Blocking[/url][/color][/b]
+<br />Make parry and perfect-dodge windows longer or shorter to suit your timing.
+<br />[b]Highlights:[/b] Consistent same-side or opposite-side ripostes; dodge while blocking; adjustable dodge invulnerability duration.
+<br />
+<br />[b][color=#A8D5C2][url=https://www.nexusmods.com/thebloodofdawnwalker/mods/480]Combat Camera - Configurable[/url][/color][/b]
+<br />Choose how your camera follows enemies and how you select your targets.
+<br />[b]Highlights:[/b] Free, smooth or native tracking; camera-directed or fixed targets; automatic lock on hit; optional center dot.
+<br />
+<br />[b][color=#A8D5C2][url=https://www.nexusmods.com/thebloodofdawnwalker/mods/284]Fair Duelist - Customizable Difficulty[/url][/color][/b]
+<br />Build your own difficulty with precise control over combat balance.
+<br />[b]Highlights:[/b] Enemy health and damage; stamina costs; normal, low-health and ranged attack delays; coordinated enemy attacks.
+<br />
+<br />[b][color=#A8D5C2][url=https://www.nexusmods.com/thebloodofdawnwalker/mods/448]Health Regen - Configurable[/url][/color][/b]
+<br />Set separate health regeneration rates for your human and vampire forms.
+<br />[b]Highlights:[/b] Optional healing during combat; optional recovery of lost vampire segments; healing stops at the selected limit.
+<br />
+<br />[size=4][b][color=#E8C88A]Controls and exploration[/color][/b][/size]
+<br />
+<br />[b][color=#A8D5C2][url=https://www.nexusmods.com/thebloodofdawnwalker/mods/203]Controller Tweaks and Remap[/url][/color][/b]
+<br />Tailor your controller layout and make walking and menu access more comfortable.
+<br />[b]Highlights:[/b] 31 controller settings; wider walking range; short press for Map, long press for Game Hub; controller stutter fixes.
+<br />
+<br />[b][color=#A8D5C2][url=https://www.nexusmods.com/thebloodofdawnwalker/mods/449]Press to Gather - Configurable[/url][/color][/b]
+<br />Gather nearby harvestable resources with one keyboard press or controller hold.
+<br />[b]Highlights:[/b] Adjustable 10–200 m range; 14 controller button choices; support for 17 additional wild plant types.
+<br />
+<br />[b][color=#A8D5C2][url=https://www.nexusmods.com/thebloodofdawnwalker/mods/711]Less Wildlife[/url][/color][/b]
+<br />Make ordinary boar herds and wolf packs smaller—or larger.
+<br />[b]Highlights:[/b] Population from 10% to 200%; separate boar and wolf switches; quest and named animals keep their normal values.
+<br />
+<br />[size=4][b][color=#E8C88A]Your view, your style[/color][/b][/size]
+<br />
+<br />[b][color=#A8D5C2][url=https://www.nexusmods.com/thebloodofdawnwalker/mods/452]Quiet Dawn - Configurable HUD[/url][/color][/b]
+<br />Clear the screen while keeping health and stamina alerts when you need them.
+<br />[b]Highlights:[/b] 17 panels with independent opacity and size; hold-to-peek; configurable combat cues, enemy information and effect icons.
+<br />
+<br />[b][color=#A8D5C2][url=https://www.nexusmods.com/thebloodofdawnwalker/mods/721]Style Without Sacrifice - Your Transmogrification Wardrobe[/url][/color][/b]
+<br />Choose your equipment's appearance while keeping its stats.
+<br />[b]Highlights:[/b] Separate day and night outfits; three saved presets; character preview; hide selected equipment; collected or all looks.
+<br />
+<br />[b][color=#A8D5C2][url=https://www.nexusmods.com/thebloodofdawnwalker/mods/694]Night Vision - Configurable[/url][/color][/b]
+<br />See in the dark as a vampire with natural colours or your preferred monochrome blend.
+<br />[b]Highlights:[/b] Independent brightness and colour controls; keyboard or controller toggle; stays enabled through save loading and camera changes.
+<br />

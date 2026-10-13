@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.25)
-project(HealthRegenerationNative LANGUAGES CXX)
+project(HealthRegenerationNative LANGUAGES C CXX)
 if(NOT MSVC OR NOT CMAKE_SIZEOF_VOID_P EQUAL 8)
     message(FATAL_ERROR "Use the x64 MSVC Release toolchain.")
 endif()
@@ -15,7 +15,7 @@ foreach(item IN ITEMS ".;97b7e501c19d8b2b7c662feee73aaa0dc1f0a4d1" "deps/first/U
     endif()
 endforeach()
 include(FetchContent)
-# Header dependencies of the public SDK; none of their libraries is built.
+# Pinned SDK dependencies and the structural instruction decoder.
 FetchContent_Declare(fmt GIT_REPOSITORY https://github.com/fmtlib/fmt.git
     GIT_TAG 40626af88bd7df9a5fb80be7b25ac85b122d6c21 SOURCE_SUBDIR headers_only)
 FetchContent_Declare(imgui GIT_REPOSITORY https://github.com/ocornut/imgui.git
@@ -23,7 +23,12 @@ FetchContent_Declare(imgui GIT_REPOSITORY https://github.com/ocornut/imgui.git
 FetchContent_Declare(textedit GIT_REPOSITORY https://github.com/UE4SS-RE/ImGuiColorTextEdit.git
     GIT_TAG 6d943aba9f7cef05da80b86dbb0253b63818f95c SOURCE_SUBDIR headers_only)
 FetchContent_Declare(zydis GIT_REPOSITORY https://github.com/zyantific/zydis.git
-    GIT_TAG a2278f1d254e492f6a6b39f6cb5d1f5d515659dc GIT_SUBMODULES dependencies/zycore SOURCE_SUBDIR headers_only)
+    GIT_TAG a2278f1d254e492f6a6b39f6cb5d1f5d515659dc GIT_SUBMODULES dependencies/zycore)
+set(ZYDIS_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+set(ZYDIS_BUILD_TOOLS OFF CACHE BOOL "" FORCE)
+set(ZYDIS_FEATURE_ENCODER OFF CACHE BOOL "" FORCE)
+set(ZYDIS_FEATURE_FORMATTER OFF CACHE BOOL "" FORCE)
+set(ZYDIS_BUILD_DOXYGEN OFF CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(fmt imgui textedit zydis)
 set(ZYCORE_INCLUDE "${zydis_SOURCE_DIR}/dependencies/zycore/include" CACHE PATH "Zycore headers pinned by Zydis")
 file(GLOB first_includes LIST_DIRECTORIES true "${UE4SS_SDK}/deps/first/*/include")
@@ -45,5 +50,5 @@ add_custom_command(OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/Framecore2b.lib"
     DEPENDS Framecore2b.def VERBATIM)
 add_custom_target(FramecoreImports DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/Framecore2b.lib")
 add_dependencies(HealthRegenerationNative FramecoreImports)
-target_link_libraries(HealthRegenerationNative PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/Framecore2b.lib" bcrypt kernel32)
+target_link_libraries(HealthRegenerationNative PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/Framecore2b.lib" kernel32 Zydis)
 target_link_options(HealthRegenerationNative PRIVATE /Brepro /OPT:REF /OPT:ICF /MAP)

@@ -12,8 +12,9 @@
 #include <Unreal/Core/Windows/AllowWindowsPlatformTypes.hpp>
 #include <Windows.h>
 #include <intrin.h>
-#include <bcrypt.h>
+
 #include <array>
+#include <vector>
 #include <atomic>
 #include <chrono>
 #include <fstream>
@@ -23,7 +24,7 @@
 #include <stdexcept>
 #include <cstring>
 #include "RegenerationMath.hpp"
-#include "GameCode.hpp"
+#include "NativeRoute.hpp"
 
 namespace {
 using namespace RC;
@@ -67,8 +68,8 @@ float read(UObject* owner,const Getter& g) {
     owner->ProcessEvent(g.function,params.data());
     float value;std::memcpy(&value,params.data()+g.offset,sizeof(value));return value;
 }
-// Build 25232147: GameplayModMagnitudeCalculation has 92 virtual entries;
-// CalculateBaseMagnitude_Implementation is slot 90. Only our two CDOs receive
+// CalculateBaseMagnitude_Implementation is verified at slot 90. No exact
+// total slot count or skipped-original body is a requirement. Only our CDOs receive
 // a private table; the game's shared table and stock calculations stay intact.
 struct State final: FUObjectDeleteListener {
     std::mutex identityMutex;
@@ -76,7 +77,8 @@ struct State final: FUObjectDeleteListener {
     std::atomic<uint64_t> deletionInterest{};
     Identity blood{},unlock{},heal{};
     std::array<Getter,3> getters{};
-    std::array<void*,92> magnitudeTable{};
+    std::vector<void*> magnitudeTable;
+    std::vector<std::vector<void*>> retiredTables;
     void** originalTable{};
     inline static std::atomic<State*> dispatchState{};
     bool listening{},debug{},probing{};
@@ -153,15 +155,42 @@ struct State final: FUObjectDeleteListener {
         if(!bloodClass || !owner->IsA(bloodClass))throw std::runtime_error("Unexpected blood component class");
         if(!calculationClass||!unlockCDO->IsA(calculationClass)||!healCDO->IsA(calculationClass))
             throw std::runtime_error("Unexpected segment calculation class");
-        const auto image=reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr));
-        auto expectedTable=reinterpret_cast<void**>(image+0x76c77f0);
-        if(table(unlockCDO)!=expectedTable||table(healCDO)!=expectedTable
-            ||expectedTable[90]!=reinterpret_cast<void*>(image+0x1271ab0))
-            throw std::runtime_error("Segment calculation layout mismatch; install the matching assets and helper");
-        if(!originalTable){
+        // The reflected native base CDO establishes table ownership, rather than
+        // a development-image RVA or identities of entries we merely preserve.
+        auto base=UObjectGlobals::StaticFindObject<UObject*>(nullptr,nullptr,L"/Script/GameplayAbilities.Default__GameplayModMagnitudeCalculation");
+        if(!identify(base).address || !base->IsA(calculationClass))throw std::runtime_error("Neutral calculation base default is unavailable");
+        auto expectedTable=table(base);
+        if(table(unlockCDO)!=expectedTable||table(healCDO)!=expectedTable)
+            throw std::runtime_error("Owned segment calculations do not share the neutral native base table");
+        // Preserve the remaining readable linked-section table storage. A fixed 92-entry clone
+        // would truncate a future extended base table. Untouched entries and
+        // adjacent storage are copied opaquely, never used as identity gates.
+        const auto tableCount=NativeRoute::tableExtent(expectedTable);
+        auto fn=UObjectGlobals::StaticFindObject<UFunction*>(nullptr,nullptr,L"/Script/GameplayAbilities.GameplayModMagnitudeCalculation:CalculateBaseMagnitude");
+        if(!identify(fn).address || !fn->HasAnyFunctionFlags(EFunctionFlags::FUNC_Native))throw std::runtime_error("Native CalculateBaseMagnitude wrapper is missing");
+        unsigned resultCount=0;
+        for(auto p:TFieldRange<FProperty>(fn,EFieldIterationFlags::IncludeDeprecated)) {
+            if(!p->HasAnyPropertyFlags(EPropertyFlags::CPF_ReturnParm))continue;
+            if(p->GetClass().GetFName().ToString()!=STR("FloatProperty") || p->GetElementSize()!=4 || p->GetArrayDim()!=1)
+                throw std::runtime_error("CalculateBaseMagnitude no longer returns a scalar float");
+            ++resultCount;
+        }
+        if(resultCount!=1)throw std::runtime_error("CalculateBaseMagnitude float result is missing");
+        NativeRoute::validate(reinterpret_cast<uintptr_t>(fn->GetFuncPtr()),true);
+        // The replaced operation is intentionally overridden, not forwarded.
+        // Snapshot untouched storage again when its contents/extent/owner change.
+        // Retain EVERY previously published allocation until State destruction;
+        // a deleted/default owner may still be unwinding through an old vptr.
+        const bool changed=originalTable!=expectedTable || magnitudeTable.size()!=tableCount
+            || std::memcmp(magnitudeTable.data(),expectedTable,90*sizeof(void*))!=0
+            || std::memcmp(magnitudeTable.data()+91,expectedTable+91,(tableCount-91)*sizeof(void*))!=0;
+        if(changed){
+            std::vector<void*> refreshed(tableCount);
+            std::memcpy(refreshed.data(),expectedTable,tableCount*sizeof(void*));
+            refreshed[90]=reinterpret_cast<void*>(&dispatch);
+            if(!magnitudeTable.empty())retiredTables.emplace_back(std::move(magnitudeTable));
+            magnitudeTable=std::move(refreshed);
             originalTable=expectedTable;
-            std::memcpy(magnitudeTable.data(),originalTable,sizeof(magnitudeTable));
-            magnitudeTable[90]=reinterpret_cast<void*>(&dispatch);
         }
         getters={getter(L"/Script/DogwoodStats.BloodBarComponent:GetBlood"),getter(L"/Script/DogwoodStats.BloodBarComponent:GetBloodBarLength"),getter(L"/Script/DogwoodStats.BloodBarComponent:GetBloodPermDamage")};
         debug=logging;rate=requested;calls=zeros=errors=nanos=0;
@@ -203,16 +232,12 @@ std::shared_ptr<State> current;
 class HealthRegenerationMod final:public CppUserModBase {
     std::shared_ptr<State> state=std::make_shared<State>();
 public:
-    HealthRegenerationMod(){ModName=STR("Health Regen - Configurable");ModVersion=STR("1.2.0");ModAuthors=STR("oOCamilleOo");}
+    HealthRegenerationMod(){ModName=STR("Health Regen - Configurable");ModVersion=STR("1.2.0-dev");ModAuthors=STR("oOCamilleOo");}
     void on_lua_start(StringViewType name,Lua& lua,Lua&,Lua&,Lua*)override {
         if(name!=STR("HealthRegeneration"))return;
-        try {
-            NativeCompatibility::validateContract(reinterpret_cast<uintptr_t>(GetModuleHandleW(nullptr)),HealthRegeneration::Build::code,HealthRegeneration::Build::pointers);
-        } catch(const std::exception& error) {
-            const std::string message=error.what();
-            // Lua reports absent capability after reading the player's level.
-            return;
-        }
+        // Segment-specific requirements are checked at bind, before table writes.
+        // Exposing the API is independent of segment availability and preserves
+        // ordinary regeneration when optional segment validation is uncertain.
         current=state;
         lua.register_function("_HRNativeBind",[](const Lua& l){
             auto blood=reinterpret_cast<UObject*>(static_cast<uintptr_t>(l.get_integer()));

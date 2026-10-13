@@ -15,7 +15,7 @@
     "archive": "Health-Regen-Configurable.zip",
     "category": "main",
     "version": "1.2.0-dev",
-    "description": "Fixed an issue that could prevent vampire segment recovery from working for some players.",
+    "description": "Choose Off, Error, Warning, Info or Debug logging; Warning is the default.",
     "primaryModManagerDownload": true,
     "allowModManagerDownload": true
   },

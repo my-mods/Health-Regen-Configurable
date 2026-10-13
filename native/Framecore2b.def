@@ -78,3 +78,7 @@ EXPORTS
 ?get_integer@Lua@LuaMadeSimple@RC@@QEBA_JH@Z
 ?get_number@Lua@LuaMadeSimple@RC@@QEBANH@Z
 ?IsA@UObjectBase@Unreal@RC@@QEBA_NPEAVUClass@23@@Z
+
+?GetFuncPtr@UFunction@Unreal@RC@@QEAAP6AXPEAVUObject@23@AEAUFFrame@23@PEAX@ZXZ
+?GetElementSize@FProperty@Unreal@RC@@QEAAAEAHXZ
+?GetArrayDim@FProperty@Unreal@RC@@QEAAAEAHXZ

@@ -1,6 +1,4 @@
-# Health Regen - Configurable 1.1.2
+# Health Regen - Configurable 1.2.0
 
-- Fix rapid settings changes interrupting vampire regeneration setup.
-- Remove unnecessary UE4SS restrictions from native vampire segment recovery.
-
-- Choose how much troubleshooting detail to record with five Logging levels.
+- Choose Off, Error, Warning, Info or Debug logging; Warning is the default.
+- Keep vampire segment recovery available when unrelated game code changes.
