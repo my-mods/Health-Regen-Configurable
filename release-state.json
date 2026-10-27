@@ -13,7 +13,7 @@
         "sourceCommit": "f24e0c50f1f9476c2c473ecbb7d28ca10c11255f",
         "sourceTag": null,
         "archiveSha256": "624386cda428d3d7d92fcff749dd3b4673340af7d3d97b001af8fa137115b0f5",
-        "verifiedAt": "2026-10-27T12:00:00Z",
+        "verifiedAt": "2026-10-27T18:25:02.9386435Z",
         "nexus": {
           "game": "thebloodofdawnwalker",
           "pageId": "448",
@@ -91,7 +91,7 @@
         "impact": "patch",
         "rationale": "Complete published-baseline delta including the newly tracked slot dispatcher and operation validator reviewed; existing segment recovery compatibility repair only.",
         "majorOverride": false,
-        "reviewedInputs": "6c23f4cc59e37e922ee6c86cffd4c433a4330d2aefb56269e02d0fc2e49adf9e",
+        "reviewedInputs": "b38b22367929474eddfb83d61e1866cbc8551c0c6dacaa3e256e54bfb22fc072",
         "divergenceReviewed": true
       }
     }

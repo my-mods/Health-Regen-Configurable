@@ -1,1 +1,1 @@
-Choose Off, Error, Warning, Info or Debug logging; Warning is the default.
+Updated the mod for patch 1.1.
