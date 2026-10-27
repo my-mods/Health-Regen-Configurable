@@ -12,9 +12,7 @@
 #include <Unreal/Core/Windows/AllowWindowsPlatformTypes.hpp>
 #include <Windows.h>
 #include <intrin.h>
-
 #include <array>
-#include <vector>
 #include <atomic>
 #include <chrono>
 #include <fstream>
@@ -24,7 +22,8 @@
 #include <stdexcept>
 #include <cstring>
 #include "RegenerationMath.hpp"
-#include "NativeRoute.hpp"
+#include "OperationRoute.hpp"
+#include "MagnitudeBinding.hpp"
 
 namespace {
 using namespace RC;
@@ -68,19 +67,14 @@ float read(UObject* owner,const Getter& g) {
     owner->ProcessEvent(g.function,params.data());
     float value;std::memcpy(&value,params.data()+g.offset,sizeof(value));return value;
 }
-// CalculateBaseMagnitude_Implementation is verified at slot 90. No exact
-// total slot count or skipped-original body is a requirement. Only our CDOs receive
-// a private table; the game's shared table and stock calculations stay intact.
+// Override one verified operation; forward all unrelated native calculations.
 struct State final: FUObjectDeleteListener {
     std::mutex identityMutex;
     std::atomic_bool active{};
     std::atomic<uint64_t> deletionInterest{};
     Identity blood{},unlock{},heal{};
     std::array<Getter,3> getters{};
-    std::vector<void*> magnitudeTable;
-    std::vector<std::vector<void*>> retiredTables;
-    void** originalTable{};
-    inline static std::atomic<State*> dispatchState{};
+    MagnitudeBinding::Binding* binding{};
     bool listening{},debug{},probing{};
     int probeHits{};
     float rate{};
@@ -98,33 +92,30 @@ struct State final: FUObjectDeleteListener {
     void OnUObjectArrayShutdown() override {
         active=false;
         // The engine requires listeners to remove themselves before this callback returns.
-        // Do not use stop(): object-table restoration is unsafe during array shutdown.
+        // Releasing the static table slot never dereferences dying UObjects.
+        if(binding){binding->release();binding=nullptr;}
         if(listening) { FUObjectArray::RemoveUObjectDeleteListener(this);listening=false; }
         deletionInterest=0;
         std::lock_guard lock(identityMutex);
         blood={};unlock={};heal={};getters={};
     }
-    static float __fastcall dispatch(UObject* context,const void*) noexcept {
-        if(!IsInGameThreadRaw())return 0.0f;
-        auto state=dispatchState.load(std::memory_order_acquire);
-        return state ? state->calculate(context) : 0.0f;
+    static bool dispatch(void* user,void* context,const void*,float& result) {
+        if(!IsInGameThreadRaw())return false;
+        auto self=static_cast<State*>(user);
+        if(!self->active.load(std::memory_order_acquire))return false;
+        if(resolve(self->unlock)!=context && resolve(self->heal)!=context)return false;
+        result=self->calculate(static_cast<UObject*>(context));return true;
     }
     static void** table(UObject* object){return *reinterpret_cast<void***>(object);}
-    void restore(const Identity& id) noexcept {
-        if(auto object=resolve(id))
-            _InterlockedCompareExchangePointer(reinterpret_cast<void* volatile*>(object),originalTable,magnitudeTable.data());
-    }
     void stop() {
         active=false;
-        // Keep the immutable private table alive until DLL shutdown, even if a
-        // deleted CDO is still unwinding. Never dereference an invalid identity.
-        restore(unlock);restore(heal);
+        if(binding){binding->release();binding=nullptr;}
         deletionInterest=0;
         if(listening) { FUObjectArray::RemoveUObjectDeleteListener(this);listening=false; }
         std::lock_guard lock(identityMutex);
         blood={};unlock={};heal={};getters={};
     }
-    ~State(){stop();auto expected=this;dispatchState.compare_exchange_strong(expected,nullptr);}
+    ~State(){stop();}
     float calculate(UObject* context) noexcept {
         if(!active.load(std::memory_order_acquire))return 0.0f;
         const bool unlocking=reinterpret_cast<uintptr_t>(context)==unlock.address;
@@ -148,7 +139,7 @@ struct State final: FUObjectDeleteListener {
         if(!IsInGameThread()) throw std::runtime_error("Health Regen - Configurable setup requires the game thread");
         stop();
         blood=identify(owner);unlock=identify(unlockCDO);heal=identify(healCDO);
-        if(!blood.address||!unlock.address||!heal.address||unlock.address==heal.address||requested<=0||requested>0.05f)
+        if(!blood.address||!unlock.address||!heal.address||unlock.address==heal.address||!std::isfinite(requested)||requested<=0||requested>0.05f)
             throw std::runtime_error("Invalid segment regeneration context");
         auto bloodClass=UObjectGlobals::StaticFindObject<UClass*>(nullptr,nullptr,L"/Script/DogwoodStats.BloodBarComponent");
         auto calculationClass=UObjectGlobals::StaticFindObject<UClass*>(nullptr,nullptr,L"/Script/GameplayAbilities.GameplayModMagnitudeCalculation");
@@ -162,10 +153,6 @@ struct State final: FUObjectDeleteListener {
         auto expectedTable=table(base);
         if(table(unlockCDO)!=expectedTable||table(healCDO)!=expectedTable)
             throw std::runtime_error("Owned segment calculations do not share the neutral native base table");
-        // Preserve the remaining readable linked-section table storage. A fixed 92-entry clone
-        // would truncate a future extended base table. Untouched entries and
-        // adjacent storage are copied opaquely, never used as identity gates.
-        const auto tableCount=NativeRoute::tableExtent(expectedTable);
         auto fn=UObjectGlobals::StaticFindObject<UFunction*>(nullptr,nullptr,L"/Script/GameplayAbilities.GameplayModMagnitudeCalculation:CalculateBaseMagnitude");
         if(!identify(fn).address || !fn->HasAnyFunctionFlags(EFunctionFlags::FUNC_Native))throw std::runtime_error("Native CalculateBaseMagnitude wrapper is missing");
         unsigned resultCount=0;
@@ -177,32 +164,14 @@ struct State final: FUObjectDeleteListener {
         }
         if(resultCount!=1)throw std::runtime_error("CalculateBaseMagnitude float result is missing");
         NativeRoute::validate(reinterpret_cast<uintptr_t>(fn->GetFuncPtr()),true);
-        // The replaced operation is intentionally overridden, not forwarded.
-        // Snapshot untouched storage again when its contents/extent/owner change.
-        // Retain EVERY previously published allocation until State destruction;
-        // a deleted/default owner may still be unwinding through an old vptr.
-        const bool changed=originalTable!=expectedTable || magnitudeTable.size()!=tableCount
-            || std::memcmp(magnitudeTable.data(),expectedTable,90*sizeof(void*))!=0
-            || std::memcmp(magnitudeTable.data()+91,expectedTable+91,(tableCount-91)*sizeof(void*))!=0;
-        if(changed){
-            std::vector<void*> refreshed(tableCount);
-            std::memcpy(refreshed.data(),expectedTable,tableCount*sizeof(void*));
-            refreshed[90]=reinterpret_cast<void*>(&dispatch);
-            if(!magnitudeTable.empty())retiredTables.emplace_back(std::move(magnitudeTable));
-            magnitudeTable=std::move(refreshed);
-            originalTable=expectedTable;
-        }
         getters={getter(L"/Script/DogwoodStats.BloodBarComponent:GetBlood"),getter(L"/Script/DogwoodStats.BloodBarComponent:GetBloodBarLength"),getter(L"/Script/DogwoodStats.BloodBarComponent:GetBloodPermDamage")};
         debug=logging;rate=requested;calls=zeros=errors=nanos=0;
         uint64_t mask=interest(blood.address)|interest(unlock.address)|interest(heal.address);
         for(const auto& g:getters)mask|=interest(g.identity.address);
         deletionInterest=mask;
         FUObjectArray::AddUObjectDeleteListener(this);listening=true;
-        dispatchState.store(this,std::memory_order_release);
         try {
-            for(auto object:{unlockCDO,healCDO})
-                if(_InterlockedCompareExchangePointer(reinterpret_cast<void* volatile*>(object),magnitudeTable.data(),originalTable)!=originalTable)
-                    throw std::runtime_error("Segment calculation binding was replaced");
+            binding=MagnitudeBinding::install(expectedTable+90,this,unlockCDO,healCDO,&dispatch);
             active=true;
             // Probe the actual virtual call route before enabling either effect
             // modifier. This takes only read-only getters and never applies health.
@@ -218,7 +187,7 @@ struct State final: FUObjectDeleteListener {
     }
     bool configure(uintptr_t expectedBlood,float requested,bool logging) {
         if(!IsInGameThread()) throw std::runtime_error("Segment settings require the game thread");
-        if(!std::isfinite(requested)||requested<=0||requested>0.05f)
+        if(!std::isfinite(requested)||!std::isfinite(requested)||requested<=0||requested>0.05f)
             throw std::runtime_error("Invalid segment regeneration rate");
         if(!active.load(std::memory_order_acquire)||blood.address!=expectedBlood||!resolve(blood)) return false;
         // The calculation route and configuration are game-thread-only. Never
@@ -232,12 +201,10 @@ std::shared_ptr<State> current;
 class HealthRegenerationMod final:public CppUserModBase {
     std::shared_ptr<State> state=std::make_shared<State>();
 public:
-    HealthRegenerationMod(){ModName=STR("Health Regen - Configurable");ModVersion=STR("1.2.0-dev");ModAuthors=STR("oOCamilleOo");}
+    HealthRegenerationMod(){ModName=STR("Health Regen - Configurable");ModVersion=STR("1.2.1-dev");ModAuthors=STR("oOCamilleOo");}
     void on_lua_start(StringViewType name,Lua& lua,Lua&,Lua&,Lua*)override {
         if(name!=STR("HealthRegeneration"))return;
-        // Segment-specific requirements are checked at bind, before table writes.
-        // Exposing the API is independent of segment availability and preserves
-        // ordinary regeneration when optional segment validation is uncertain.
+        // Only segment binding depends on the optional native operation.
         current=state;
         lua.register_function("_HRNativeBind",[](const Lua& l){
             auto blood=reinterpret_cast<UObject*>(static_cast<uintptr_t>(l.get_integer()));

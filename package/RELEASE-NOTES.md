@@ -1,4 +1,3 @@
-# Health Regen - Configurable 1.2.0
+# Health Regen - Configurable 1.2.1-dev
 
-- Choose Off, Error, Warning, Info or Debug logging; Warning is the default.
-- Keep vampire segment recovery available when unrelated game code changes.
+- Restore vampire segment recovery on game patch 1.1.

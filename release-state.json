@@ -8,20 +8,21 @@
       "packageFormat": 1,
       "baseline": {
         "kind": "nexus",
-        "version": "1.1.2",
-        "normalizedVersion": "1.1.2",
-        "sourceCommit": "fb23a851c4e43b747110a171b0bd1001dbd8304d",
-        "sourceTag": "v1.1.2",
-        "archiveSha256": "20a55c585b99d66eb570dd64e279f970d9bd76950f3c8c8b8df63bdea46efc1c",
-        "verifiedAt": "2026-10-07T12:13:12.9659854Z",
+        "version": "1.2.0",
+        "normalizedVersion": "1.2.0",
+        "sourceCommit": "f24e0c50f1f9476c2c473ecbb7d28ca10c11255f",
+        "sourceTag": null,
+        "archiveSha256": "624386cda428d3d7d92fcff749dd3b4673340af7d3d97b001af8fa137115b0f5",
+        "verifiedAt": "2026-10-27T12:00:00Z",
         "nexus": {
           "game": "thebloodofdawnwalker",
           "pageId": "448",
           "modId": "41742787150272",
           "fileChainId": "7953321",
-          "versionId": "41742787152771",
-          "siteFileId": "2947"
-        }
+          "versionId": "41742787152997",
+          "siteFileId": "3173"
+        },
+        "sourceFingerprint": "1509cd323863e0ba205e22c85cfed58fbae855374e4583622aac7cd18480fd29"
       },
       "bindings": [
         {
@@ -87,10 +88,10 @@
         "VortexExtension"
       ],
       "pending": {
-        "impact": "minor",
-        "rationale": "Same complete baseline semantic assessment; deterministic two-build native outputs now refreshed. No additional semantic change; retain1.2.0-dev with native review fixes and documented fallback cost.",
+        "impact": "patch",
+        "rationale": "Patch 1.1 compatibility repair of existing segment recovery, including refreshed current-stock asset containers and verified native dispatch; baseline delta reviewed.",
         "majorOverride": false,
-        "reviewedInputs": "7f0e609dbf6d4e5797d190b696f152ef8e266f66bf7259e4fd5749f46bac973f",
+        "reviewedInputs": "388d4aef07c963af47f9342d257175c5d96411a08f1b018eb30cd1bdc3ee878f",
         "divergenceReviewed": true
       }
     }

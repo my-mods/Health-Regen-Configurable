@@ -1,9 +1,9 @@
 {
   "game": "The Blood of Dawnwalker",
-  "steamBuild": "25232147",
+  "steamBuild": "25915545",
   "engine": "5.5.4",
-  "exeSha256": "cb9b7d7bd88a6754c0a9c08318aa64d5013ddfd92d5badcae84e1b4ea980dcfc",
-  "stockUtocSha256": "0c0ca54f551a7b02cb7900b99f8391f275b752028bb668199312d10da2af0846",
+  "exeSha256": "e6222b815b1c376f2c85a2189120c5a9b5cd30ac5688a34b61a2c18efbc9b117",
+  "stockUtocSha256": "3f2813832120cd594c29176d46320be48cbb51281199bd88929e683907a3401c",
   "basis": "Stock game assets; no third-party regeneration payload is included.",
   "rate": "Configurable 0 to 5 percent per second; 0.25 steps through 2, then 0.5. Default 1.5. In segment-limited mode, BloodPercentRegenPerSecond += percentage/100 * live BloodSegmentCount; the native MMC supplies period and regeneration multiplier.",
   "periodSeconds": 1,
@@ -34,7 +34,7 @@
     "periodSeconds": 1,
     "applicationTick": false,
     "zeroDefaults": "All added coefficients start at zero. Contradictory application tag requirements block automatic segment-effect application. Both calculation classes have a zero-result native parent. After loading completion and a verified native binding, Lua opens the gate for one explicit application and restores it synchronously, including failures.",
-    "dispatch": "Two private native virtual-table calculation bindings on the owned calculation class defaults, with an actual-call probe before activation. The shared game table is unchanged. The calculation assets inherit the native zero-result GameplayModMagnitudeCalculation base. No Lua on regeneration ticks."
+    "dispatch": "One verified native calculation slot with owned-object filtering, exact original forwarding for all other calls, conditional restoration and retained late-call lifetime. No vtable clones. The two calculation defaults retain their neutral native parent. No Lua on regeneration ticks."
   },
   "settings": {
     "rates": [
@@ -78,28 +78,32 @@
     "runtimePolicy": "No version, fork-name or whole-DLL hash allowlist; required game code, object layouts and native binding probes are checked."
   },
   "runtimeSourceHashes": {
-    "native/BUILD.md": "c292a436480fc893132248e8f2cddf93a016e2fea1481f6d393d930a3a459d3e",
-    "native/CMakeLists.txt": "88de123faadf28187b97cab24e227f10a77ca94338607bea0ceab2de2169ca56",
-    "native/Framecore2b.def": "b99b6244bc0b0df64e3a1de7a561c937b83e0a65e1f1d0db3476782c24d36b65",
-    "native/main.cpp": "1b72518593008822026a7d24a1f6a8f36a239d90ca7944e1daebc36d19367099",
+    "native/BUILD.md": "15534a3c5e3e9c6bc5f35bf3e3e867a022bea74118b0559444846fc5e2892ed2",
+    "native/CMakeLists.txt": "74a8a0a98ac4079b6b1e13db6d9c8d6a1abc06ab0e981a4ee45fe9077d4a1df0",
+    "native/Framecore2b.def": "cfbda5ed5d82b0be2c63129e61c63193546b0753b2e43fbe69fcb423a16eac5a",
+    "native/MagnitudeBinding.hpp": "5caea4398a7ba7f6859eaa73f6991a66796daeabcc7375d2b962f90f2547952c",
+    "native/main.cpp": "cbf7c11a201351fd75fbd6a53fefaba8af78d937255ae3fa9738bdeb602c183f",
+    "native/OperationRoute.hpp": "147eb53fd24559239ff2368e39c90783d2a8c43dbc0f4d034de09ebb9955c142",
     "native/RegenerationMath.hpp": "e2335b13d4f3df5eb7edd219a004e69238468650a02cc61815bba8b41fc53054",
     "src/lua/Config.lua": "38b37fc36853f6dce37378a82cc65e155ebc6a3a3af55bb62e1fdef3bf26589d",
     "src/lua/dmm_api.lua": "6bb667bffc543d1c5c1b36ab6da66c621d6c81c9ee46f94f0f6339cae9cc884c",
     "src/lua/Gameplay.lua": "fffecee0dfc61ffa12c6b677872a74921398494781dfe2e6d2b183161f479cbd",
     "src/lua/LiveSettings.lua": "54f5f521e684eaa8432bfe05eebf509ae3ed60105d185d8d796fe11d5e6e8f0b",
+    "src/lua/LoggingSettings.lua": "ca1c2822cfba296e6cd79deca47e2e90c7f8eb930d23c198d6a4ed2b758496da",
     "src/lua/main.lua": "fa1450387d721ca6fe0653645e312f9f27f0785f11c91bc26a588ec1ccee73bb",
+    "src/lua/ModDiagnostics.lua": "753f29683b18b41bf8ed4c90fcd8dff40a0eabf88dada679d2e65d32498d1c15",
+    "src/lua/ModDmmApi.lua": "814f79e062aa45a8b510deb1d492a81da51577b0c69c1dfc1d9ebc4760ee7ce4",
+    "src/lua/ModLogLevels.lua": "d56248918e94bc32ce561407664a0acf8f202a99eab6560787c698447d599cc2",
+    "src/lua/ModSettingsStore.lua": "6be45ca74e6b706f45a8c1587f574398d9cf0d9fd9625d26cbaac082ade28893",
     "src/lua/NativeEffects.lua": "27c50633f9e3c7fe1f38f2d266184fb7840a8c177031dc758bd9b7880c1b948e",
     "src/lua/SettingsSchema.lua": "ac143949546753857806b82099a741410dab756812fee1d2b4e33cba03f4df87",
     "src/lua/SettingsStore.lua": "db597ebcfbe67fd03aa16c3c2eb4129c346975961e4df0481bb70440aa7cfa26",
     "src/lua/UE4SSCommonDiagnostics.lua": "a6c3de0fb908085654e967a0c38c388dd021d19af7fecc0bb0722a3ea1b20f0e",
     "src/lua/UE4SSCommonSession.lua": "924272d0246d73759ba57a6ed5f0feea319065a96119d7c9ff7248dd345a09a2",
     "src/lua/UE4SSDawnwalkerSaveLoad.lua": "17e9cbb70326f536b14ba5512a46ac425e7e1446c90516e826b2092b30465707",
-    "src/lua/UE4SSDawnwalkerSettings.lua": "039b09679eafec2b19cd8f27e3033dec26a52484a7529edbf14f15193ba07ef1",
-    "src/mod_settings.ini": "4a221f620442dd7f0b73af291fadfe696ff364bee70451f41654057db77312a6",
-    "native/CodeCompatibility.hpp": "a6f91f0cc49c101ecc749b9294dea030aea5c715bd33a84b8d476d6b7d56fa5d",
-    "native/GameCode.hpp": "6ff27c0efbba32cb5db96b72d1855b577f67b234ea7e4ac7273ce19ba3726ef7"
+    "src/lua/UE4SSDawnwalkerSettings.lua": "039b09679eafec2b19cd8f27e3033dec26a52484a7529edbf14f15193ba07ef1"
   },
-  "dllSha256": "dd212fe9d5e1b47e0b295717db3b8c2e9df935010443eb89647b8d2e764ebe6d",
+  "dllSha256": "4fbe1a569668eee89921e1c7e05f588fc7a93225863a946df062e5e0a72316cb",
   "commonLibrary": {
     "repository": "https://github.com/my-mods/ue4ss-common",
     "commit": "b51434dee720bc000090d4cf387d60f8f6be7e60",
@@ -115,7 +119,7 @@
     "packaging": "Bundled immutable source copies; source, staged and archived bytes verified against the lock."
   },
   "repository": "https://github.com/my-mods/Health-Regen-Configurable",
-  "version": "1.2.0-dev",
+  "version": "1.2.1-dev",
   "releaseMaterials": {
     "Nexus/banner.jpg": "f7010a53c078b1e5221ff4caafd78e3cac6042ed1817e3ff590c9d2197d41031",
     "Nexus/thumbnail.jpg": "11b29f8892270794947efb77ead41b5d7c4f54d955c62bf8534d5a2b1506aa3f",
@@ -123,8 +127,8 @@
     "Nexus/summary.txt": "535407118ad13e4cbb41815c649390c559763eb48c1bc6e0b9f27f55a0a3b703",
     "Nexus/description.bbcode": "4dd8be23fd3c67f3fd3b2df20782ed2094062963bdb4e0bd84225d7174cc4693",
     "Nexus/file-description.txt": "ec5db811b8413f4fb4065bfb534e50bd32aa98d588d9d7e80520faeb9f3a01fd",
-    "Nexus/changelog.txt": "ec5db811b8413f4fb4065bfb534e50bd32aa98d588d9d7e80520faeb9f3a01fd",
-    "Nexus/metadata.json": "c3cbb716d58add0e51f02d9a7c6b11882e15af61f90a601c658758d69a7e3797"
+    "Nexus/changelog.txt": "7f3cda831b2eb73cd48eabbfec252520900174458a7ea4d0390228e838d47108",
+    "Nexus/metadata.json": "bf88f634d36358a4d7178f071b8722e1387902ea2a9ee9360f7852b84cb01c0d"
   },
   "liveSettings": {
     "menu": "Mod Setting Menu 1.0.6+",

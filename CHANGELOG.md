@@ -1,7 +1,10 @@
+## 1.2.1-dev
+
+- Restore vampire segment recovery on game patch 1.1.
+
 ## 1.2.0
 
 - Choose Off, Error, Warning, Info or Debug logging; Warning is the default.
-- Keep vampire segment recovery available when unrelated game code changes.
 
 # Changelog
 
