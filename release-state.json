@@ -89,9 +89,9 @@
       ],
       "pending": {
         "impact": "patch",
-        "rationale": "Patch 1.1 compatibility repair of existing segment recovery, including refreshed current-stock asset containers and verified native dispatch; baseline delta reviewed.",
+        "rationale": "Complete published-baseline delta including the newly tracked slot dispatcher and operation validator reviewed; existing segment recovery compatibility repair only.",
         "majorOverride": false,
-        "reviewedInputs": "388d4aef07c963af47f9342d257175c5d96411a08f1b018eb30cd1bdc3ee878f",
+        "reviewedInputs": "6c23f4cc59e37e922ee6c86cffd4c433a4330d2aefb56269e02d0fc2e49adf9e",
         "divergenceReviewed": true
       }
     }
